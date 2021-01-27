@@ -1,0 +1,16 @@
+//
+//  MineController.swift
+//  SoundDriftingBottle
+//
+//  Created by Mac on 2021/1/27.
+//
+
+import Foundation
+import UIKit
+class MineController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+        self.title = "个人"
+    }
+}
