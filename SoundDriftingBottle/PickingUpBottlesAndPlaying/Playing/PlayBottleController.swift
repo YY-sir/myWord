@@ -28,7 +28,6 @@ class PlayBottleController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = false
         
         //设置渐变背景
         setupViewBg()
@@ -53,8 +52,14 @@ class PlayBottleController: UIViewController {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        player.pause()
     }
     
     fileprivate func setupViewBg(){
@@ -139,9 +144,6 @@ class PlayBottleController: UIViewController {
             }
         }
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        player.pause()
-    }
+
     
 }

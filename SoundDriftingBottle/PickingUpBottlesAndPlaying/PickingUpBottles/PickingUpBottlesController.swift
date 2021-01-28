@@ -13,7 +13,6 @@ class PickingUpBottlesController: UIViewController {
     var pickupview : PickingUpBottlesView!
     
     override func viewDidLoad() {
-        self.navigationController?.isNavigationBarHidden = true
         self.view.backgroundColor = UIColor.white
         pickupview = PickingUpBottlesView(frame: self.view.bounds)
         self.view.addSubview(pickupview)
@@ -22,9 +21,14 @@ class PickingUpBottlesController: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     //将页面初始化
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         isPickup = true
         pickupview.mainScrollView.contentOffset.y = -(CommonOne().topPadding)
     }

@@ -14,10 +14,21 @@ class ThrowTheBottleController: UIViewController {
         setupViewBg()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //设置导航栏
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //设置导航栏
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     fileprivate func setupViewBg(){
         let ui = UIView(frame: self.view.bounds)
         ui.layer.addSublayer(CommonOne().gradientLayer)
         self.view.addSubview(ui)
     }
-
 }
