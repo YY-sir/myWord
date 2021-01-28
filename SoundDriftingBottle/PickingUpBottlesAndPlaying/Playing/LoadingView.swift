@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 class LoadingView: UIView {
     let loadingImage: UIImageView = UIImageView()
     
@@ -20,18 +21,25 @@ class LoadingView: UIView {
     }
     
     fileprivate func setupUI(){
-        self.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.25)
+        
+        
+        self.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.2)
         self.addSubview(loadingImage)
-        loadingImage.backgroundColor = UIColor.red
         loadingImage.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
-            make.width.height.equalTo(120)
+            make.width.height.equalTo(35)
         }
         
-        guard let path = Bundle.main.path(forResource: "loading", ofType: "gif") else { return }
-        let url:NSURL? = NSURL.init(fileURLWithPath: path)
-        print("--\(path)---")
-        print("--\(url)---")
-        
+        var imgArray: [UIImage]! = []
+        for index in 1 ..< 9{
+            let str: String?
+            str = String(format: "loading2-%d", index)
+            let image = UIImage(named: str!)
+            imgArray.append(image!)
+        }
+        loadingImage.animationImages = imgArray
+        loadingImage.animationDuration = 8 * 0.12
+        loadingImage.animationRepeatCount = .max
+        loadingImage.startAnimating()
     }
 }
