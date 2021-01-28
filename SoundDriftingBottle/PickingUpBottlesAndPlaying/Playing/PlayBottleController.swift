@@ -88,8 +88,6 @@ class PlayBottleController: UIViewController {
                 print("准备好了")
                 //显示播放页
                 showPlayView()
-                //播放音频
-                player.play()
             case AVPlayerItem.Status.failed:
                 print("失败")
             case AVPlayerItem.Status.unknown:
@@ -134,10 +132,16 @@ class PlayBottleController: UIViewController {
         UIView.animate(withDuration: 1, delay: 1, animations: {
             self.loadingview.alpha = 0
             self.playbottleview.alpha = 1
-        })
+        }){(finnish) in
+            if finnish{
+                //页面加载完后播放音频
+                self.player.play()
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         player.pause()
     }
+    
 }

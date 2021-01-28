@@ -71,6 +71,8 @@
 		044B05BB25C17A870013F493 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 044B05BA25C17A870013F493 /* loading.gif */; };
 		044B05BE25C17B990013F493 /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B05BD25C17B990013F493 /* UIImage+GIF.swift */; };
 		0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634625C2B5160003D458 /* PlayBottleView.swift */; };
+		0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */; };
+		0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634D25C2C4AD0003D458 /* BottomView.swift */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
 		04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6225C297BD00BC823F /* CoreMotion.framework */; };
 		04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6525C2A61E00BC823F /* AVFoundation.framework */; };
@@ -146,6 +148,8 @@
 		044B05BA25C17A870013F493 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		044B05BD25C17B990013F493 /* UIImage+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
 		0485634625C2B5160003D458 /* PlayBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBottleView.swift; sourceTree = "<group>"; };
+		0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrowTheBottleController.swift; sourceTree = "<group>"; };
+		0485634D25C2C4AD0003D458 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		04E13A6225C297BD00BC823F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		04E13A6525C2A61E00BC823F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -306,6 +310,7 @@
 			children = (
 				044B057D25C167DC0013F493 /* PickingUpBottles */,
 				044B057C25C167C50013F493 /* Playing */,
+				0485634D25C2C4AD0003D458 /* BottomView.swift */,
 			);
 			path = PickingUpBottlesAndPlaying;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 		044B04E725BFF9BA0013F493 /* ThrowTheBottle */ = {
 			isa = PBXGroup;
 			children = (
+				0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */,
 			);
 			path = ThrowTheBottle;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
 				044B04DC25BFF7F90013F493 /* Debugging.swift in Sources */,
+				0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */,
 				044B04DE25BFF7F90013F493 /* LayoutConstraint.swift in Sources */,
 				044B04D225BFF7F90013F493 /* Typealiases.swift in Sources */,
 				044B050B25C142510013F493 /* PickingUpBottlesView.swift in Sources */,
@@ -483,6 +490,7 @@
 				044B04C525BFF7F90013F493 /* ConstraintPriorityTarget.swift in Sources */,
 				044B04D325BFF7F90013F493 /* ConstraintConstantTarget.swift in Sources */,
 				044B04C825BFF7F90013F493 /* ConstraintDSL.swift in Sources */,
+				0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */,
 				044B04EC25C004910013F493 /* LoginView.swift in Sources */,
 				044B04CA25BFF7F90013F493 /* ConstraintPriority.swift in Sources */,
 				044B04CF25BFF7F90013F493 /* ConstraintView.swift in Sources */,
