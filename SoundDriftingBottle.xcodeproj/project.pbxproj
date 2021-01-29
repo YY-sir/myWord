@@ -73,6 +73,9 @@
 		0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634625C2B5160003D458 /* PlayBottleView.swift */; };
 		0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */; };
 		0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634D25C2C4AD0003D458 /* BottomView.swift */; };
+		0485635A25C39CF80003D458 /* TopSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635925C39CF80003D458 /* TopSection.swift */; };
+		0485635D25C39EF90003D458 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635C25C39EF90003D458 /* RecordView.swift */; };
+		0485636025C3A0D60003D458 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635F25C3A0D60003D458 /* LabelCell.swift */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
 		04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6225C297BD00BC823F /* CoreMotion.framework */; };
 		04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6525C2A61E00BC823F /* AVFoundation.framework */; };
@@ -150,6 +153,9 @@
 		0485634625C2B5160003D458 /* PlayBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBottleView.swift; sourceTree = "<group>"; };
 		0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrowTheBottleController.swift; sourceTree = "<group>"; };
 		0485634D25C2C4AD0003D458 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		0485635925C39CF80003D458 /* TopSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSection.swift; sourceTree = "<group>"; };
+		0485635C25C39EF90003D458 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		0485635F25C3A0D60003D458 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		04E13A6225C297BD00BC823F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		04E13A6525C2A61E00BC823F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -319,6 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */,
+				0485635C25C39EF90003D458 /* RecordView.swift */,
+				0485635F25C3A0D60003D458 /* LabelCell.swift */,
 			);
 			path = ThrowTheBottle;
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 			children = (
 				044B050125C13ADA0013F493 /* PersonalInformationView.swift */,
 				044B050625C13B1A0013F493 /* MineController.swift */,
+				0485635925C39CF80003D458 /* TopSection.swift */,
 			);
 			path = MIne;
 			sourceTree = "<group>";
@@ -451,7 +460,9 @@
 			files = (
 				044B04C225BFF7F90013F493 /* ConstraintMakerPriortizable.swift in Sources */,
 				044B04C325BFF7F90013F493 /* ConstraintAttributes.swift in Sources */,
+				0485636025C3A0D60003D458 /* LabelCell.swift in Sources */,
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,
+				0485635D25C39EF90003D458 /* RecordView.swift in Sources */,
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
 				044B04DC25BFF7F90013F493 /* Debugging.swift in Sources */,
 				0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */,
@@ -472,6 +483,7 @@
 				044B04D825BFF7F90013F493 /* ConstraintLayoutGuideDSL.swift in Sources */,
 				044B04D025BFF7F90013F493 /* ConstraintLayoutGuide.swift in Sources */,
 				044B04D725BFF7F90013F493 /* ConstraintRelation.swift in Sources */,
+				0485635A25C39CF80003D458 /* TopSection.swift in Sources */,
 				044B04CB25BFF7F90013F493 /* ConstraintInsetTarget.swift in Sources */,
 				044B050725C13B1B0013F493 /* MineController.swift in Sources */,
 				044B04C025BFF7F90013F493 /* LayoutConstraintItem.swift in Sources */,

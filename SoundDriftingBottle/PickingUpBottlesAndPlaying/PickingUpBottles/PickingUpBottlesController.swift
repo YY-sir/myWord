@@ -13,6 +13,7 @@ class PickingUpBottlesController: UIViewController {
     var pickupview : PickingUpBottlesView!
     
     override func viewDidLoad() {
+        self.title = "首页"
         self.view.backgroundColor = UIColor.white
         pickupview = PickingUpBottlesView(frame: self.view.bounds)
         self.view.addSubview(pickupview)
