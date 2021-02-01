@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 class RecordView: UIView {
+    let app = UIApplication.shared.delegate as! AppDelegate
+    let RecorderOC = Recorder()
+    
     var bottleLabelViewCollection: UICollectionView!
     var changeLabelViewCollection: UICollectionView!
     
@@ -195,6 +198,14 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
                 timeL.text = CommonOne().changeTime(time: bottleTime[indexPath.row])
             }else if collectionView == changeLabelViewCollection{
                 changeLabel = indexPath.row
+                
+                //变声处理
+                print("---\(app.recordPcm)---")
+                let path: String
+                path = RecorderOC.soundChangePath(in: app.recordPcm, pathOut: app.recordPcmC, soundNumber: Int32(indexPath.row))
+                app.recordMp3 = RecorderOC.audio_PCMtoMP3_path(in: path, pathOut: app.recordMp3)
+                print("\(app.recordMp3)")
+
             }
         }
         
@@ -207,6 +218,8 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
             cell.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.25)
         }
     }
+    
+    
 }
 
 //重写UICollectionViewCell类

@@ -71,8 +71,6 @@
     VOID* ttSdkHandle = NULL;
     int ret = TT_NS_Create(&ttSdkHandle);
     if(ret == 0){
-        NSLog(@"handle 创建成功");
-        
         //设置参数
         struct NSParamsStruct params;
         params.fs = 32000;
@@ -80,8 +78,6 @@
 
         TT_NS_Init(ttSdkHandle, &params);
 
-        NSLog(@"in路径为: %s", (char*)[pathIn UTF8String]);
-        NSLog(@"out路径为: %s", (char*)[pathOut UTF8String]);
         ret = TT_NS_Process_File(ttSdkHandle, (char*)[pathIn UTF8String], (char*)[NSpathOut UTF8String]);
         if(ret == 0){
             NSLog(@"音频转换成功，路径为: %@", pathOut);
@@ -111,8 +107,6 @@
     //1、创建
     int ret = TT_SoundChangeCreate(&ttSdkHandle);
     if(ret == 0){
-        NSLog(@"handle 创建成功");
-
         //2、设置结构参数
         struct SoundChangeParams params;
         params.fs = 32000;
@@ -122,8 +116,6 @@
 //3、初始化
         TT_SoundChangeInit(ttSdkHandle, &params);
 //4、调用方法
-        NSLog(@"变声in路径为: %s", (char*)[pathIn UTF8String]);
-        NSLog(@"变声out路径为: %s", (char*)[pathOut UTF8String]);
         ret = TT_SoundChangeProcessFile(ttSdkHandle, (char*)[pathIn UTF8String], (char*)[NSpathOut UTF8String]);
         if(ret == 0){
             NSLog(@"变声音频转换成功，路径为: %@", pathOut);

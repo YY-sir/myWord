@@ -9,6 +9,9 @@ import Foundation
 import AVFoundation
 import UIKit
 class ThrowTheBottleController: UIViewController {
+    let app = UIApplication.shared.delegate as! AppDelegate
+    let RecorderOC = Recorder()
+    
     var recordview: RecordView!
     var isRecord = true
     var isThrow = false
@@ -16,6 +19,7 @@ class ThrowTheBottleController: UIViewController {
     var audioRecorder: AVAudioRecorder!
     var time1970: String!
     var path: String!
+    var pathP: String!
     var pathOut: String!
     var pathOutMp3: String!
     var pathOutChange: String!
@@ -33,6 +37,7 @@ class ThrowTheBottleController: UIViewController {
         recordview.recordB.addTarget(self, action: #selector(recordAction(sender:)), for: .touchUpInside)
         recordview.cancelB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.commitB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
+        
         
     }
     
@@ -101,10 +106,15 @@ class ThrowTheBottleController: UIViewController {
         recordName = ("/" + time1970 + ".pcm")
         print("\(recordName)")
         path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(recordName)
-        pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/mp3" + time1970 + ".mp3"))
+        pathP = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "c.pcm"))
+        pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
+        app.recordMp3 = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "mc.mp3"))
+        app.recordPcmC = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "pc.pcm"))
         print("\(path)")
         audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 44100, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
         
+        //添加代理
+        audioRecorder.delegate = self
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
@@ -113,16 +123,6 @@ class ThrowTheBottleController: UIViewController {
     fileprivate func endRecord(){
         audioRecorder.stop()
         audioRecorder = nil
-        
-        let oc = Recorder()
-        
-        pathOutMp3 = oc.audio_PCMtoMP3_path(in: path, pathOut: pathOut)
-        print("\(pathOutMp3)")
-//        path = oc.noiseSuppressPath(path, pathOut: pathOutMp3)
-//        pathOutMp3 = oc.audio_PCMtoMP3_path(in: path, pathOut: pathOut)
-//        print("\(pathOutMp3)")
-//        pathOut = oc.soundChangePath(in: pathOutMp3, pathOut: pathOut, soundNumber: 2)
-//        print("\(pathOut)")
 
     }
     
@@ -194,6 +194,14 @@ class ThrowTheBottleController: UIViewController {
     }
 }
 
+extension ThrowTheBottleController: AVAudioRecorderDelegate{
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        print("录音结束")
+        //对原声进行降噪 并转为mp3
+        app.recordPcm = RecorderOC.noiseSuppressPath(path, pathOut: pathP)
+        pathOut = RecorderOC.audio_PCMtoMP3_path(in: pathP, pathOut: pathOut)
+    }
+}
 
 //扩展Date
 extension Date{
