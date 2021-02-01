@@ -6,12 +6,21 @@
 //
 
 import Foundation
+import AVFoundation
 import UIKit
 class ThrowTheBottleController: UIViewController {
     var recordview: RecordView!
     var isRecord = true
     var isThrow = false
     
+    var audioRecorder: AVAudioRecorder!
+    var time1970: String!
+    var path: String!
+    var pathOut: String!
+    var pathOutMp3: String!
+    var pathOutChange: String!
+    var recordName: String!
+    var url: NSURL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +63,15 @@ class ThrowTheBottleController: UIViewController {
         if isRecord && !isThrow{
             isRecord = false
             isThrow = true
+            //开始录音
+            startRecord()
         }else if !isRecord && isThrow{
-            //录音结束
+            //结束录音
+            endRecord()
             //修改视图
             changeView()
             //修改时间为音频的时间
-            recordview.timeL.text = "555"
+            recordview.timeL.text = CommonOne().changeTime(time: 555)
             
         }else if !isRecord && !isThrow{
             
@@ -71,14 +83,56 @@ class ThrowTheBottleController: UIViewController {
         //取消操作
         if sender == recordview.cancelB{
             print("取消")
+            cancelView()
+            cancelData()
         //确认操作
         }else if sender == recordview.commitB{
             print("扔瓶子")
         }
     }
     
+    //开始录音
+    fileprivate func startRecord(){
+        //View调整
+//        recordview.recordB.isEnabled = false
+        //数据调整
+        time1970 = Date().timeStamp
+        print("\(time1970)")
+        recordName = ("/" + time1970 + ".pcm")
+        print("\(recordName)")
+        path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(recordName)
+        pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/mp3" + time1970 + ".mp3"))
+        print("\(path)")
+        audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 44100, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
+        
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
+    }
+    //结束录音
+    fileprivate func endRecord(){
+        audioRecorder.stop()
+        audioRecorder = nil
+        
+        let oc = Recorder()
+        
+        pathOutMp3 = oc.audio_PCMtoMP3_path(in: path, pathOut: pathOut)
+        print("\(pathOutMp3)")
+//        path = oc.noiseSuppressPath(path, pathOut: pathOutMp3)
+//        pathOutMp3 = oc.audio_PCMtoMP3_path(in: path, pathOut: pathOut)
+//        print("\(pathOutMp3)")
+//        pathOut = oc.soundChangePath(in: pathOutMp3, pathOut: pathOut, soundNumber: 2)
+//        print("\(pathOut)")
+
+    }
+    
+
+
+
+    //录音结束View改变
     fileprivate func changeView(){
         UIView.animate(withDuration: 1, animations: {
+            self.recordview.changeLabelViewCollection.alpha = 1
             //左移动
             self.recordview.bottleLabelViewCollection.snp.remakeConstraints {(make) in
                 make.right.equalTo(self.recordview.snp.left)
@@ -86,7 +140,6 @@ class ThrowTheBottleController: UIViewController {
                 make.height.equalTo(80)
                 make.centerY.equalToSuperview()
             }
-            //右移动
             self.recordview.changeLabelViewCollection.snp.remakeConstraints {(make) in
                 make.center.equalToSuperview()
                 make.width.equalTo(320)
@@ -102,8 +155,58 @@ class ThrowTheBottleController: UIViewController {
             
         }
     }
+    //录音结束数据调整
     
+    
+    //取消后View改变
+    fileprivate func cancelView(){
+        self.recordview.bottleLabelViewCollection.alpha = 1
+        UIView.animate(withDuration: 1, animations: {
+            //右移动
+            self.recordview.changeLabelViewCollection.snp.remakeConstraints {(make) in
+                make.left.equalTo(self.recordview.snp.right)
+                make.width.equalTo(320)
+                make.height.equalTo(80)
+                make.centerY.equalToSuperview()
+            }
+            self.recordview.bottleLabelViewCollection.snp.remakeConstraints {(make) in
+                make.center.equalToSuperview()
+                make.width.equalTo(320)
+                make.height.equalTo(80)
+            }
+            //显示按钮
+            self.recordview.cancelB.alpha = 0
+            self.recordview.commitB.alpha = 0
+            
+            self.view.layoutIfNeeded()
+        }){(finnish) in
+            self.recordview.changeLabelViewCollection.alpha = 0
+            
+        }
+    }
+    //取消后数据调整
+    fileprivate func cancelData(){
+        //初始化判断值
+        isRecord = true
+        isThrow = false
+        
+
+    }
+}
 
 
-    
+//扩展Date
+extension Date{
+    /// 获取当前 秒级 时间戳 - 10位
+    var timeStamp : String {
+        let timeInterval: TimeInterval = self.timeIntervalSince1970
+        let timeStamp = Int(timeInterval)
+        return "\(timeStamp)"
+    }
+    /// 获取当前 毫秒级 时间戳 - 13位
+     var milliStamp : String {
+         let timeInterval: TimeInterval = self.timeIntervalSince1970
+         let millisecond = CLongLong(round(timeInterval*1000))
+         return "\(millisecond)"
+     }
 }

@@ -16,7 +16,7 @@ class RecordView: UIView {
     var changeLabel: Int!
     let bottleLabelText = ["普通瓶", "心情瓶", "音乐瓶", "故事瓶", "愿望瓶"]
     let bottleImage = ["bottle1_nomal", "bottle2_moon", "bottle3_music", "bottle4_story", "bottle5_wish"]
-    let bottleTime = ["10", "20", "30", "40" , "50"]
+    let bottleTime = [10, 20, 30, 40, 50]
     
     let changeLabelText = ["原声", "大叔", "少女", "惊悚", "网红女", "魔兽", "搞怪", "萝莉", "空灵"]
     let changeImage = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
@@ -111,7 +111,7 @@ class RecordView: UIView {
         }
         
         recordView.addSubview(timeL)
-        timeL.text = bottleTime[0]
+        timeL.text = CommonOne().changeTime(time: bottleTime[0])
         timeL.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
         }
@@ -192,7 +192,7 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
             //标签的选择
             if collectionView == bottleLabelViewCollection {
                 bottleLabel = indexPath.row
-                timeL.text = bottleTime[indexPath.row]
+                timeL.text = CommonOne().changeTime(time: bottleTime[indexPath.row])
             }else if collectionView == changeLabelViewCollection{
                 changeLabel = indexPath.row
             }

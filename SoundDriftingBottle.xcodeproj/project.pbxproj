@@ -70,12 +70,15 @@
 		044B05B425C1789C0013F493 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 044B05B325C1789C0013F493 /* Settings.bundle */; };
 		044B05BB25C17A870013F493 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 044B05BA25C17A870013F493 /* loading.gif */; };
 		044B05BE25C17B990013F493 /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B05BD25C17B990013F493 /* UIImage+GIF.swift */; };
+		04516A6625C7DB7C0056072F /* Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04516A6525C7DB7C0056072F /* Recorder.m */; };
+		04516A7525C7DE950056072F /* libTTaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04516A7425C7DE950056072F /* libTTaudio.a */; };
 		0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634625C2B5160003D458 /* PlayBottleView.swift */; };
 		0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */; };
 		0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634D25C2C4AD0003D458 /* BottomView.swift */; };
 		0485635A25C39CF80003D458 /* TopSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635925C39CF80003D458 /* TopSection.swift */; };
 		0485635D25C39EF90003D458 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635C25C39EF90003D458 /* RecordView.swift */; };
-		0485636025C3A0D60003D458 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635F25C3A0D60003D458 /* LabelCell.swift */; };
+		04878EFF25C7F7A200F037B2 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04878EFD25C7F7A200F037B2 /* libmp3lame.a */; };
+		04A63DAD25C7EC4F009BC8D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A63DAC25C7EC47009BC8D3 /* libc++.tbd */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
 		04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6225C297BD00BC823F /* CoreMotion.framework */; };
 		04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6525C2A61E00BC823F /* AVFoundation.framework */; };
@@ -150,12 +153,22 @@
 		044B05B325C1789C0013F493 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		044B05BA25C17A870013F493 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		044B05BD25C17B990013F493 /* UIImage+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
+		04516A6325C7DB7C0056072F /* SoundDriftingBottle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundDriftingBottle-Bridging-Header.h"; sourceTree = "<group>"; };
+		04516A6425C7DB7C0056072F /* Recorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recorder.h; sourceTree = "<group>"; };
+		04516A6525C7DB7C0056072F /* Recorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Recorder.m; sourceTree = "<group>"; };
+		04516A6F25C7DE950056072F /* sound_change_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound_change_api.h; sourceTree = "<group>"; };
+		04516A7025C7DE950056072F /* agc_process_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agc_process_api.h; sourceTree = "<group>"; };
+		04516A7125C7DE950056072F /* noise_suppress_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noise_suppress_api.h; sourceTree = "<group>"; };
+		04516A7225C7DE950056072F /* audio_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_common.h; sourceTree = "<group>"; };
+		04516A7425C7DE950056072F /* libTTaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTTaudio.a; sourceTree = "<group>"; };
 		0485634625C2B5160003D458 /* PlayBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBottleView.swift; sourceTree = "<group>"; };
 		0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrowTheBottleController.swift; sourceTree = "<group>"; };
 		0485634D25C2C4AD0003D458 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		0485635925C39CF80003D458 /* TopSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSection.swift; sourceTree = "<group>"; };
 		0485635C25C39EF90003D458 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		0485635F25C3A0D60003D458 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		04878EFD25C7F7A200F037B2 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		04878EFE25C7F7A200F037B2 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		04A63DAC25C7EC47009BC8D3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		04E13A6225C297BD00BC823F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		04E13A6525C2A61E00BC823F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -168,15 +181,18 @@
 			files = (
 				041F1F6125C2508800C3C17A /* CoreFoundation.framework in Frameworks */,
 				041F1F6F25C2521000C3C17A /* Accelerate.framework in Frameworks */,
+				04516A7525C7DE950056072F /* libTTaudio.a in Frameworks */,
 				041F1F7225C2524000C3C17A /* AddressBook.framework in Frameworks */,
 				041F1F6425C250EB00C3C17A /* libz.tbd in Frameworks */,
 				041F1F6C25C2512400C3C17A /* ImageIO.framework in Frameworks */,
 				041F1F7425C2525400C3C17A /* CoreText.framework in Frameworks */,
 				041F1F6A25C2511300C3C17A /* CoreImage.framework in Frameworks */,
+				04A63DAD25C7EC4F009BC8D3 /* libc++.tbd in Frameworks */,
 				04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */,
 				04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */,
 				041F1E5B25C24CD400C3C17A /* WebKit.framework in Frameworks */,
 				04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */,
+				04878EFF25C7F7A200F037B2 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +210,7 @@
 		041F1E5925C24CD400C3C17A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04A63DAC25C7EC47009BC8D3 /* libc++.tbd */,
 				04E13A6525C2A61E00BC823F /* AVFoundation.framework */,
 				04E13A6225C297BD00BC823F /* CoreMotion.framework */,
 				04E13A5F25C28FD200BC823F /* libc++abi.tbd */,
@@ -253,6 +270,8 @@
 		044B049825BFF7820013F493 /* Plugin  */ = {
 			isa = PBXGroup;
 			children = (
+				04878EFC25C7F7A200F037B2 /* lame */,
+				04516A6D25C7DE950056072F /* audio_ios_sdk_20201219_mpc */,
 				044B049925BFF7F90013F493 /* SnapKit */,
 			);
 			path = "Plugin ";
@@ -326,7 +345,6 @@
 			children = (
 				0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */,
 				0485635C25C39EF90003D458 /* RecordView.swift */,
-				0485635F25C3A0D60003D458 /* LabelCell.swift */,
 			);
 			path = ThrowTheBottle;
 			sourceTree = "<group>";
@@ -346,6 +364,9 @@
 			children = (
 				044B04F425C019430013F493 /* Inherit */,
 				044B04F025C008670013F493 /* CommonOne.swift */,
+				04516A6425C7DB7C0056072F /* Recorder.h */,
+				04516A6525C7DB7C0056072F /* Recorder.m */,
+				04516A6325C7DB7C0056072F /* SoundDriftingBottle-Bridging-Header.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -386,6 +407,45 @@
 			path = PickingUpBottles;
 			sourceTree = "<group>";
 		};
+		04516A6D25C7DE950056072F /* audio_ios_sdk_20201219_mpc */ = {
+			isa = PBXGroup;
+			children = (
+				04516A6E25C7DE950056072F /* inc */,
+				04516A7325C7DE950056072F /* lib */,
+			);
+			name = audio_ios_sdk_20201219_mpc;
+			path = ../../../../flutter_ios/audio_ios_sdk_20201219_mpc;
+			sourceTree = "<group>";
+		};
+		04516A6E25C7DE950056072F /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				04516A6F25C7DE950056072F /* sound_change_api.h */,
+				04516A7025C7DE950056072F /* agc_process_api.h */,
+				04516A7125C7DE950056072F /* noise_suppress_api.h */,
+				04516A7225C7DE950056072F /* audio_common.h */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		04516A7325C7DE950056072F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				04516A7425C7DE950056072F /* libTTaudio.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		04878EFC25C7F7A200F037B2 /* lame */ = {
+			isa = PBXGroup;
+			children = (
+				04878EFD25C7F7A200F037B2 /* libmp3lame.a */,
+				04878EFE25C7F7A200F037B2 /* lame.h */,
+			);
+			name = lame;
+			path = ../../../../flutter_ios/lame;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -417,6 +477,7 @@
 				TargetAttributes = {
 					044B047F25BFF7240013F493 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -460,7 +521,6 @@
 			files = (
 				044B04C225BFF7F90013F493 /* ConstraintMakerPriortizable.swift in Sources */,
 				044B04C325BFF7F90013F493 /* ConstraintAttributes.swift in Sources */,
-				0485636025C3A0D60003D458 /* LabelCell.swift in Sources */,
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,
 				0485635D25C39EF90003D458 /* RecordView.swift in Sources */,
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
@@ -486,6 +546,7 @@
 				0485635A25C39CF80003D458 /* TopSection.swift in Sources */,
 				044B04CB25BFF7F90013F493 /* ConstraintInsetTarget.swift in Sources */,
 				044B050725C13B1B0013F493 /* MineController.swift in Sources */,
+				04516A6625C7DB7C0056072F /* Recorder.m in Sources */,
 				044B04C025BFF7F90013F493 /* LayoutConstraintItem.swift in Sources */,
 				044B04FE25C0F8790013F493 /* RegisterAndLoginController.swift in Sources */,
 				044B04E025BFF7F90013F493 /* ConstraintDirectionalInsets.swift in Sources */,
@@ -660,6 +721,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SoundDriftingBottle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -667,9 +729,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/mac/Desktop/vscode/flutter_ios/lame/,
+					/Users/mac/Desktop/vscode/flutter_ios/audio_ios_sdk_20201219_mpc/lib/,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.SoundDriftingBottle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SoundDriftingBottle/Common/SoundDriftingBottle-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -680,6 +748,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SoundDriftingBottle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -687,9 +756,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					/Users/mac/Desktop/vscode/flutter_ios/lame/,
+					/Users/mac/Desktop/vscode/flutter_ios/audio_ios_sdk_20201219_mpc/lib/,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.SoundDriftingBottle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SoundDriftingBottle/Common/SoundDriftingBottle-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

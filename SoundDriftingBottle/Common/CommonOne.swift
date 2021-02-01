@@ -6,8 +6,10 @@
 //
 
 import Foundation
-import Foundation
 import UIKit
+
+
+
 class CommonOne: NSObject {
     //safeArea上下外边距
     var window: UIWindow!
@@ -38,6 +40,17 @@ class CommonOne: NSObject {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1.0)
         gradientLayer.frame = window.bounds
+    }
+    
+    //将整数转为时间格式字符串
+    @objc func changeTime(time: Int) -> (String){
+        let dateformmter = DateFormatter()
+        dateformmter.dateStyle = .medium
+        dateformmter.timeStyle = .short
+        dateformmter.dateFormat = "mm:ss"
+        let confromTimesp = Date.init(timeIntervalSince1970: TimeInterval(time))
+        let changeTime = dateformmter.string(from: confromTimesp)
+        return changeTime
     }
     
 }
