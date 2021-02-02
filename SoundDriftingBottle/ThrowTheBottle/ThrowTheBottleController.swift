@@ -13,18 +13,24 @@ class ThrowTheBottleController: UIViewController {
     let RecorderOC = Recorder()
     
     var recordview: RecordView!
-    var isRecord = true
-    var isThrow = false
+    //录音播放按钮状态：开始录音-0；结束录音-1；播放录音-2；暂停录音-3
+    var buttonStatus = 0
+    //上一次变声标签
+    var lastTimeChangeLabel = -1
     
+    //录音机
     var audioRecorder: AVAudioRecorder!
     var time1970: String!
     var path: String!
     var pathP: String!
     var pathOut: String!
-    var pathOutMp3: String!
-    var pathOutChange: String!
+    var pathOutC: String!
     var recordName: String!
     var url: NSURL!
+    //播放器
+    var player: AVPlayer!
+    var playerItem: AVPlayerItem!
+    var timeObserve: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +65,21 @@ class ThrowTheBottleController: UIViewController {
         self.view.addSubview(ui)
     }
     
+//-------------------------------------------------------------------------
     //录音按钮操作
     @objc func recordAction(sender: UIButton){
-        print("111111")
         print("\(recordview.bottleLabel)---\(recordview.changeLabel)")
-        
         //判断录音按钮状态
-        if isRecord && !isThrow{
-            isRecord = false
-            isThrow = true
+        switch buttonStatus {
+        case 0:
+            print("开始录音")
+            buttonStatus = 1
             //开始录音
             startRecord()
-        }else if !isRecord && isThrow{
+            
+        case 1:
+            print("结束录音")
+            buttonStatus = 2
             //结束录音
             endRecord()
             //修改视图
@@ -78,8 +87,19 @@ class ThrowTheBottleController: UIViewController {
             //修改时间为音频的时间
             recordview.timeL.text = CommonOne().changeTime(time: 555)
             
-        }else if !isRecord && !isThrow{
+        case 2:
+            print("播放录音")
+            buttonStatus = 3
+            playBottle(bottleLabel: recordview.changeLabel)
             
+        case 3:
+            print("暂停录音")
+            buttonStatus = 2
+            player.pause()
+            
+        default:
+            buttonStatus = 0
+            break
         }
     }
     
@@ -106,10 +126,8 @@ class ThrowTheBottleController: UIViewController {
         recordName = ("/" + time1970 + ".pcm")
         print("\(recordName)")
         path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(recordName)
-        pathP = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "c.pcm"))
+        pathP = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "s.pcm"))
         pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
-        app.recordMp3 = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "mc.mp3"))
-        app.recordPcmC = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "pc.pcm"))
         print("\(path)")
         audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 44100, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
         
@@ -126,9 +144,6 @@ class ThrowTheBottleController: UIViewController {
 
     }
     
-
-
-
     //录音结束View改变
     fileprivate func changeView(){
         UIView.animate(withDuration: 1, animations: {
@@ -187,18 +202,89 @@ class ThrowTheBottleController: UIViewController {
     //取消后数据调整
     fileprivate func cancelData(){
         //初始化判断值
-        isRecord = true
-        isThrow = false
-        
+        buttonStatus = 0
 
     }
+    
+//-------------------------------------------------------------------------
+    //播放录音
+    fileprivate func playBottle(bottleLabel: Int){
+        if lastTimeChangeLabel == bottleLabel{
+            player.play()
+            return
+        }
+        lastTimeChangeLabel = bottleLabel
+        //变声处理
+        var pathC: String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "sc.pcm"))
+        pathC = RecorderOC.soundChangePath(in: pathP, pathOut: pathC, soundNumber: Int32(bottleLabel))
+        
+        pathOutC = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "mc.mp3"))
+        pathOutC = RecorderOC.audio_PCMtoMP3_path(in: pathC, pathOut: pathOutC)
+
+        print("Label:\(bottleLabel);path:\(URL(string: pathOutC))")
+        playerItem = AVPlayerItem.init(url: NSURL(fileURLWithPath: pathOutC) as URL)
+        player = AVPlayer.init(playerItem: playerItem)
+        
+        //监听音频加载状态
+        playerItem.addObserver(self, forKeyPath: "status", options: [.new], context:nil)
+
+        //播放时间处理
+        playTime()
+
+        //监听播放结束状态
+        NotificationCenter.default.addObserver(self, selector: #selector(playEnd), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
+    }
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == "status"{
+            print("1")
+            switch playerItem.status {
+            case AVPlayerItem.Status.readyToPlay:
+                print("准备好了")
+                self.player.play()
+            case AVPlayerItem.Status.failed:
+                print("失败")
+            case AVPlayerItem.Status.unknown:
+                print("未知")
+            default:
+                break
+            }
+        }
+    }
+    //播放时间处理
+    fileprivate func playTime(){
+        timeObserve = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 1000), queue: DispatchQueue.main, using: { (time) in
+            let current = CMTimeGetSeconds(time)
+            let total = CMTimeGetSeconds(self.playerItem.duration)
+            print("\(current)---\(total)")
+        })
+    
+    }
+    //监听播放结束状态
+    @objc func playEnd(){
+        print("播放结束")
+        buttonStatus = 2
+        player.pause()
+//        removeObserve()
+    }
+    //移除监听
+    fileprivate func removeObserve() {
+        self.player.currentItem?.removeObserver(self, forKeyPath: "status")
+        self.player.removeTimeObserver(timeObserve!)
+        timeObserve = nil
+    }
+
+    
+    
+    //暂停录音
 }
 
+//-------------------------------------------------------------------------
 extension ThrowTheBottleController: AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("录音结束")
         //对原声进行降噪 并转为mp3
-        app.recordPcm = RecorderOC.noiseSuppressPath(path, pathOut: pathP)
+        pathP = RecorderOC.noiseSuppressPath(path, pathOut: pathP)
         pathOut = RecorderOC.audio_PCMtoMP3_path(in: pathP, pathOut: pathOut)
     }
 }

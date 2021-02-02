@@ -198,13 +198,6 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
                 timeL.text = CommonOne().changeTime(time: bottleTime[indexPath.row])
             }else if collectionView == changeLabelViewCollection{
                 changeLabel = indexPath.row
-                
-                //变声处理
-                print("---\(app.recordPcm)---")
-                let path: String
-                path = RecorderOC.soundChangePath(in: app.recordPcm, pathOut: app.recordPcmC, soundNumber: Int32(indexPath.row))
-                app.recordMp3 = RecorderOC.audio_PCMtoMP3_path(in: path, pathOut: app.recordMp3)
-                print("\(app.recordMp3)")
 
             }
         }

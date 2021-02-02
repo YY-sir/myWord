@@ -16,7 +16,8 @@ class PlayBottleController: UIViewController {
     var playbottleview: PlayBottleView!
     
     //音频url
-    var url: URL = URL(string: "https://zt-mpc.obs.cn-north-4.myhuaweicloud.com/audio%2FVoiceCard%252FRaw%252Fa_10463194_raw_1601481742792_OPPO_PCAM10_69.m4a")!
+//    var url: URL = URL(string: "https://zt-mpc.obs.cn-north-4.myhuaweicloud.com/audio%2FVoiceCard%252FRaw%252Fa_10463194_raw_1601481742792_OPPO_PCAM10_69.m4a")!
+    var url: URL = URL(string: "/Users/mac/Library/Developer/CoreSimulator/Devices/25F3E485-1576-42A5-9CA2-D26A4D6D7248/data/Containers/Data/Application/01B9EF07-00BB-4D1C-924F-4BFC941A794F/Library/Caches/1612231630mc.mp3")!
     //播放器
     var player: AVPlayer!
     //获取播放信息
