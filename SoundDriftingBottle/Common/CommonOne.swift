@@ -47,7 +47,7 @@ class CommonOne: NSObject {
         let dateformmter = DateFormatter()
         dateformmter.dateStyle = .medium
         dateformmter.timeStyle = .short
-        dateformmter.dateFormat = "mm:ss"
+        dateformmter.dateFormat = "m:ss"
         let confromTimesp = Date.init(timeIntervalSince1970: TimeInterval(time))
         let changeTime = dateformmter.string(from: confromTimesp)
         return changeTime

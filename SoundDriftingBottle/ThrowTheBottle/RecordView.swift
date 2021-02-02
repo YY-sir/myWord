@@ -114,7 +114,7 @@ class RecordView: UIView {
         }
         
         recordView.addSubview(timeL)
-        timeL.text = CommonOne().changeTime(time: bottleTime[0])
+        timeL.text = "0:00/" + CommonOne().changeTime(time: bottleTime[0])
         timeL.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
         }
@@ -150,6 +150,7 @@ class RecordView: UIView {
 
 }
 
+//-----------------------------------------------------------------------------------------------------
 //collection的代理和数据
 extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     //返回cell的数量
@@ -195,7 +196,7 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
             //标签的选择
             if collectionView == bottleLabelViewCollection {
                 bottleLabel = indexPath.row
-                timeL.text = CommonOne().changeTime(time: bottleTime[indexPath.row])
+                timeL.text = "0:00/" + CommonOne().changeTime(time: bottleTime[indexPath.row])
             }else if collectionView == changeLabelViewCollection{
                 changeLabel = indexPath.row
 
@@ -215,6 +216,7 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     
 }
 
+//-----------------------------------------------------------------------------------------------------
 //重写UICollectionViewCell类
 private class RecordViewCell: UICollectionViewCell {
     static let reused: String = "RecordViewCellIdentify"

@@ -27,6 +27,9 @@ class ThrowTheBottleController: UIViewController {
     var pathOutC: String!
     var recordName: String!
     var url: NSURL!
+    var timer1: Timer!
+    var recordTime: Int = 0
+    var recordTotalTime: Int!
     //播放器
     var player: AVPlayer!
     var playerItem: AVPlayerItem!
@@ -57,6 +60,9 @@ class ThrowTheBottleController: UIViewController {
         super.viewWillDisappear(animated)
         //设置导航栏
         self.navigationController?.isNavigationBarHidden = true
+        //页面初始化
+        
+        //数据初始化
     }
     
     fileprivate func setupViewBg(){
@@ -84,8 +90,7 @@ class ThrowTheBottleController: UIViewController {
             endRecord()
             //修改视图
             changeView()
-            //修改时间为音频的时间
-            recordview.timeL.text = CommonOne().changeTime(time: 555)
+
             
         case 2:
             print("播放录音")
@@ -119,8 +124,12 @@ class ThrowTheBottleController: UIViewController {
     //开始录音
     fileprivate func startRecord(){
         //View调整
-//        recordview.recordB.isEnabled = false
+        recordview.recordB.isEnabled = false
+        
         //数据调整
+        
+        recordTotalTime = recordview.bottleTime[recordview.bottleLabel]
+        
         time1970 = Date().timeStamp
         print("\(time1970)")
         recordName = ("/" + time1970 + ".pcm")
@@ -130,18 +139,43 @@ class ThrowTheBottleController: UIViewController {
         pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
         print("\(path)")
         audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 44100, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
-        
+        //生成计数器
+        timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
         //添加代理
         audioRecorder.delegate = self
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
     }
+    
+    //倒计时
+    @objc fileprivate func timeDown(){
+        if(recordTime == recordTotalTime){
+            buttonStatus = 2
+            endRecord()
+        }
+        
+        recordTime += 1
+        //按钮3秒限制
+        if(recordTime < 3){
+            recordview.recordB.isEnabled = false
+        }else{
+            recordview.recordB.isEnabled = true
+        }
+        //录音时间显示
+        let time = CommonOne().changeTime(time: recordTime)
+        recordview.timeL.text = time + "/" + CommonOne().changeTime(time: recordTotalTime)
+    }
+    
     //结束录音
     fileprivate func endRecord(){
+        //清除录音机
         audioRecorder.stop()
         audioRecorder = nil
-
+        //清除计数器
+        self.timer1.invalidate()
+        //调整显示时间
+        recordview.timeL.text = "0:00/" + CommonOne().changeTime(time: recordTime)
     }
     
     //录音结束View改变
