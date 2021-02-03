@@ -304,9 +304,10 @@ class ThrowTheBottleController: UIViewController {
     }
     //播放时间处理
     fileprivate func playTime(){
-        timeObserve = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 1000), queue: DispatchQueue.main, using: { (time) in
+        timeObserve = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 500), queue: DispatchQueue.main, using: { (time) in
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self.playerItem.duration)
+//            self.recordTime = (Int)(CMTimeGetSeconds(self.playerItem.duration))
             //显示播放时间
             self.recordview.timeL.text = CommonOne().changeTime(time: Int(current)) + "/" + CommonOne().changeTime(time: self.recordTime)
             print("\(current)---\(total)")
@@ -317,8 +318,10 @@ class ThrowTheBottleController: UIViewController {
     @objc func playEnd(){
         print("播放结束")
         buttonStatus = 2
-        player.pause()
-        playerItem.seek(to: CMTime.zero, completionHandler: nil)
+        if (player != nil){
+            player.pause()
+            playerItem.seek(to: CMTime.zero, completionHandler: nil)
+        }
 //        removeObserve()
     }
     //移除监听

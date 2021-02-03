@@ -59,4 +59,3 @@ class CommonOne: NSObject {
         return timeL
     }
 }
-

@@ -11,6 +11,10 @@ class RecordView: UIView {
     let app = UIApplication.shared.delegate as! AppDelegate
     let RecorderOC = Recorder()
     
+    //collection的cell的显示数据
+    var bottleCellList: [CommonTwo] = []
+    var changeCellList: [CommonTwo] = []
+    
     var bottleLabelViewCollection: UICollectionView!
     var changeLabelViewCollection: UICollectionView!
     
@@ -33,7 +37,9 @@ class RecordView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        //初始化cell显示数据
+        initCellData()
+        //
         setupView()
         //设置录音一块视图
         setupRecordView()
@@ -43,6 +49,34 @@ class RecordView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func initCellData(){
+        for index in 0..<5 {
+            let bottleCell = CommonTwo()
+            bottleCell.id = index
+            if index == 0 {
+                bottleCell.bgColor = .red
+                bottleCell.labelColor = .white
+            }else{
+                bottleCell.bgColor = .gray
+                bottleCell.labelColor = .black
+            }
+            bottleCellList.append(bottleCell)
+        }
+        
+        for index in 0..<9 {
+            let bottleCell = CommonTwo()
+            bottleCell.id = index
+            if index == 0 {
+                bottleCell.bgColor = .red
+                bottleCell.labelColor = .white
+            }else{
+                bottleCell.bgColor = .gray
+                bottleCell.labelColor = .black
+            }
+            changeCellList.append(bottleCell)
+        }
     }
     
     fileprivate func setupView(){
@@ -174,13 +208,16 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         
         //对cell进行ui设计
         if collectionView == bottleLabelViewCollection{
-            cell.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.25)
+            cell.backgroundColor = bottleCellList[indexPath.row].bgColor
+            cell.bottleL.textColor = bottleCellList[indexPath.row].labelColor
             cell.bottleL.text = bottleLabelText[indexPath.row]
             cell.bottleI.image = UIImage(named: bottleImage[indexPath.row])
         }else if collectionView == changeLabelViewCollection{
-            cell.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.25)
+            cell.backgroundColor = changeCellList[indexPath.row].bgColor
+            cell.bottleL.textColor = changeCellList[indexPath.row].labelColor
             cell.bottleL.text = changeLabelText[indexPath.row]
             cell.bottleI.image = UIImage(named: changeImage[indexPath.row])
+            
         }
         
         return cell
@@ -190,30 +227,46 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
     //cell选择后
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelector:\(indexPath)")
-        if let cell = collectionView.cellForItem(at: indexPath){
-            cell.backgroundColor = .red
-            
-            //标签的选择
-            if collectionView == bottleLabelViewCollection {
-                bottleLabel = indexPath.row
-                timeL.text = "0:00/" + CommonOne().changeTime(time: bottleTime[indexPath.row])
-            }else if collectionView == changeLabelViewCollection{
-                changeLabel = indexPath.row
-
+        //1.对cell的list数组进行初始化
+        changeCell(indexPath: indexPath.row, collection: collectionView)
+        
+        //标签的选择
+        if collectionView == bottleLabelViewCollection {
+            bottleLabel = indexPath.row
+            timeL.text = "0:00/" + CommonOne().changeTime(time: bottleTime[indexPath.row])
+            //2.重新载入collection
+            self.bottleLabelViewCollection.reloadData()
+        }else if collectionView == changeLabelViewCollection{
+            changeLabel = indexPath.row
+            self.changeLabelViewCollection.reloadData()
+        }
+    }
+    
+    //cell选中后的view
+    fileprivate func changeCell(indexPath: Int, collection: UICollectionView){
+        if collection == bottleLabelViewCollection{
+            for index in 0..<5{
+                if index == indexPath{
+                    bottleCellList[index].bgColor = .red
+                    bottleCellList[index].labelColor = .white
+                    continue
+                }
+                bottleCellList[index].bgColor = .gray
+                bottleCellList[index].labelColor = .black
+            }
+        }else if collection == changeLabelViewCollection{
+            for index in 0..<9{
+                if index == indexPath{
+                    changeCellList[index].bgColor = .red
+                    changeCellList[index].labelColor = .white
+                    continue
+                }
+                changeCellList[index].bgColor = .gray
+                changeCellList[index].labelColor = .black
             }
         }
         
     }
-    
-    //cell取消选择后
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print("didDeselect:\(indexPath)")
-        if let cell = collectionView.cellForItem(at: indexPath){
-            cell.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.25)
-        }
-    }
-    
-    
 }
 
 //-----------------------------------------------------------------------------------------------------
