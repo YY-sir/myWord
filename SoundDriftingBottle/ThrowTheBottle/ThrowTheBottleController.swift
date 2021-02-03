@@ -15,6 +15,8 @@ class ThrowTheBottleController: UIViewController {
     var recordview: RecordView!
     //录音播放按钮状态：开始录音-0；结束录音-1；播放录音-2；暂停录音-3
     var buttonStatus = 0
+    //判断是否取消过
+    var isCancel = false
     //上一次变声标签
     var lastTimeChangeLabel = -1
     
@@ -30,6 +32,7 @@ class ThrowTheBottleController: UIViewController {
     var timer1: Timer!
     var recordTime: Int = 0
     var recordTotalTime: Int!
+    
     //播放器
     var player: AVPlayer!
     var playerItem: AVPlayerItem!
@@ -60,9 +63,6 @@ class ThrowTheBottleController: UIViewController {
         super.viewWillDisappear(animated)
         //设置导航栏
         self.navigationController?.isNavigationBarHidden = true
-        //页面初始化
-        
-        //数据初始化
     }
     
     fileprivate func setupViewBg(){
@@ -90,7 +90,6 @@ class ThrowTheBottleController: UIViewController {
             endRecord()
             //修改视图
             changeView()
-
             
         case 2:
             print("播放录音")
@@ -113,8 +112,10 @@ class ThrowTheBottleController: UIViewController {
         //取消操作
         if sender == recordview.cancelB{
             print("取消")
-            cancelView()
+            playEnd()
             cancelData()
+            cancelView()
+            
         //确认操作
         }else if sender == recordview.commitB{
             print("扔瓶子")
@@ -138,6 +139,7 @@ class ThrowTheBottleController: UIViewController {
         pathP = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "s.pcm"))
         pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
         print("\(path)")
+        
         audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 44100, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
         //生成计数器
         timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
@@ -153,6 +155,8 @@ class ThrowTheBottleController: UIViewController {
         if(recordTime == recordTotalTime){
             buttonStatus = 2
             endRecord()
+            changeView()
+            return
         }
         
         recordTime += 1
@@ -163,8 +167,8 @@ class ThrowTheBottleController: UIViewController {
             recordview.recordB.isEnabled = true
         }
         //录音时间显示
-        let time = CommonOne().changeTime(time: recordTime)
-        recordview.timeL.text = time + "/" + CommonOne().changeTime(time: recordTotalTime)
+        recordview.timeL.text = CommonOne().addTimeL(currentT: recordTime, totalT: recordTotalTime)
+        
     }
     
     //结束录音
@@ -175,7 +179,8 @@ class ThrowTheBottleController: UIViewController {
         //清除计数器
         self.timer1.invalidate()
         //调整显示时间
-        recordview.timeL.text = "0:00/" + CommonOne().changeTime(time: recordTime)
+        recordview.timeL.text = CommonOne().addTimeL(currentT: 0, totalT: recordTime)
+
     }
     
     //录音结束View改变
@@ -227,6 +232,9 @@ class ThrowTheBottleController: UIViewController {
             self.recordview.cancelB.alpha = 0
             self.recordview.commitB.alpha = 0
             
+            //初始化时间显示
+            self.recordview.timeL.text = CommonOne().addTimeL(currentT: 0, totalT: self.recordview.bottleTime[self.recordview.bottleLabel])
+            
             self.view.layoutIfNeeded()
         }){(finnish) in
             self.recordview.changeLabelViewCollection.alpha = 0
@@ -235,18 +243,27 @@ class ThrowTheBottleController: UIViewController {
     }
     //取消后数据调整
     fileprivate func cancelData(){
+        isCancel = true
         //初始化判断值
         buttonStatus = 0
+        //初始化录音时间
+        recordTime = 0
+        recordTotalTime = recordview.bottleTime[recordview.bottleLabel]
+        //移除播放器监听
+        removeObserve()
 
     }
     
 //-------------------------------------------------------------------------
     //播放录音
     fileprivate func playBottle(bottleLabel: Int){
-        if lastTimeChangeLabel == bottleLabel{
+        
+        if lastTimeChangeLabel == bottleLabel && !isCancel{
             player.play()
             return
         }
+        isCancel = false
+        removeObserve()
         lastTimeChangeLabel = bottleLabel
         //变声处理
         var pathC: String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "sc.pcm"))
@@ -290,6 +307,8 @@ class ThrowTheBottleController: UIViewController {
         timeObserve = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 1000), queue: DispatchQueue.main, using: { (time) in
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self.playerItem.duration)
+            //显示播放时间
+            self.recordview.timeL.text = CommonOne().changeTime(time: Int(current)) + "/" + CommonOne().changeTime(time: self.recordTime)
             print("\(current)---\(total)")
         })
     
@@ -299,10 +318,14 @@ class ThrowTheBottleController: UIViewController {
         print("播放结束")
         buttonStatus = 2
         player.pause()
+        playerItem.seek(to: CMTime.zero, completionHandler: nil)
 //        removeObserve()
     }
     //移除监听
     fileprivate func removeObserve() {
+        if (timeObserve == nil){
+            return
+        }
         self.player.currentItem?.removeObserver(self, forKeyPath: "status")
         self.player.removeTimeObserver(timeObserve!)
         timeObserve = nil
@@ -311,6 +334,8 @@ class ThrowTheBottleController: UIViewController {
     
     
     //暂停录音
+    
+    //
 }
 
 //-------------------------------------------------------------------------

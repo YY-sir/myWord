@@ -52,6 +52,11 @@ class CommonOne: NSObject {
         let changeTime = dateformmter.string(from: confromTimesp)
         return changeTime
     }
-    
+    //拼接时间字符串
+    @objc func addTimeL(currentT: Int, totalT: Int) -> String{
+        var timeL: String!
+        timeL = changeTime(time: currentT) + "/" + changeTime(time: totalT)
+        return timeL
+    }
 }
 
