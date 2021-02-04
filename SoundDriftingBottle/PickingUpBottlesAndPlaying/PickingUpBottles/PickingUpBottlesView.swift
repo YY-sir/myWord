@@ -11,6 +11,7 @@ class PickingUpBottlesView: UIView {
     let mainScrollView: UIScrollView = UIScrollView()
     let labelView: UIView = UIView()
     let mainScrollViewBg: UIImageView = UIImageView()
+    let audioB = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +23,13 @@ class PickingUpBottlesView: UIView {
     }
     
     fileprivate func setupView(){
+        self.addSubview(audioB)
+        audioB.backgroundColor = .white
+        audioB.snp.makeConstraints {(make) in
+            make.width.height.equalTo(50)
+            make.center.equalToSuperview()
+        }
+        
         self.backgroundColor = UIColor.yellow
         self.addSubview(mainScrollView)
         mainScrollView.backgroundColor = UIColor.white
@@ -46,6 +54,8 @@ class PickingUpBottlesView: UIView {
             make.top.equalToSuperview()
             make.height.equalTo(200)
         }
+        
+        self.bringSubviewToFront(audioB)
     }
     
     fileprivate func setupScrollView(){

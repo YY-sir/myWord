@@ -21,12 +21,15 @@ class PickingUpBottlesController: UIViewController {
     //音频url
     var url: String!
     var audioPlayer: AVAudioPlayer!
+    var isPlay = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         isPickup = true
         bgAudio()
+        //背景音乐开关
+        pickupview.audioB.addTarget(self, action: #selector(isPlayAudio), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +39,7 @@ class PickingUpBottlesController: UIViewController {
         //调整自动操作按钮
         bottomView.autoplayButton.isOn = app.isAutomatic
         
-        if audioPlayer != nil{
+        if audioPlayer != nil && isPlay{
             audioPlayer.play()
         }
     }
@@ -47,6 +50,10 @@ class PickingUpBottlesController: UIViewController {
         isPickup = true
         pickupview.mainScrollView.contentOffset.y = -(CommonOne().topPadding)
         audioPlayer.pause()
+    }
+    
+    deinit {
+        audioPlayer = nil
     }
     
 //-----------------------------------------------------------------------------------------
@@ -75,6 +82,17 @@ class PickingUpBottlesController: UIViewController {
         audioPlayer = try? AVAudioPlayer.init(contentsOf: URL(string: url)!)
         audioPlayer.numberOfLoops = .max
         audioPlayer.play()
+    }
+    // 开关背景音乐
+    @objc func isPlayAudio(){
+        print("\(audioPlayer.isPlaying)")
+        if (audioPlayer != nil) && (!audioPlayer.isPlaying){
+            audioPlayer.play()
+            isPlay = true
+        }else{
+            audioPlayer.pause()
+            isPlay = false
+        }
     }
 }
 
