@@ -13,7 +13,7 @@ class BottomView: UIView {
     //进入录音按钮
     let recordButton = UIButton(type: .system)
     //自己操作按钮
-    let autoplayButton = UISwitch()
+    let autoplayButton: UISwitch = UISwitch()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

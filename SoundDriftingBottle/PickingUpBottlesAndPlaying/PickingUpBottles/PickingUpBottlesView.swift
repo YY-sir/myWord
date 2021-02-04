@@ -12,9 +12,6 @@ class PickingUpBottlesView: UIView {
     let labelView: UIView = UIView()
     let mainScrollViewBg: UIImageView = UIImageView()
     
-    let bottomView: UIView = BottomView()
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -49,15 +46,6 @@ class PickingUpBottlesView: UIView {
             make.top.equalToSuperview()
             make.height.equalTo(200)
         }
-        
-        self.addSubview(bottomView)
-        bottomView.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.5)
-        bottomView.snp.makeConstraints {(make) in
-            make.width.left.equalToSuperview()
-            make.bottom.equalTo(-CommonOne().bottomPadding)
-            make.height.equalTo(50)
-        }
-        
     }
     
     fileprivate func setupScrollView(){

@@ -11,8 +11,11 @@ class PlayBottleView: UIView {
     
     let otherView: UIView = UIView()
     let likeView: UIView = UIView()
+    
     let playView = UIView()
-    let bottomView: UIView = BottomView()
+    let refreshB = UIButton()
+    let playB = UIButton()
+    let nextB = UIButton()
 
     
     override init(frame: CGRect) {
@@ -42,14 +45,8 @@ class PlayBottleView: UIView {
             make.height.equalTo(100)
             make.top.equalTo(otherView.snp.bottom)
         }
-        
-        self.addSubview(bottomView)
-        bottomView.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.5)
-        bottomView.snp.makeConstraints {(make) in
-            make.width.left.equalToSuperview()
-            make.bottom.equalTo(-CommonOne().bottomPadding)
-            make.height.equalTo(50)
-        }
+        setupPlayView()
+
     }
     
     fileprivate func setupOtherView(){
@@ -60,7 +57,32 @@ class PlayBottleView: UIView {
             make.height.equalTo(50)
             make.centerX.top.equalToSuperview()
         }
+    }
+    
+    fileprivate func setupPlayView(){
+        playView.addSubview(playB)
+        playB.setImage(UIImage(named: "play20"), for: .normal)
+        playB.snp.makeConstraints {(make) in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(50)
+        }
         
+        playView.addSubview(refreshB)
+        refreshB.setImage(UIImage(named: "shuaxin"), for: .normal)
+        refreshB.setImage(UIImage(named: "shuaxin_light"), for: .highlighted)
+        refreshB.snp.makeConstraints {(make) in
+            make.centerY.equalToSuperview()
+            make.right.equalTo(playB.snp.left).offset(-20)
+            make.width.height.equalTo(50)
+        }
         
+        playView.addSubview(nextB)
+        nextB.setImage(UIImage(named: "right2"), for: .normal)
+        nextB.setImage(UIImage(named: "right2_light"), for: .highlighted)
+        nextB.snp.makeConstraints {(make) in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(playB.snp.right).offset(20)
+            make.width.height.equalTo(50)
+        }
     }
 }

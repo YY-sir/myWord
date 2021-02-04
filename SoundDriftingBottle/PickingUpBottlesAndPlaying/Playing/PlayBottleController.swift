@@ -10,14 +10,17 @@ import AVFoundation
 import UIKit
 
 class PlayBottleController: UIViewController {
+    //appdelegate
+    let app: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
+    
     //加载页面
     let loadingview = LoadingView()
     //播放页面
     var playbottleview: PlayBottleView!
+    let bottomView = BottomView()
     
     //音频url
-//    var url: URL = URL(string: "https://zt-mpc.obs.cn-north-4.myhuaweicloud.com/audio%2FVoiceCard%252FRaw%252Fa_10463194_raw_1601481742792_OPPO_PCAM10_69.m4a")!
-    var url: URL = URL(string: "/Users/mac/Library/Developer/CoreSimulator/Devices/25F3E485-1576-42A5-9CA2-D26A4D6D7248/data/Containers/Data/Application/01B9EF07-00BB-4D1C-924F-4BFC941A794F/Library/Caches/1612231630mc.mp3")!
+    var url: URL = URL(string: "https://zt-mpc.obs.cn-north-4.myhuaweicloud.com/audio%2FVoiceCard%252FRaw%252Fa_10463194_raw_1601481742792_OPPO_PCAM10_69.m4a")!
     //播放器
     var player: AVPlayer!
     //获取播放信息
@@ -30,20 +33,13 @@ class PlayBottleController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("isAutomatic:\(app.isAutomatic)")
+        
         //设置渐变背景
         setupViewBg()
+        setupView()
         
-        //初始化播放页面
-        playbottleview = PlayBottleView(frame: self.view.bounds)
-        self.view.addSubview(playbottleview)
-        playbottleview.alpha = 0
-        
-        //捞瓶子加载动画
-        self.view.addSubview(loadingview)
-        loadingview.snp.makeConstraints {(make) in
-            make.width.height.equalTo(150)
-            make.center.equalToSuperview()
-        }
+
         
         //获取瓶子id
         
@@ -63,10 +59,38 @@ class PlayBottleController: UIViewController {
         player.pause()
     }
     
+//----------------------------------------------------------------------------------------------------
+    fileprivate func setupView(){
+        //初始化播放页面
+        playbottleview = PlayBottleView(frame: self.view.bounds)
+        self.view.addSubview(playbottleview)
+        playbottleview.alpha = 0
+        
+        //底部导航视图
+        self.view.addSubview(bottomView)
+        bottomView.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.5)
+        bottomView.snp.makeConstraints {(make) in
+            make.width.left.equalToSuperview()
+            make.bottom.equalTo(-CommonOne().bottomPadding)
+            make.height.equalTo(50)
+        }
+
+        
+        //捞瓶子加载动画
+        self.view.addSubview(loadingview)
+        loadingview.snp.makeConstraints {(make) in
+            make.width.height.equalTo(150)
+            make.center.equalToSuperview()
+        }
+
+    }
+    
     fileprivate func setupViewBg(){
         let ui = UIView(frame: self.view.bounds)
         ui.layer.addSublayer(CommonOne().gradientLayer)
         self.view.addSubview(ui)
+        
+        
     }
     
     fileprivate func playBottle(){
