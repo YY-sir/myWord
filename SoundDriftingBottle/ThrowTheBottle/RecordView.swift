@@ -20,7 +20,7 @@ class RecordView: UIView {
     
     var isRecord = true
     var bottleLabel: Int!
-    var changeLabel: Int!
+    dynamic var changeLabel: NSNumber!
     let bottleLabelText = ["普通瓶", "心情瓶", "音乐瓶", "故事瓶", "愿望瓶"]
     let bottleImage = ["bottle1_nomal", "bottle2_moon", "bottle3_music", "bottle4_story", "bottle5_wish"]
     let bottleTime = [10, 20, 30, 40, 50]
@@ -142,6 +142,7 @@ class RecordView: UIView {
     fileprivate func setupRecordView(){
         recordView.addSubview(recordB)
         recordB.backgroundColor = .cyan
+        recordB.setImage(UIImage.init(named: "record0"), for: .normal)
         recordB.snp.makeConstraints {(make) in
             make.centerX.top.equalToSuperview()
             make.width.height.equalTo(150)
@@ -237,9 +238,13 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
             //2.重新载入collection
             self.bottleLabelViewCollection.reloadData()
         }else if collectionView == changeLabelViewCollection{
-            changeLabel = indexPath.row
+            //changeLabel改变就发通知停止播放
+            changeLabel = NSNumber(value: indexPath.row)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeLabelNotification"), object: self, userInfo: nil)
+            
             self.changeLabelViewCollection.reloadData()
         }
+        print("changeLabel:\(changeLabel)")
     }
     
     //cell选中后的view

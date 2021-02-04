@@ -49,7 +49,8 @@ class ThrowTheBottleController: UIViewController {
         recordview.recordB.addTarget(self, action: #selector(recordAction(sender:)), for: .touchUpInside)
         recordview.cancelB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.commitB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
-        
+        //监听变声按钮的选择
+        NotificationCenter.default.addObserver(self, selector: #selector(changeLabelNotificationAction), name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
         
     }
     
@@ -65,13 +66,18 @@ class ThrowTheBottleController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    //页面结束清除通知（避免内存泄漏）
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
+    }
+    
+//2------------------------------------------------------------------------------------------------------
     fileprivate func setupViewBg(){
         let ui = UIView(frame: self.view.bounds)
         ui.layer.addSublayer(CommonOne().gradientLayer)
         self.view.addSubview(ui)
     }
     
-//-------------------------------------------------------------------------
     //录音按钮操作
     @objc func recordAction(sender: UIButton){
         print("\(recordview.bottleLabel)---\(recordview.changeLabel)")
@@ -94,12 +100,13 @@ class ThrowTheBottleController: UIViewController {
         case 2:
             print("播放录音")
             buttonStatus = 3
-            playBottle(bottleLabel: recordview.changeLabel)
+            playBottle(changeLabel: recordview.changeLabel.intValue as! Int)
             
         case 3:
             print("暂停录音")
             buttonStatus = 2
             player.pause()
+            recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
             
         default:
             buttonStatus = 0
@@ -122,6 +129,16 @@ class ThrowTheBottleController: UIViewController {
         }
     }
     
+    //监听变声按钮的选择
+    @objc func changeLabelNotificationAction(){
+        print("接收通知")
+        //暂停录音
+        buttonStatus = 2
+        player.pause()
+        recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
+    }
+    
+//3------------------------------------------------------------------------------------------------------
     //开始录音
     fileprivate func startRecord(){
         //View调整
@@ -180,6 +197,7 @@ class ThrowTheBottleController: UIViewController {
         self.timer1.invalidate()
         //调整显示时间
         recordview.timeL.text = CommonOne().addTimeL(currentT: 0, totalT: recordTime)
+        recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
 
     }
     
@@ -235,6 +253,9 @@ class ThrowTheBottleController: UIViewController {
             //初始化时间显示
             self.recordview.timeL.text = CommonOne().addTimeL(currentT: 0, totalT: self.recordview.bottleTime[self.recordview.bottleLabel])
             
+            //按钮初始化
+            self.recordview.recordB.setImage(UIImage.init(named: "record0"), for: .normal)
+            
             self.view.layoutIfNeeded()
         }){(finnish) in
             self.recordview.changeLabelViewCollection.alpha = 0
@@ -254,25 +275,25 @@ class ThrowTheBottleController: UIViewController {
 
     }
     
-//-------------------------------------------------------------------------
+//4-------------------------------------------------------------------------
     //播放录音
-    fileprivate func playBottle(bottleLabel: Int){
-        
-        if lastTimeChangeLabel == bottleLabel && !isCancel{
+    fileprivate func playBottle(changeLabel: Int){
+        recordview.recordB.setImage(UIImage.init(named: "record2"), for: .normal)
+        if lastTimeChangeLabel == changeLabel && !isCancel{
             player.play()
             return
         }
         isCancel = false
         removeObserve()
-        lastTimeChangeLabel = bottleLabel
+        lastTimeChangeLabel = changeLabel
         //变声处理
         var pathC: String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "sc.pcm"))
-        pathC = RecorderOC.soundChangePath(in: pathP, pathOut: pathC, soundNumber: Int32(bottleLabel))
+        pathC = RecorderOC.soundChangePath(in: pathP, pathOut: pathC, soundNumber: Int32(changeLabel))
         
         pathOutC = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "mc.mp3"))
         pathOutC = RecorderOC.audio_PCMtoMP3_path(in: pathC, pathOut: pathOutC)
 
-        print("Label:\(bottleLabel);path:\(URL(string: pathOutC))")
+        print("Label:\(changeLabel);path:\(URL(string: pathOutC))")
         playerItem = AVPlayerItem.init(url: NSURL(fileURLWithPath: pathOutC) as URL)
         player = AVPlayer.init(playerItem: playerItem)
         
@@ -319,6 +340,7 @@ class ThrowTheBottleController: UIViewController {
         print("播放结束")
         buttonStatus = 2
         if (player != nil){
+            recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
             player.pause()
             playerItem.seek(to: CMTime.zero, completionHandler: nil)
         }
@@ -341,7 +363,7 @@ class ThrowTheBottleController: UIViewController {
     //
 }
 
-//-------------------------------------------------------------------------
+//5-------------------------------------------------------------------------
 extension ThrowTheBottleController: AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("录音结束")
