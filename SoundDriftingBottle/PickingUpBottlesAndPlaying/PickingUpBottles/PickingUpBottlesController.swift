@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 import UIKit
 
 class PickingUpBottlesController: UIViewController {
@@ -16,10 +17,16 @@ class PickingUpBottlesController: UIViewController {
     var pickupview : PickingUpBottlesView!
     var bottomView: BottomView = BottomView()
     
+    ///背景音乐
+    //音频url
+    var url: String!
+    var audioPlayer: AVAudioPlayer!
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         setupView()
         isPickup = true
-
+        bgAudio()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +36,9 @@ class PickingUpBottlesController: UIViewController {
         //调整自动操作按钮
         bottomView.autoplayButton.isOn = app.isAutomatic
         
+        if audioPlayer != nil{
+            audioPlayer.play()
+        }
     }
     
     //将页面初始化
@@ -36,6 +46,7 @@ class PickingUpBottlesController: UIViewController {
         super.viewWillDisappear(animated)
         isPickup = true
         pickupview.mainScrollView.contentOffset.y = -(CommonOne().topPadding)
+        audioPlayer.pause()
     }
     
 //-----------------------------------------------------------------------------------------
@@ -54,6 +65,16 @@ class PickingUpBottlesController: UIViewController {
             make.bottom.equalTo(-CommonOne().bottomPadding)
             make.height.equalTo(50)
         }
+    }
+
+//------------------------------------------------------------------------
+    fileprivate func bgAudio(){
+        let bun = Bundle.main.path(forResource: "Settings", ofType: "bundle")
+        url = bun! + "/soundOfWaves.wav"
+        print("url:\(url)")
+        audioPlayer = try? AVAudioPlayer.init(contentsOf: URL(string: url)!)
+        audioPlayer.numberOfLoops = .max
+        audioPlayer.play()
     }
 }
 

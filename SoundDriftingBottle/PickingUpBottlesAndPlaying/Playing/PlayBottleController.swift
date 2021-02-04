@@ -27,6 +27,8 @@ class PlayBottleController: UIViewController {
     var playerItem: AVPlayerItem!
     //计数器
     var timeObserve: Any?
+    //判断是否播放结束
+    var isPlayEnd = false
     
     
     override func viewDidLoad() {
@@ -132,7 +134,6 @@ class PlayBottleController: UIViewController {
                 
             }
             
-            
         case playbottleview.nextB:
             print("下一首")
             removeObserve()
@@ -160,8 +161,6 @@ class PlayBottleController: UIViewController {
                 break
             }
         }
-        
-
     }
 
     //播放时间处理
@@ -180,8 +179,8 @@ class PlayBottleController: UIViewController {
     //监听播放结束状态
     @objc func playEnd(){
         print("播放结束")
+        isPlayEnd = true
         pausePlayB()
-        playerItem.seek(to: CMTime.zero, completionHandler: nil)
         //判断是否自动获取下一首
         if app.isAutomatic{
             print("下一首")
@@ -220,6 +219,10 @@ class PlayBottleController: UIViewController {
 
     //播放、暂停按钮的切换
     fileprivate func playPlayB(){
+        if isPlayEnd{
+            playerItem.seek(to: CMTime.zero, completionHandler: nil)
+            isPlayEnd  = false
+        }
         player.play()
         self.playbottleview.playB.setImage(UIImage(named: "pause20"), for: .normal)
         self.playbottleview.playB.setImage(UIImage(named: "pause20"), for: .highlighted)
