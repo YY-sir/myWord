@@ -11,6 +11,8 @@ class PlayBottleView: UIView {
     
     let otherView: UIView = UIView()
     let likeView: UIView = UIView()
+    let currentTimeL = UILabel()
+    let totalTimeL = UILabel()
     
     let playView = UIView()
     let refreshB = UIButton()
@@ -45,6 +47,7 @@ class PlayBottleView: UIView {
             make.height.equalTo(100)
             make.top.equalTo(otherView.snp.bottom)
         }
+        
         setupPlayView()
 
     }
@@ -53,9 +56,25 @@ class PlayBottleView: UIView {
         otherView.addSubview(likeView)
         likeView.backgroundColor = UIColor.red
         likeView.snp.makeConstraints {(make) in
-            make.width.equalTo(100)
+            make.width.equalToSuperview()
             make.height.equalTo(50)
             make.centerX.top.equalToSuperview()
+        }
+        
+        setupLikeView()
+    }
+    
+    fileprivate func setupLikeView(){
+        likeView.addSubview(currentTimeL)
+        currentTimeL.snp.makeConstraints {(make) in
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+        }
+        
+        likeView.addSubview(totalTimeL)
+        totalTimeL.snp.makeConstraints {(make) in
+            make.bottom.equalToSuperview()
+            make.right.equalToSuperview().offset(-20)
         }
     }
     

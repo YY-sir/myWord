@@ -32,9 +32,6 @@ class PlayBottleController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("isAutomatic:\(app.isAutomatic)")
-        
         //设置渐变背景
         setupViewBg()
         setupView()
@@ -59,7 +56,7 @@ class PlayBottleController: UIViewController {
         player.pause()
     }
     
-//----------------------------------------------------------------------------------------------------
+//2----------------------------------------------------------------------------------------------------
     fileprivate func setupView(){
         //初始化播放页面
         playbottleview = PlayBottleView(frame: self.view.bounds)
@@ -88,8 +85,6 @@ class PlayBottleController: UIViewController {
         let ui = UIView(frame: self.view.bounds)
         ui.layer.addSublayer(CommonOne().gradientLayer)
         self.view.addSubview(ui)
-        
-        
     }
     
     fileprivate func playBottle(){
@@ -108,6 +103,7 @@ class PlayBottleController: UIViewController {
 
     }
     
+//3---------------------------------------------------------------------------------------------
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == "status"{
@@ -135,6 +131,7 @@ class PlayBottleController: UIViewController {
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self.playerItem.duration)
             print("\(current)---\(total)")
+            self.playbottleview.currentTimeL.text = CommonOne().changeTime(time: Int(current))
         })
     
     }
@@ -144,6 +141,11 @@ class PlayBottleController: UIViewController {
         print("播放结束")
         player.pause()
         removeObserve()
+        
+        //判断是否自动获取下一首
+        if app.isAutomatic{
+            print("下一首")
+        }
     }
     
     //移除监听
@@ -158,6 +160,10 @@ class PlayBottleController: UIViewController {
     
     //显示播放页
     fileprivate func showPlayView(){
+        //播放时间初始化
+        playbottleview.currentTimeL.text = "0:00"
+        playbottleview.totalTimeL.text = CommonOne().changeTime(time: Int(CMTimeGetSeconds(self.playerItem.duration)))
+        //显示动画
         UIView.animate(withDuration: 1, delay: 1, animations: {
             self.loadingview.alpha = 0
             self.playbottleview.alpha = 1
