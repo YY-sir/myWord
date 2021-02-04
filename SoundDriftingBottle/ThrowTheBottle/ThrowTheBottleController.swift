@@ -45,7 +45,7 @@ class ThrowTheBottleController: UIViewController {
         setupViewBg()
         recordview = RecordView(frame: self.view.bounds)
         self.view.addSubview(recordview)
-        //按钮添加事件
+        //添加按钮事件
         recordview.recordB.addTarget(self, action: #selector(recordAction(sender:)), for: .touchUpInside)
         recordview.cancelB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.commitB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
@@ -64,6 +64,11 @@ class ThrowTheBottleController: UIViewController {
         super.viewWillDisappear(animated)
         //设置导航栏
         self.navigationController?.isNavigationBarHidden = true
+        
+        if player != nil{
+            player.pause()
+        }
+        removeObserve()
     }
     
     //页面结束清除通知（避免内存泄漏）
@@ -133,9 +138,11 @@ class ThrowTheBottleController: UIViewController {
     @objc func changeLabelNotificationAction(){
         print("接收通知")
         //暂停录音
-        buttonStatus = 2
-        player.pause()
-        recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
+        if buttonStatus == 3{
+            buttonStatus = 2
+            player.pause()
+            recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
+        }
     }
     
 //3------------------------------------------------------------------------------------------------------
@@ -344,7 +351,6 @@ class ThrowTheBottleController: UIViewController {
             player.pause()
             playerItem.seek(to: CMTime.zero, completionHandler: nil)
         }
-//        removeObserve()
     }
     //移除监听
     fileprivate func removeObserve() {
@@ -359,7 +365,7 @@ class ThrowTheBottleController: UIViewController {
     
     
     //暂停录音
-    
+
     //
 }
 

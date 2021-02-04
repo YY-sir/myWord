@@ -13,6 +13,7 @@ class PlayBottleView: UIView {
     let likeView: UIView = UIView()
     let currentTimeL = UILabel()
     let totalTimeL = UILabel()
+    let slider = UISlider1()
     
     let playView = UIView()
     let refreshB = UIButton()
@@ -25,6 +26,7 @@ class PlayBottleView: UIView {
         
         setupView()
         setupOtherView()
+        uiAction()
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +53,8 @@ class PlayBottleView: UIView {
         setupPlayView()
 
     }
-    
+
+//---------------------------------------------------------------------------
     fileprivate func setupOtherView(){
         otherView.addSubview(likeView)
         likeView.backgroundColor = UIColor.red
@@ -59,6 +62,15 @@ class PlayBottleView: UIView {
             make.width.equalToSuperview()
             make.height.equalTo(50)
             make.centerX.top.equalToSuperview()
+        }
+        
+        otherView.addSubview(slider)
+        slider.thumbTintColor = .clear
+//        slider.backgroundColor = .white
+        slider.snp.makeConstraints {(make) in
+            make.centerX.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
         }
         
         setupLikeView()
@@ -78,9 +90,12 @@ class PlayBottleView: UIView {
         }
     }
     
+    
+    
+//---------------------------------------------------------------------------
     fileprivate func setupPlayView(){
         playView.addSubview(playB)
-        playB.setImage(UIImage(named: "play20"), for: .normal)
+        playB.setImage(UIImage(named: "pause20"), for: .normal)
         playB.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
             make.width.height.equalTo(50)
@@ -104,4 +119,20 @@ class PlayBottleView: UIView {
             make.width.height.equalTo(50)
         }
     }
+    
+//
+    fileprivate func uiAction(){
+        //slider的滑块操作
+        slider.addTarget(self, action: #selector(sliderShow), for: .touchDown)
+        slider.addTarget(self, action: #selector(sliderHide), for: [.touchUpInside, .touchUpOutside])
+    }
+    
+    @objc func sliderShow(){
+        slider.thumbTintColor = .white
+    }
+    @objc func sliderHide(){
+        slider.thumbTintColor = .clear
+    }
+    
+    
 }

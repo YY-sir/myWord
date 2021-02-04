@@ -80,6 +80,8 @@
 		04A63DAD25C7EC4F009BC8D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A63DAC25C7EC47009BC8D3 /* libc++.tbd */; };
 		04CAE86425C80A03009D7954 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAE86225C80A03009D7954 /* libmp3lame.a */; };
 		04CAE86E25CA81C5009D7954 /* CommonTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE86D25CA81C5009D7954 /* CommonTwo.swift */; };
+		04CAE90E25CBD18E009D7954 /* UISlider2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE90D25CBD18E009D7954 /* UISlider2.swift */; };
+		04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE91125CBDA7A009D7954 /* UISlider1.m */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
 		04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6225C297BD00BC823F /* CoreMotion.framework */; };
 		04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6525C2A61E00BC823F /* AVFoundation.framework */; };
@@ -171,6 +173,9 @@
 		04CAE86225C80A03009D7954 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		04CAE86325C80A03009D7954 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		04CAE86D25CA81C5009D7954 /* CommonTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTwo.swift; sourceTree = "<group>"; };
+		04CAE90D25CBD18E009D7954 /* UISlider2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlider2.swift; sourceTree = "<group>"; };
+		04CAE91125CBDA7A009D7954 /* UISlider1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISlider1.m; path = "../../../../../flutter_ios/test1/AudioBottle_ios/ios-test1/UISlider1.m"; sourceTree = "<group>"; };
+		04CAE91425CBDA7F009D7954 /* UISlider1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UISlider1.h; path = "../../../../../flutter_ios/test1/AudioBottle_ios/ios-test1/UISlider1.h"; sourceTree = "<group>"; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		04E13A6225C297BD00BC823F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		04E13A6525C2A61E00BC823F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -377,8 +382,11 @@
 		044B04F425C019430013F493 /* Inherit */ = {
 			isa = PBXGroup;
 			children = (
+				04CAE91425CBDA7F009D7954 /* UISlider1.h */,
+				04CAE91125CBDA7A009D7954 /* UISlider1.m */,
 				044B04F525C0197D0013F493 /* UITextField1.swift */,
 				044B05BD25C17B990013F493 /* UIImage+GIF.swift */,
+				04CAE90D25CBD18E009D7954 /* UISlider2.swift */,
 			);
 			path = Inherit;
 			sourceTree = "<group>";
@@ -529,6 +537,7 @@
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
 				044B04DC25BFF7F90013F493 /* Debugging.swift in Sources */,
 				0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */,
+				04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */,
 				044B04DE25BFF7F90013F493 /* LayoutConstraint.swift in Sources */,
 				044B04D225BFF7F90013F493 /* Typealiases.swift in Sources */,
 				044B050B25C142510013F493 /* PickingUpBottlesView.swift in Sources */,
@@ -568,6 +577,7 @@
 				044B04D325BFF7F90013F493 /* ConstraintConstantTarget.swift in Sources */,
 				044B04C825BFF7F90013F493 /* ConstraintDSL.swift in Sources */,
 				0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */,
+				04CAE90E25CBD18E009D7954 /* UISlider2.swift in Sources */,
 				044B04EC25C004910013F493 /* LoginView.swift in Sources */,
 				044B04CA25BFF7F90013F493 /* ConstraintPriority.swift in Sources */,
 				044B04CF25BFF7F90013F493 /* ConstraintView.swift in Sources */,
@@ -734,8 +744,8 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/lame_change/lame,
 					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/audio_ios_sdk_20201219_mpc/lib/,
+					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/lame_change/lame,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.SoundDriftingBottle;
@@ -761,8 +771,8 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/lame_change/lame,
 					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/audio_ios_sdk_20201219_mpc/lib/,
+					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/lame_change/lame,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.SoundDriftingBottle;
