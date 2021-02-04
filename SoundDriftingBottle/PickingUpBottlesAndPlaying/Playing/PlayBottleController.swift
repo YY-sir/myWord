@@ -38,9 +38,7 @@ class PlayBottleController: UIViewController {
         //设置渐变背景
         setupViewBg()
         setupView()
-        
-
-        
+    
         //获取瓶子id
         
         
@@ -52,6 +50,8 @@ class PlayBottleController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        //调整自动操作按钮
+        bottomView.autoplayButton.isOn = app.isAutomatic
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,7 +74,6 @@ class PlayBottleController: UIViewController {
             make.bottom.equalTo(-CommonOne().bottomPadding)
             make.height.equalTo(50)
         }
-
         
         //捞瓶子加载动画
         self.view.addSubview(loadingview)

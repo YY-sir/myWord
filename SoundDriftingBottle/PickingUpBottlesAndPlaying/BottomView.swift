@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 class BottomView: UIView {
+    //appdelegate
+    let app = UIApplication.shared.delegate as!AppDelegate
+    
     //“我的”按钮
     let mineButton = UIButton(type: .system)
     //进入录音按钮
@@ -55,7 +58,7 @@ class BottomView: UIView {
     fileprivate func addButtonAction(){
         mineButton.addTarget(self, action: #selector(gotoNextPage), for: .touchUpInside)
         recordButton.addTarget(self, action: #selector(gotoNextPage), for: .touchUpInside)
-        
+        autoplayButton.addTarget(self, action: #selector(changeAutoSwitch), for: .valueChanged)
     }
     
     @objc func gotoNextPage(sender: UIButton){
@@ -69,6 +72,13 @@ class BottomView: UIView {
             return
         }
     }
+    
+    //自动操作按钮值改变触发
+    @objc func changeAutoSwitch(){
+        app.isAutomatic = autoplayButton.isOn
+        print("\(app.isAutomatic)")
+    }
+    
 }
 
 ////扩展UIView，找到最上层UIViewController

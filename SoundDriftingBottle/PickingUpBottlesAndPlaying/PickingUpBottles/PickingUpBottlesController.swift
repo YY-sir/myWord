@@ -25,6 +25,10 @@ class PickingUpBottlesController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
+        //调整自动操作按钮
+        bottomView.autoplayButton.isOn = app.isAutomatic
+        
     }
     
     //将页面初始化
@@ -32,11 +36,9 @@ class PickingUpBottlesController: UIViewController {
         super.viewWillDisappear(animated)
         isPickup = true
         pickupview.mainScrollView.contentOffset.y = -(CommonOne().topPadding)
-        //获取自动操作的值
-//        app.isAutomatic = pickupview.bottomView.autoplayButton
-        
     }
     
+//-----------------------------------------------------------------------------------------
     fileprivate func setupView(){
         self.title = "首页"
         self.view.backgroundColor = UIColor.white
@@ -52,7 +54,6 @@ class PickingUpBottlesController: UIViewController {
             make.bottom.equalTo(-CommonOne().bottomPadding)
             make.height.equalTo(50)
         }
-        
     }
 }
 
