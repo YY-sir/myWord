@@ -71,6 +71,7 @@ class LoginView: UIView {
         
         boxView.addSubview(section1)
         section1.setTitle("登陆", for: .normal)
+        self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
         section1.setTitleColor(CommonOne().LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
         section1.snp.makeConstraints {(make) in
             make.width.equalTo(135)
@@ -80,6 +81,8 @@ class LoginView: UIView {
         
         boxView.addSubview(section2)
         section2.setTitle("注册", for: .normal)
+        self.section2.setTitleColor(UIColor.white, for: .normal)
+        self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
         section2.setTitleColor(UIColor.white, for: .normal)
         section2.snp.makeConstraints {(make) in
             make.width.equalTo(135)
@@ -97,6 +100,7 @@ class LoginView: UIView {
         
         boxView.addSubview(loginButton)
         loginButton.setTitle("登陆", for: .normal)
+        loginButton.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
         loginButton.backgroundColor = CommonOne().LDColor(rgbValue: 0x6495ED, al: 1)
         boxView.bringSubviewToFront(loginButton)
         loginButton.snp.makeConstraints {(make) in
@@ -259,7 +263,9 @@ class LoginView: UIView {
                     make.bottom.equalTo(-self.boxViewBottom)
                 }
                 self.section2.setTitleColor(UIColor.white, for: .normal)
+                self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
                 self.section1.setTitleColor(CommonOne().LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
+                self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
                 self.loginButton.setTitle("登陆", for: .normal)
                 self.topView.snp.remakeConstraints {(make) in
                     make.right.top.equalToSuperview()
@@ -304,7 +310,9 @@ class LoginView: UIView {
                 }
                 
                 self.section2.setTitleColor(CommonOne().LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
+                self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
                 self.section1.setTitleColor(UIColor.white, for: .normal)
+                self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
                 self.loginButton.setTitle("注册", for: .normal)
                 self.topView.snp.remakeConstraints {(make) in
                     make.left.top.equalToSuperview()

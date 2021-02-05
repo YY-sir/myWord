@@ -46,7 +46,10 @@ class PlayBottleController: UIViewController {
         playbottleview.refreshB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
         playbottleview.playB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
         playbottleview.nextB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
-        
+        playbottleview.likeB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
+        playbottleview.collectB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
+        playbottleview.reportB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -136,6 +139,14 @@ class PlayBottleController: UIViewController {
             nextAction()
             player.pause()
 
+        case playbottleview.likeB:
+            print("点赞")
+            
+        case playbottleview.collectB:
+            print("收藏")
+            
+        case playbottleview.reportB:
+            print("举报")
             
         default:
             break
@@ -242,12 +253,13 @@ class PlayBottleController: UIViewController {
 //4---------------------------------------------------------------------------------------------
 //    下一首操作
     fileprivate func nextAction(){
-        removeObserve()
         showLoadingView()
+        removeObserve()
         nextBottleAction()
     }
     //音频数据处理
     fileprivate func nextBottleAction(){
+        //获取新音频的url
         
     }
     

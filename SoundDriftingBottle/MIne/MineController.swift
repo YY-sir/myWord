@@ -11,7 +11,7 @@ class MineController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        self.title = "个人"
+        self.title = "YY（用户名）"
     }
     
     override func viewWillAppear(_ animated: Bool) {

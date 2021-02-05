@@ -13,6 +13,9 @@ class PlayBottleView: UIView {
     let likeView: UIView = UIView()
     let currentTimeL = UILabel()
     let totalTimeL = UILabel()
+    let likeB = UIButton()
+    let collectB = UIButton()
+    let reportB = UIButton()
     let slider = UISlider1()
     
     let playView = UIView()
@@ -77,6 +80,7 @@ class PlayBottleView: UIView {
     }
     
     fileprivate func setupLikeView(){
+        //时间布局
         likeView.addSubview(currentTimeL)
         currentTimeL.snp.makeConstraints {(make) in
             make.bottom.equalToSuperview()
@@ -88,6 +92,33 @@ class PlayBottleView: UIView {
             make.bottom.equalToSuperview()
             make.right.equalToSuperview().offset(-20)
         }
+        
+        //点赞、收藏、举报布局
+        collectB.setImage(UIImage(named: "collection"), for: .normal)
+        likeB.setImage(UIImage(named: "like"), for: .normal)
+        reportB.setImage(UIImage(named: "report"), for: .normal)
+        likeView.addSubview(collectB)
+        collectB.snp.makeConstraints {(make) in
+            make.bottom.centerX.equalToSuperview()
+            make.width.height.equalTo(35)
+        }
+
+        likeView.addSubview(likeB)
+        likeB.snp.makeConstraints {(make) in
+            make.bottom.equalToSuperview()
+            make.right.equalTo(collectB.snp.left).offset(-35)
+            make.width.height.equalTo(35)
+        }
+        
+        likeView.addSubview(reportB)
+        reportB.snp.makeConstraints {(make) in
+            make.bottom.equalToSuperview()
+            make.left.equalTo(collectB.snp.right).offset(35)
+            make.width.height.equalTo(35)
+        }
+
+        
+        
     }
     
     
