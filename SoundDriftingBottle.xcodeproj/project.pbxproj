@@ -71,17 +71,17 @@
 		044B05BB25C17A870013F493 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 044B05BA25C17A870013F493 /* loading.gif */; };
 		044B05BE25C17B990013F493 /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B05BD25C17B990013F493 /* UIImage+GIF.swift */; };
 		04516A6625C7DB7C0056072F /* Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04516A6525C7DB7C0056072F /* Recorder.m */; };
-		04516A7525C7DE950056072F /* libTTaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04516A7425C7DE950056072F /* libTTaudio.a */; };
 		0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634625C2B5160003D458 /* PlayBottleView.swift */; };
 		0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */; };
 		0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634D25C2C4AD0003D458 /* BottomView.swift */; };
 		0485635A25C39CF80003D458 /* TopSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635925C39CF80003D458 /* TopSection.swift */; };
 		0485635D25C39EF90003D458 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635C25C39EF90003D458 /* RecordView.swift */; };
 		04A63DAD25C7EC4F009BC8D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A63DAC25C7EC47009BC8D3 /* libc++.tbd */; };
-		04CAE86425C80A03009D7954 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAE86225C80A03009D7954 /* libmp3lame.a */; };
 		04CAE86E25CA81C5009D7954 /* CommonTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE86D25CA81C5009D7954 /* CommonTwo.swift */; };
 		04CAE90E25CBD18E009D7954 /* UISlider2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE90D25CBD18E009D7954 /* UISlider2.swift */; };
 		04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE91125CBDA7A009D7954 /* UISlider1.m */; };
+		04CAEDDB25CD3E58009D7954 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAEDD925CD3E58009D7954 /* libmp3lame.a */; };
+		04CAEDE425CD3E6A009D7954 /* libTTaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAEDE325CD3E6A009D7954 /* libTTaudio.a */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
 		04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6225C297BD00BC823F /* CoreMotion.framework */; };
 		04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6525C2A61E00BC823F /* AVFoundation.framework */; };
@@ -159,23 +159,23 @@
 		04516A6325C7DB7C0056072F /* SoundDriftingBottle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundDriftingBottle-Bridging-Header.h"; sourceTree = "<group>"; };
 		04516A6425C7DB7C0056072F /* Recorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recorder.h; sourceTree = "<group>"; };
 		04516A6525C7DB7C0056072F /* Recorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Recorder.m; sourceTree = "<group>"; };
-		04516A6F25C7DE950056072F /* sound_change_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound_change_api.h; sourceTree = "<group>"; };
-		04516A7025C7DE950056072F /* agc_process_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agc_process_api.h; sourceTree = "<group>"; };
-		04516A7125C7DE950056072F /* noise_suppress_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noise_suppress_api.h; sourceTree = "<group>"; };
-		04516A7225C7DE950056072F /* audio_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_common.h; sourceTree = "<group>"; };
-		04516A7425C7DE950056072F /* libTTaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTTaudio.a; sourceTree = "<group>"; };
 		0485634625C2B5160003D458 /* PlayBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBottleView.swift; sourceTree = "<group>"; };
 		0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrowTheBottleController.swift; sourceTree = "<group>"; };
 		0485634D25C2C4AD0003D458 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		0485635925C39CF80003D458 /* TopSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSection.swift; sourceTree = "<group>"; };
 		0485635C25C39EF90003D458 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		04A63DAC25C7EC47009BC8D3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		04CAE86225C80A03009D7954 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
-		04CAE86325C80A03009D7954 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		04CAE86D25CA81C5009D7954 /* CommonTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTwo.swift; sourceTree = "<group>"; };
 		04CAE90D25CBD18E009D7954 /* UISlider2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlider2.swift; sourceTree = "<group>"; };
 		04CAE91125CBDA7A009D7954 /* UISlider1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISlider1.m; path = "../../../../../flutter_ios/test1/AudioBottle_ios/ios-test1/UISlider1.m"; sourceTree = "<group>"; };
 		04CAE91425CBDA7F009D7954 /* UISlider1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UISlider1.h; path = "../../../../../flutter_ios/test1/AudioBottle_ios/ios-test1/UISlider1.h"; sourceTree = "<group>"; };
+		04CAEDD925CD3E58009D7954 /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		04CAEDDA25CD3E58009D7954 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		04CAEDDE25CD3E6A009D7954 /* sound_change_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound_change_api.h; sourceTree = "<group>"; };
+		04CAEDDF25CD3E6A009D7954 /* agc_process_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agc_process_api.h; sourceTree = "<group>"; };
+		04CAEDE025CD3E6A009D7954 /* noise_suppress_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noise_suppress_api.h; sourceTree = "<group>"; };
+		04CAEDE125CD3E6A009D7954 /* audio_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_common.h; sourceTree = "<group>"; };
+		04CAEDE325CD3E6A009D7954 /* libTTaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTTaudio.a; sourceTree = "<group>"; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		04E13A6225C297BD00BC823F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		04E13A6525C2A61E00BC823F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -188,18 +188,18 @@
 			files = (
 				041F1F6125C2508800C3C17A /* CoreFoundation.framework in Frameworks */,
 				041F1F6F25C2521000C3C17A /* Accelerate.framework in Frameworks */,
-				04516A7525C7DE950056072F /* libTTaudio.a in Frameworks */,
 				041F1F7225C2524000C3C17A /* AddressBook.framework in Frameworks */,
 				041F1F6425C250EB00C3C17A /* libz.tbd in Frameworks */,
 				041F1F6C25C2512400C3C17A /* ImageIO.framework in Frameworks */,
+				04CAEDDB25CD3E58009D7954 /* libmp3lame.a in Frameworks */,
 				041F1F7425C2525400C3C17A /* CoreText.framework in Frameworks */,
 				041F1F6A25C2511300C3C17A /* CoreImage.framework in Frameworks */,
 				04A63DAD25C7EC4F009BC8D3 /* libc++.tbd in Frameworks */,
 				04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */,
 				04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */,
 				041F1E5B25C24CD400C3C17A /* WebKit.framework in Frameworks */,
+				04CAEDE425CD3E6A009D7954 /* libTTaudio.a in Frameworks */,
 				04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */,
-				04CAE86425C80A03009D7954 /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +277,8 @@
 		044B049825BFF7820013F493 /* Plugin  */ = {
 			isa = PBXGroup;
 			children = (
-				04CAE86125C80A03009D7954 /* lame */,
-				04516A6D25C7DE950056072F /* audio_ios_sdk_20201219_mpc */,
+				04CAEDDC25CD3E6A009D7954 /* audio_ios_sdk_20201219_mpc */,
+				04CAEDD825CD3E58009D7954 /* lame */,
 				044B049925BFF7F90013F493 /* SnapKit */,
 			);
 			path = "Plugin ";
@@ -418,43 +418,41 @@
 			path = PickingUpBottles;
 			sourceTree = "<group>";
 		};
-		04516A6D25C7DE950056072F /* audio_ios_sdk_20201219_mpc */ = {
+		04CAEDD825CD3E58009D7954 /* lame */ = {
 			isa = PBXGroup;
 			children = (
-				04516A6E25C7DE950056072F /* inc */,
-				04516A7325C7DE950056072F /* lib */,
+				04CAEDD925CD3E58009D7954 /* libmp3lame.a */,
+				04CAEDDA25CD3E58009D7954 /* lame.h */,
 			);
-			name = audio_ios_sdk_20201219_mpc;
-			path = ../../../../flutter_ios/audio_ios_sdk_20201219_mpc;
+			path = lame;
 			sourceTree = "<group>";
 		};
-		04516A6E25C7DE950056072F /* inc */ = {
+		04CAEDDC25CD3E6A009D7954 /* audio_ios_sdk_20201219_mpc */ = {
 			isa = PBXGroup;
 			children = (
-				04516A6F25C7DE950056072F /* sound_change_api.h */,
-				04516A7025C7DE950056072F /* agc_process_api.h */,
-				04516A7125C7DE950056072F /* noise_suppress_api.h */,
-				04516A7225C7DE950056072F /* audio_common.h */,
+				04CAEDDD25CD3E6A009D7954 /* inc */,
+				04CAEDE225CD3E6A009D7954 /* lib */,
+			);
+			path = audio_ios_sdk_20201219_mpc;
+			sourceTree = "<group>";
+		};
+		04CAEDDD25CD3E6A009D7954 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				04CAEDDE25CD3E6A009D7954 /* sound_change_api.h */,
+				04CAEDDF25CD3E6A009D7954 /* agc_process_api.h */,
+				04CAEDE025CD3E6A009D7954 /* noise_suppress_api.h */,
+				04CAEDE125CD3E6A009D7954 /* audio_common.h */,
 			);
 			path = inc;
 			sourceTree = "<group>";
 		};
-		04516A7325C7DE950056072F /* lib */ = {
+		04CAEDE225CD3E6A009D7954 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				04516A7425C7DE950056072F /* libTTaudio.a */,
+				04CAEDE325CD3E6A009D7954 /* libTTaudio.a */,
 			);
 			path = lib;
-			sourceTree = "<group>";
-		};
-		04CAE86125C80A03009D7954 /* lame */ = {
-			isa = PBXGroup;
-			children = (
-				04CAE86225C80A03009D7954 /* libmp3lame.a */,
-				04CAE86325C80A03009D7954 /* lame.h */,
-			);
-			name = lame;
-			path = ../../../Plugin/lame_change/lame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -744,8 +742,8 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/audio_ios_sdk_20201219_mpc/lib/,
-					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/lame_change/lame,
+					"$(PROJECT_DIR)/SoundDriftingBottle/Plugin\\ /lame",
+					"$(PROJECT_DIR)/SoundDriftingBottle/Plugin\\ /audio_ios_sdk_20201219_mpc/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.SoundDriftingBottle;
@@ -771,8 +769,8 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/audio_ios_sdk_20201219_mpc/lib/,
-					/Users/mac/Desktop/vscode/SoundDriftingBottleContent/Plugin/lame_change/lame,
+					"$(PROJECT_DIR)/SoundDriftingBottle/Plugin\\ /lame",
+					"$(PROJECT_DIR)/SoundDriftingBottle/Plugin\\ /audio_ios_sdk_20201219_mpc/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = YY.SoundDriftingBottle;
