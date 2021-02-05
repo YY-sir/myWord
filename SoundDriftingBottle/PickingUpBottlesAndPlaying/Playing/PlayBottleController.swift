@@ -14,7 +14,7 @@ class PlayBottleController: UIViewController {
     let app: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
     
     //加载页面
-    let loadingview = LoadingView()
+    var loadingview: LoadingView!
     //播放页面
     var playbottleview: PlayBottleView!
     let bottomView = BottomView()
@@ -84,11 +84,8 @@ class PlayBottleController: UIViewController {
         }
         
         //捞瓶子加载动画
+        loadingview = LoadingView(frame: self.view.bounds)
         self.view.addSubview(loadingview)
-        loadingview.snp.makeConstraints {(make) in
-            make.width.height.equalTo(150)
-            make.center.equalToSuperview()
-        }
 
     }
     
@@ -136,7 +133,9 @@ class PlayBottleController: UIViewController {
             
         case playbottleview.nextB:
             print("下一首")
-            removeObserve()
+            nextAction()
+            player.pause()
+
             
         default:
             break
@@ -184,6 +183,7 @@ class PlayBottleController: UIViewController {
         //判断是否自动获取下一首
         if app.isAutomatic{
             print("下一首")
+            
         }
     }
     
@@ -216,6 +216,12 @@ class PlayBottleController: UIViewController {
             }
         }
     }
+    //显示加载页
+    fileprivate func showLoadingView(){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.loadingview.alpha = 1
+        })
+    }
 
     //播放、暂停按钮的切换
     fileprivate func playPlayB(){
@@ -231,6 +237,18 @@ class PlayBottleController: UIViewController {
         player.pause()
         self.playbottleview.playB.setImage(UIImage(named: "play20"), for: .normal)
         self.playbottleview.playB.setImage(UIImage(named: "play20"), for: .highlighted)
+    }
+ 
+//4---------------------------------------------------------------------------------------------
+//    下一首操作
+    fileprivate func nextAction(){
+        removeObserve()
+        showLoadingView()
+        nextBottleAction()
+    }
+    //音频数据处理
+    fileprivate func nextBottleAction(){
+        
     }
     
 }
