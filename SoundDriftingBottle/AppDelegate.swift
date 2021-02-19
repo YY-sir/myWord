@@ -10,10 +10,22 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var isAutomatic: Bool = false
-    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        GKConfigure.setupCustom { (configure) in
+            configure.titleColor = .black
+            configure.titleFont = UIFont.systemFont(ofSize: 18.0)
+            configure.gk_navItemLeftSpace = 4.0
+            configure.gk_navItemRightSpace = 4.0
+            configure.backStyle = .white
+        }
+        GKConfigure.awake()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UINavigationController(rootVC: ViewController())
+        
         return true
     }
 

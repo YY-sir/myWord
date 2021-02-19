@@ -16,6 +16,22 @@
 		041F1F7225C2524000C3C17A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F7125C2524000C3C17A /* AddressBook.framework */; };
 		041F1F7425C2525400C3C17A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F7325C2525400C3C17A /* CoreText.framework */; };
 		043EADCB25DF899700D97784 /* AudioUnitRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EADCA25DF899700D97784 /* AudioUnitRecord.m */; };
+		043EADDF25DFC69900D97784 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 043EADCE25DFC69900D97784 /* LICENSE */; };
+		043EADE025DFC69900D97784 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 043EADCF25DFC69900D97784 /* README.md */; };
+		043EADE125DFC69900D97784 /* UIScrollView+GKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD125DFC69900D97784 /* UIScrollView+GKExtension.swift */; };
+		043EADE225DFC69900D97784 /* UINavigationController+GKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD225DFC69900D97784 /* UINavigationController+GKExtension.swift */; };
+		043EADE325DFC69900D97784 /* GKNavigationBarSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD325DFC69900D97784 /* GKNavigationBarSwift.swift */; };
+		043EADE425DFC69900D97784 /* UINavigationItem+GKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD425DFC69900D97784 /* UINavigationItem+GKExtension.swift */; };
+		043EADE525DFC69900D97784 /* UIViewController+GKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD525DFC69900D97784 /* UIViewController+GKExtension.swift */; };
+		043EADE625DFC69900D97784 /* GKNavigationInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD625DFC69900D97784 /* GKNavigationInteractiveTransition.swift */; };
+		043EADE725DFC69900D97784 /* UIImage+GKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD725DFC69900D97784 /* UIImage+GKExtension.swift */; };
+		043EADE825DFC69900D97784 /* UIBarButtonItem+GKExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD825DFC69900D97784 /* UIBarButtonItem+GKExtension.swift */; };
+		043EADE925DFC69900D97784 /* GKPopAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADD925DFC69900D97784 /* GKPopAnimatedTransition.swift */; };
+		043EADEA25DFC69900D97784 /* GKNavigationBarDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADDA25DFC69900D97784 /* GKNavigationBarDefine.swift */; };
+		043EADEB25DFC69900D97784 /* GKNavigationBarConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADDB25DFC69900D97784 /* GKNavigationBarConfigure.swift */; };
+		043EADEC25DFC69900D97784 /* GKBaseAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADDC25DFC69900D97784 /* GKBaseAnimatedTransition.swift */; };
+		043EADED25DFC69900D97784 /* GKNavigationBarSwift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 043EADDD25DFC69900D97784 /* GKNavigationBarSwift.bundle */; };
+		043EADEE25DFC69900D97784 /* GKPushAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043EADDE25DFC69900D97784 /* GKPushAnimatedTransition.swift */; };
 		044B048425BFF7240013F493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B048325BFF7240013F493 /* AppDelegate.swift */; };
 		044B048625BFF7240013F493 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B048525BFF7240013F493 /* SceneDelegate.swift */; };
 		044B048825BFF7240013F493 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B048725BFF7240013F493 /* ViewController.swift */; };
@@ -101,6 +117,22 @@
 		041F1F7525C2526500C3C17A /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		043EADC925DF899700D97784 /* AudioUnitRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioUnitRecord.h; sourceTree = "<group>"; };
 		043EADCA25DF899700D97784 /* AudioUnitRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioUnitRecord.m; sourceTree = "<group>"; };
+		043EADCE25DFC69900D97784 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		043EADCF25DFC69900D97784 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		043EADD125DFC69900D97784 /* UIScrollView+GKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+GKExtension.swift"; sourceTree = "<group>"; };
+		043EADD225DFC69900D97784 /* UINavigationController+GKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+GKExtension.swift"; sourceTree = "<group>"; };
+		043EADD325DFC69900D97784 /* GKNavigationBarSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKNavigationBarSwift.swift; sourceTree = "<group>"; };
+		043EADD425DFC69900D97784 /* UINavigationItem+GKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+GKExtension.swift"; sourceTree = "<group>"; };
+		043EADD525DFC69900D97784 /* UIViewController+GKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+GKExtension.swift"; sourceTree = "<group>"; };
+		043EADD625DFC69900D97784 /* GKNavigationInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKNavigationInteractiveTransition.swift; sourceTree = "<group>"; };
+		043EADD725DFC69900D97784 /* UIImage+GKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GKExtension.swift"; sourceTree = "<group>"; };
+		043EADD825DFC69900D97784 /* UIBarButtonItem+GKExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+GKExtension.swift"; sourceTree = "<group>"; };
+		043EADD925DFC69900D97784 /* GKPopAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKPopAnimatedTransition.swift; sourceTree = "<group>"; };
+		043EADDA25DFC69900D97784 /* GKNavigationBarDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKNavigationBarDefine.swift; sourceTree = "<group>"; };
+		043EADDB25DFC69900D97784 /* GKNavigationBarConfigure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKNavigationBarConfigure.swift; sourceTree = "<group>"; };
+		043EADDC25DFC69900D97784 /* GKBaseAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKBaseAnimatedTransition.swift; sourceTree = "<group>"; };
+		043EADDD25DFC69900D97784 /* GKNavigationBarSwift.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GKNavigationBarSwift.bundle; sourceTree = "<group>"; };
+		043EADDE25DFC69900D97784 /* GKPushAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKPushAnimatedTransition.swift; sourceTree = "<group>"; };
 		044B048025BFF7240013F493 /* SoundDriftingBottle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundDriftingBottle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044B048325BFF7240013F493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		044B048525BFF7240013F493 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -247,6 +279,37 @@
 			path = AudioUnitRecord;
 			sourceTree = "<group>";
 		};
+		043EADCD25DFC69900D97784 /* GKNavigationBarSwift */ = {
+			isa = PBXGroup;
+			children = (
+				043EADCE25DFC69900D97784 /* LICENSE */,
+				043EADCF25DFC69900D97784 /* README.md */,
+				043EADD025DFC69900D97784 /* Sources */,
+			);
+			path = GKNavigationBarSwift;
+			sourceTree = "<group>";
+		};
+		043EADD025DFC69900D97784 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				043EADD125DFC69900D97784 /* UIScrollView+GKExtension.swift */,
+				043EADD225DFC69900D97784 /* UINavigationController+GKExtension.swift */,
+				043EADD325DFC69900D97784 /* GKNavigationBarSwift.swift */,
+				043EADD425DFC69900D97784 /* UINavigationItem+GKExtension.swift */,
+				043EADD525DFC69900D97784 /* UIViewController+GKExtension.swift */,
+				043EADD625DFC69900D97784 /* GKNavigationInteractiveTransition.swift */,
+				043EADD725DFC69900D97784 /* UIImage+GKExtension.swift */,
+				043EADD825DFC69900D97784 /* UIBarButtonItem+GKExtension.swift */,
+				043EADD925DFC69900D97784 /* GKPopAnimatedTransition.swift */,
+				043EADDA25DFC69900D97784 /* GKNavigationBarDefine.swift */,
+				043EADDB25DFC69900D97784 /* GKNavigationBarConfigure.swift */,
+				043EADDC25DFC69900D97784 /* GKBaseAnimatedTransition.swift */,
+				043EADDD25DFC69900D97784 /* GKNavigationBarSwift.bundle */,
+				043EADDE25DFC69900D97784 /* GKPushAnimatedTransition.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		044B047725BFF7240013F493 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +352,7 @@
 		044B049825BFF7820013F493 /* Plugin  */ = {
 			isa = PBXGroup;
 			children = (
+				043EADCD25DFC69900D97784 /* GKNavigationBarSwift */,
 				04CAEDDC25CD3E6A009D7954 /* audio_ios_sdk_20201219_mpc */,
 				04CAEDD825CD3E58009D7954 /* lame */,
 				044B049925BFF7F90013F493 /* SnapKit */,
@@ -526,11 +590,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043EADDF25DFC69900D97784 /* LICENSE in Resources */,
 				044B05B425C1789C0013F493 /* Settings.bundle in Resources */,
 				044B049025BFF7250013F493 /* LaunchScreen.storyboard in Resources */,
+				043EADE025DFC69900D97784 /* README.md in Resources */,
 				044B05BB25C17A870013F493 /* loading.gif in Resources */,
 				044B048D25BFF7250013F493 /* Assets.xcassets in Resources */,
 				044B048B25BFF7240013F493 /* Main.storyboard in Resources */,
+				043EADED25DFC69900D97784 /* GKNavigationBarSwift.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,8 +610,10 @@
 			files = (
 				044B04C225BFF7F90013F493 /* ConstraintMakerPriortizable.swift in Sources */,
 				044B04C325BFF7F90013F493 /* ConstraintAttributes.swift in Sources */,
+				043EADE925DFC69900D97784 /* GKPopAnimatedTransition.swift in Sources */,
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,
 				0485635D25C39EF90003D458 /* RecordView.swift in Sources */,
+				043EADE425DFC69900D97784 /* UINavigationItem+GKExtension.swift in Sources */,
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
 				044B04DC25BFF7F90013F493 /* Debugging.swift in Sources */,
 				0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */,
@@ -555,6 +624,7 @@
 				044B050B25C142510013F493 /* PickingUpBottlesView.swift in Sources */,
 				044B04F125C008670013F493 /* CommonOne.swift in Sources */,
 				044B057925C164B30013F493 /* PlayBottleController.swift in Sources */,
+				043EADEB25DFC69900D97784 /* GKNavigationBarConfigure.swift in Sources */,
 				044B04D925BFF7F90013F493 /* ConstraintView+Extensions.swift in Sources */,
 				044B04C925BFF7F90013F493 /* ConstraintMakerExtendable.swift in Sources */,
 				044B057F25C1681C0013F493 /* LoadingView.swift in Sources */,
@@ -571,33 +641,43 @@
 				04CAE86E25CA81C5009D7954 /* CommonTwo.swift in Sources */,
 				044B04CB25BFF7F90013F493 /* ConstraintInsetTarget.swift in Sources */,
 				044B050725C13B1B0013F493 /* MineController.swift in Sources */,
+				043EADE525DFC69900D97784 /* UIViewController+GKExtension.swift in Sources */,
 				04516A6625C7DB7C0056072F /* Recorder.m in Sources */,
 				044B04C025BFF7F90013F493 /* LayoutConstraintItem.swift in Sources */,
 				044B04FE25C0F8790013F493 /* RegisterAndLoginController.swift in Sources */,
 				044B04E025BFF7F90013F493 /* ConstraintDirectionalInsets.swift in Sources */,
+				043EADE825DFC69900D97784 /* UIBarButtonItem+GKExtension.swift in Sources */,
+				043EADEA25DFC69900D97784 /* GKNavigationBarDefine.swift in Sources */,
 				044B04DB25BFF7F90013F493 /* Constraint.swift in Sources */,
 				0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */,
 				044B04DD25BFF7F90013F493 /* ConstraintRelatableTarget.swift in Sources */,
 				044B04CC25BFF7F90013F493 /* ConstraintDirectionalInsetTarget.swift in Sources */,
 				044B05BE25C17B990013F493 /* UIImage+GIF.swift in Sources */,
+				043EADE125DFC69900D97784 /* UIScrollView+GKExtension.swift in Sources */,
 				044B04C625BFF7F90013F493 /* ConstraintInsets.swift in Sources */,
 				044B048425BFF7240013F493 /* AppDelegate.swift in Sources */,
 				044B048625BFF7240013F493 /* SceneDelegate.swift in Sources */,
+				043EADE625DFC69900D97784 /* GKNavigationInteractiveTransition.swift in Sources */,
 				044B04D525BFF7F90013F493 /* ConstraintMakerEditable.swift in Sources */,
 				044B04DF25BFF7F90013F493 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				044B04C525BFF7F90013F493 /* ConstraintPriorityTarget.swift in Sources */,
 				044B04D325BFF7F90013F493 /* ConstraintConstantTarget.swift in Sources */,
 				044B04C825BFF7F90013F493 /* ConstraintDSL.swift in Sources */,
 				0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */,
+				043EADE325DFC69900D97784 /* GKNavigationBarSwift.swift in Sources */,
 				04CAE90E25CBD18E009D7954 /* UISlider2.swift in Sources */,
+				043EADEE25DFC69900D97784 /* GKPushAnimatedTransition.swift in Sources */,
 				044B04EC25C004910013F493 /* LoginView.swift in Sources */,
 				044B04CA25BFF7F90013F493 /* ConstraintPriority.swift in Sources */,
 				044B04CF25BFF7F90013F493 /* ConstraintView.swift in Sources */,
+				043EADE225DFC69900D97784 /* UINavigationController+GKExtension.swift in Sources */,
 				044B04F625C0197D0013F493 /* UITextField1.swift in Sources */,
+				043EADE725DFC69900D97784 /* UIImage+GKExtension.swift in Sources */,
 				044B04C125BFF7F90013F493 /* ConstraintDescription.swift in Sources */,
 				044B04CE25BFF7F90013F493 /* UILayoutSupport+Extensions.swift in Sources */,
 				044B04E125BFF7F90013F493 /* ConstraintLayoutSupportDSL.swift in Sources */,
 				044B04C725BFF7F90013F493 /* ConstraintMakerFinalizable.swift in Sources */,
+				043EADEC25DFC69900D97784 /* GKBaseAnimatedTransition.swift in Sources */,
 				044B04D125BFF7F90013F493 /* ConstraintLayoutSupport.swift in Sources */,
 				044B04C425BFF7F90013F493 /* ConstraintViewDSL.swift in Sources */,
 				044B04FB25C0382C0013F493 /* PickingUpBottlesController.swift in Sources */,

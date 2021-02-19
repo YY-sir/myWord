@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+
 import UIKit
 class ThrowTheBottleController: UIViewController {
     let app = UIApplication.shared.delegate as! AppDelegate
@@ -43,7 +44,10 @@ class ThrowTheBottleController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "录音"
+        
+        //设置导航栏
+        setupNav()
+        
         //设置背景颜色
         setupViewBg()
         recordview = RecordView(frame: self.view.bounds)
@@ -61,14 +65,12 @@ class ThrowTheBottleController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //设置导航栏
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //设置导航栏
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
         
         if player != nil{
             player.pause()
@@ -82,6 +84,13 @@ class ThrowTheBottleController: UIViewController {
     }
     
 //2------------------------------------------------------------------------------------------------------
+    fileprivate func setupNav(){
+        self.gk_navBackgroundColor = .clear
+        self.gk_statusBarStyle = .lightContent
+        self.gk_navTitleColor = .white
+        self.gk_navLineHidden = true
+    }
+    
     fileprivate func setupViewBg(){
         let ui = UIView(frame: self.view.bounds)
         ui.layer.addSublayer(CommonOne().gradientLayer)

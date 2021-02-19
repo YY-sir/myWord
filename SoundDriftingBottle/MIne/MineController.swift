@@ -10,6 +10,9 @@ import UIKit
 class MineController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        //设置顶部导航栏
+        setupNav()
+        
         self.view.backgroundColor = UIColor.white
         self.title = "YY（用户名）"
         
@@ -31,8 +34,16 @@ class MineController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.isNavigationBarHidden = false
     }
     
+//--------------------------------------------------------------------------------------------------------
+    fileprivate func setupNav(){
+        self.gk_navBackgroundColor = .clear
+        self.gk_statusBarStyle = .lightContent
+        self.gk_navTitleColor = .black
+        self.gk_navLineHidden = true
+        self.gk_backStyle = .black
+    }
     
 }

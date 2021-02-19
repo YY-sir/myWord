@@ -33,6 +33,9 @@ class PlayBottleController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //设置导航栏
+        setupNav()
+        
         //设置渐变背景
         setupViewBg()
         setupView()
@@ -53,13 +56,14 @@ class PlayBottleController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.isNavigationBarHidden = false
+        
         //调整自动操作按钮
         bottomView.autoplayButton.isOn = app.isAutomatic
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
         pausePlayB()
         
     }
@@ -70,6 +74,14 @@ class PlayBottleController: UIViewController {
     }
     
 //2----------------------------------------------------------------------------------------------------
+    fileprivate func setupNav(){
+        self.gk_navBackgroundColor = .clear
+        self.gk_statusBarStyle = .lightContent
+        self.gk_navTitleColor = .white
+        self.gk_navLineHidden = true
+    }
+    
+    
     fileprivate func setupView(){
         //初始化播放页面
         playbottleview = PlayBottleView(frame: self.view.bounds)
