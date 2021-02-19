@@ -11,6 +11,9 @@ import UIKit
 class ThrowTheBottleController: UIViewController {
     let app = UIApplication.shared.delegate as! AppDelegate
     let RecorderOC = Recorder()
+    //耳返
+    let AUROC = AudioUnitRecord()
+    
     
     var recordview: RecordView!
     //录音播放按钮状态：开始录音-0；结束录音-1；播放录音-2；暂停录音-3
@@ -45,10 +48,12 @@ class ThrowTheBottleController: UIViewController {
         setupViewBg()
         recordview = RecordView(frame: self.view.bounds)
         self.view.addSubview(recordview)
+        
         //添加按钮事件
         recordview.recordB.addTarget(self, action: #selector(recordAction(sender:)), for: .touchUpInside)
         recordview.cancelB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.commitB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
+        recordview.earReturnB.addTarget(self, action: #selector(earReturnBAction(sender:)), for: .touchUpInside)
         //监听变声按钮的选择
         NotificationCenter.default.addObserver(self, selector: #selector(changeLabelNotificationAction), name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
         
@@ -145,9 +150,30 @@ class ThrowTheBottleController: UIViewController {
         }
     }
     
+    @objc func earReturnBAction(sender: UIButton){
+        if sender.isSelected{
+            sender.isSelected = false
+            sender.backgroundColor = .white
+        }else{
+            sender.isSelected = true
+            sender.backgroundColor = .systemPink
+        }
+    }
+    
 //3------------------------------------------------------------------------------------------------------
     //开始录音
     fileprivate func startRecord(){
+        //实时耳返
+        if recordview.earReturnB.isSelected{
+            //初始化耳返
+            AUROC.initializeAudio()
+            AUROC.earReturnStart()
+            
+        }
+//        录音过程不可点击耳返按钮
+        recordview.earReturnB.isEnabled = false
+        recordview.earReturnB.setTitleColor(.gray, for: .normal)
+        
         //View调整
         recordview.recordB.isEnabled = false
         
@@ -164,7 +190,7 @@ class ThrowTheBottleController: UIViewController {
         pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
         print("\(path)")
         
-        audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 44100, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
+        audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 42000.0, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
         //生成计数器
         timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
         //添加代理
@@ -197,6 +223,14 @@ class ThrowTheBottleController: UIViewController {
     
     //结束录音
     fileprivate func endRecord(){
+//        录音结束关闭耳返
+        if recordview.earReturnB.isSelected{
+            AUROC.earReturnStop()
+        }
+//        录音结束打开耳返按钮
+        recordview.earReturnB.isEnabled = true
+        recordview.earReturnB.setTitleColor(.black, for: .normal)
+        
         //清除录音机
         audioRecorder.stop()
         audioRecorder = nil

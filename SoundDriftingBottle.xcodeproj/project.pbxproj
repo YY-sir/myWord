@@ -15,6 +15,7 @@
 		041F1F6F25C2521000C3C17A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F6E25C2521000C3C17A /* Accelerate.framework */; };
 		041F1F7225C2524000C3C17A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F7125C2524000C3C17A /* AddressBook.framework */; };
 		041F1F7425C2525400C3C17A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F7325C2525400C3C17A /* CoreText.framework */; };
+		043EADCB25DF899700D97784 /* AudioUnitRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EADCA25DF899700D97784 /* AudioUnitRecord.m */; };
 		044B048425BFF7240013F493 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B048325BFF7240013F493 /* AppDelegate.swift */; };
 		044B048625BFF7240013F493 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B048525BFF7240013F493 /* SceneDelegate.swift */; };
 		044B048825BFF7240013F493 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B048725BFF7240013F493 /* ViewController.swift */; };
@@ -98,6 +99,8 @@
 		041F1F7125C2524000C3C17A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		041F1F7325C2525400C3C17A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		041F1F7525C2526500C3C17A /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		043EADC925DF899700D97784 /* AudioUnitRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioUnitRecord.h; sourceTree = "<group>"; };
+		043EADCA25DF899700D97784 /* AudioUnitRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioUnitRecord.m; sourceTree = "<group>"; };
 		044B048025BFF7240013F493 /* SoundDriftingBottle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundDriftingBottle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044B048325BFF7240013F493 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		044B048525BFF7240013F493 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,6 +238,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		043EADC325DF88D300D97784 /* AudioUnitRecord */ = {
+			isa = PBXGroup;
+			children = (
+				043EADC925DF899700D97784 /* AudioUnitRecord.h */,
+				043EADCA25DF899700D97784 /* AudioUnitRecord.m */,
+			);
+			path = AudioUnitRecord;
+			sourceTree = "<group>";
+		};
 		044B047725BFF7240013F493 = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +381,7 @@
 		044B04EF25C008340013F493 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				043EADC325DF88D300D97784 /* AudioUnitRecord */,
 				044B04F425C019430013F493 /* Inherit */,
 				044B04F025C008670013F493 /* CommonOne.swift */,
 				04516A6425C7DB7C0056072F /* Recorder.h */,
@@ -537,6 +550,7 @@
 				0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */,
 				04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */,
 				044B04DE25BFF7F90013F493 /* LayoutConstraint.swift in Sources */,
+				043EADCB25DF899700D97784 /* AudioUnitRecord.m in Sources */,
 				044B04D225BFF7F90013F493 /* Typealiases.swift in Sources */,
 				044B050B25C142510013F493 /* PickingUpBottlesView.swift in Sources */,
 				044B04F125C008670013F493 /* CommonOne.swift in Sources */,

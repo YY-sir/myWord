@@ -34,6 +34,8 @@ class RecordView: UIView {
     let cancelB = UIButton()
     let commitB = UIButton()
     
+    let earReturnB = UIButton()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,6 +109,15 @@ class RecordView: UIView {
             make.centerX.equalToSuperview()
             make.height.equalTo(200)
             make.width.equalTo(320)
+        }
+        
+        self.addSubview(earReturnB)
+        earReturnB.backgroundColor = .white
+        earReturnB.setTitle("耳返", for: .normal)
+        earReturnB.setTitleColor(.black, for: .normal)
+        earReturnB.snp.makeConstraints {(make) in
+            make.width.height.equalTo(50)
+            make.bottom.right.equalTo(-50)
         }
     }
     

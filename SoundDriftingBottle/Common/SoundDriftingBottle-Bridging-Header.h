@@ -4,3 +4,4 @@
 
 #import "Recorder.h"
 #import "UISlider1.h"
+#import "AudioUnitRecord.h"

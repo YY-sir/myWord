@@ -37,9 +37,8 @@ class PlayBottleController: UIViewController {
         setupViewBg()
         setupView()
     
-        //获取瓶子id
-        
-        
+        //获取瓶子url
+        getBottleURL()
         //准备音频
         playBottle()
         //添加按钮事件
@@ -194,6 +193,7 @@ class PlayBottleController: UIViewController {
         //判断是否自动获取下一首
         if app.isAutomatic{
             print("下一首")
+            nextAction()
             
         }
     }
@@ -216,8 +216,13 @@ class PlayBottleController: UIViewController {
         //播放时间初始化
         playbottleview.currentTimeL.text = "0:00"
         playbottleview.totalTimeL.text = CommonOne().changeTime(time: Int(CMTimeGetSeconds(self.playerItem.duration)))
+        
         //显示动画
-        UIView.animate(withDuration: 1, delay: 1, animations: {
+        var delayTime = 1
+        if app.isAutomatic{
+            delayTime = 2
+        }
+        UIView.animate(withDuration: 1, delay: TimeInterval(delayTime), animations: {
             self.loadingview.alpha = 0
             self.playbottleview.alpha = 1
         }){(finnish) in
@@ -255,12 +260,16 @@ class PlayBottleController: UIViewController {
     fileprivate func nextAction(){
         showLoadingView()
         removeObserve()
-        nextBottleAction()
+        getBottleURL()
+        //加载播放器
+        playBottle()
+        
     }
     //音频数据处理
-    fileprivate func nextBottleAction(){
+    //异步处理，获得url以后才加载播放器
+    fileprivate func getBottleURL(){
         //获取新音频的url
-        
+
     }
     
 }
