@@ -39,6 +39,8 @@ class PlayBottleController: UIViewController {
         //设置渐变背景
         setupViewBg()
         setupView()
+        setupLoadingView()
+        
     
         //获取瓶子url
         getBottleURL()
@@ -56,16 +58,12 @@ class PlayBottleController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.isNavigationBarHidden = false
-        
         //调整自动操作按钮
         bottomView.autoplayButton.isOn = app.isAutomatic
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.isNavigationBarHidden = true
         pausePlayB()
-        
     }
     
     deinit {
@@ -97,10 +95,12 @@ class PlayBottleController: UIViewController {
             make.height.equalTo(50)
         }
         
+    }
+    
+    fileprivate func setupLoadingView(){
         //捞瓶子加载动画
         loadingview = LoadingView(frame: self.view.bounds)
         self.view.addSubview(loadingview)
-
     }
     
     fileprivate func setupViewBg(){
@@ -246,6 +246,7 @@ class PlayBottleController: UIViewController {
     }
     //显示加载页
     fileprivate func showLoadingView(){
+        setupLoadingView()
         UIView.animate(withDuration: 0.5, animations: {
             self.loadingview.alpha = 1
         })
