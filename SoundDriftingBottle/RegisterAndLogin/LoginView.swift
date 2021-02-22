@@ -240,6 +240,7 @@ class LoginView: UIView {
 
     }
     
+    
     fileprivate func setupButtonAction(){
         section1.addTarget(self, action: #selector(topButtonAction(sender:)), for: .touchDown)
         section2.addTarget(self, action: #selector(topButtonAction(sender:)), for: .touchDown)

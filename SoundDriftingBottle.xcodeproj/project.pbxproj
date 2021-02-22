@@ -143,6 +143,10 @@
 		0453FC7525E101D10053ADB6 /* JXSegmentedTitleAttributeItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FC4825E101D10053ADB6 /* JXSegmentedTitleAttributeItemModel.swift */; };
 		0453FC7625E101D10053ADB6 /* JXSegmentedTitleAttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FC4925E101D10053ADB6 /* JXSegmentedTitleAttributeCell.swift */; };
 		0453FC7A25E113E60053ADB6 /* SetupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FC7925E113E60053ADB6 /* SetupController.swift */; };
+		045AB63825E34466002AB90A /* TTLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045AB63525E34466002AB90A /* TTLoadingView.xib */; };
+		045AB63925E34466002AB90A /* TTTextHintView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045AB63625E34466002AB90A /* TTTextHintView.xib */; };
+		045AB63A25E34466002AB90A /* TTTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AB63725E34466002AB90A /* TTTipView.m */; };
+		045AB63D25E35626002AB90A /* TipChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AB63C25E35626002AB90A /* TipChoose.m */; };
 		0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634625C2B5160003D458 /* PlayBottleView.swift */; };
 		0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */; };
 		0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634D25C2C4AD0003D458 /* BottomView.swift */; };
@@ -304,6 +308,12 @@
 		0453FC4825E101D10053ADB6 /* JXSegmentedTitleAttributeItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeItemModel.swift; sourceTree = "<group>"; };
 		0453FC4925E101D10053ADB6 /* JXSegmentedTitleAttributeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleAttributeCell.swift; sourceTree = "<group>"; };
 		0453FC7925E113E60053ADB6 /* SetupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupController.swift; sourceTree = "<group>"; };
+		045AB63425E34466002AB90A /* TTTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTipView.h; sourceTree = "<group>"; };
+		045AB63525E34466002AB90A /* TTLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTLoadingView.xib; sourceTree = "<group>"; };
+		045AB63625E34466002AB90A /* TTTextHintView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TTTextHintView.xib; sourceTree = "<group>"; };
+		045AB63725E34466002AB90A /* TTTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTipView.m; sourceTree = "<group>"; };
+		045AB63B25E35626002AB90A /* TipChoose.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipChoose.h; sourceTree = "<group>"; };
+		045AB63C25E35626002AB90A /* TipChoose.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipChoose.m; sourceTree = "<group>"; };
 		0485634625C2B5160003D458 /* PlayBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBottleView.swift; sourceTree = "<group>"; };
 		0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrowTheBottleController.swift; sourceTree = "<group>"; };
 		0485634D25C2C4AD0003D458 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
@@ -563,6 +573,7 @@
 		044B04EF25C008340013F493 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				045AB63325E34466002AB90A /* TipView */,
 				043EADC325DF88D300D97784 /* AudioUnitRecord */,
 				044B04F425C019430013F493 /* Inherit */,
 				044B04F025C008670013F493 /* CommonOne.swift */,
@@ -773,6 +784,19 @@
 			path = Setup;
 			sourceTree = "<group>";
 		};
+		045AB63325E34466002AB90A /* TipView */ = {
+			isa = PBXGroup;
+			children = (
+				045AB63425E34466002AB90A /* TTTipView.h */,
+				045AB63525E34466002AB90A /* TTLoadingView.xib */,
+				045AB63625E34466002AB90A /* TTTextHintView.xib */,
+				045AB63725E34466002AB90A /* TTTipView.m */,
+				045AB63B25E35626002AB90A /* TipChoose.h */,
+				045AB63C25E35626002AB90A /* TipChoose.m */,
+			);
+			path = TipView;
+			sourceTree = "<group>";
+		};
 		04CAEDD825CD3E58009D7954 /* lame */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,12 +894,14 @@
 			files = (
 				043EADDF25DFC69900D97784 /* LICENSE in Resources */,
 				044B05B425C1789C0013F493 /* Settings.bundle in Resources */,
+				045AB63925E34466002AB90A /* TTTextHintView.xib in Resources */,
 				044B049025BFF7250013F493 /* LaunchScreen.storyboard in Resources */,
 				043EADE025DFC69900D97784 /* README.md in Resources */,
 				044B05BB25C17A870013F493 /* loading.gif in Resources */,
 				044B048D25BFF7250013F493 /* Assets.xcassets in Resources */,
 				0453FC4A25E101D10053ADB6 /* LICENSE in Resources */,
 				0453FC4B25E101D10053ADB6 /* README-English.md in Resources */,
+				045AB63825E34466002AB90A /* TTLoadingView.xib in Resources */,
 				044B048B25BFF7240013F493 /* Main.storyboard in Resources */,
 				043EADED25DFC69900D97784 /* GKNavigationBarSwift.bundle in Resources */,
 			);
@@ -891,6 +917,7 @@
 				044B04C225BFF7F90013F493 /* ConstraintMakerPriortizable.swift in Sources */,
 				0453FC5C25E101D10053ADB6 /* JXSegmentedIndicatorBackgroundView.swift in Sources */,
 				044B04C325BFF7F90013F493 /* ConstraintAttributes.swift in Sources */,
+				045AB63A25E34466002AB90A /* TTTipView.m in Sources */,
 				0453FB9A25E0F5A60053ADB6 /* GKPageTableView.swift in Sources */,
 				043EADE925DFC69900D97784 /* GKPopAnimatedTransition.swift in Sources */,
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,
@@ -939,6 +966,7 @@
 				0485635A25C39CF80003D458 /* TopSection.swift in Sources */,
 				0453FB9725E0F5A00053ADB6 /* GKPageScrollView.swift in Sources */,
 				04CAE86E25CA81C5009D7954 /* CommonTwo.swift in Sources */,
+				045AB63D25E35626002AB90A /* TipChoose.m in Sources */,
 				044B04CB25BFF7F90013F493 /* ConstraintInsetTarget.swift in Sources */,
 				0453FC6E25E101D10053ADB6 /* JXSegmentedNumberItemModel.swift in Sources */,
 				0453FC6625E101D10053ADB6 /* JXSegmentedTitleImageDataSource.swift in Sources */,

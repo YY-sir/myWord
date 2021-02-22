@@ -24,7 +24,7 @@ class MineHeaderView: UIView {
         let personalSignature = UILabel()
         personalSignature.font = UIFont.systemFont(ofSize: 13.0)
         personalSignature.textColor = UIColor.white
-        personalSignature.text = "知道今天可以见到你，所以从睁开眼睛就开始感到幸福"
+        personalSignature.text = "知道今天可以见到你，所以从睁开眼睛就开始感到幸福始感到幸福始感到幸福dsad"
         return personalSignature
     }()
     
@@ -78,7 +78,7 @@ class MineHeaderView: UIView {
         }
         
         personalBtn.snp.makeConstraints { (make) in
-            make.bottom.equalTo(self.setupBtn.snp.bottom)
+            make.bottom.equalTo(self.setupBtn)
             make.right.equalTo(self.setupBtn.snp.left).offset(-ADAPTATIONRATIO * 20.0)
             make.width.equalTo(ADAPTATIONRATIO * 150.0)
             make.height.equalTo(ADAPTATIONRATIO * 50.0)
@@ -92,6 +92,7 @@ class MineHeaderView: UIView {
         
         personalSignature.snp.makeConstraints { (make) in
             make.left.equalTo(self.countLabel)
+            make.right.equalTo(setupBtn)
             make.bottom.equalTo(self.countLabel.snp.top).offset(-ADAPTATIONRATIO * 15.0)
         }
         

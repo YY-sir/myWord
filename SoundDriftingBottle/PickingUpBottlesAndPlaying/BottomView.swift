@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 class BottomView: UIView {
     //appdelegate
     let app = UIApplication.shared.delegate as!AppDelegate
@@ -77,6 +78,19 @@ class BottomView: UIView {
     @objc func changeAutoSwitch(){
         app.isAutomatic = autoplayButton.isOn
         print("\(app.isAutomatic)")
+        
+        var tipText: String
+        if app.isAutomatic{
+            tipText = "打开自动捞瓶子"
+        }else{
+            tipText = "关闭自动捞瓶子"
+        }
+        //添加弹窗提示
+        let tipview = TTTipView(type: TTTipViewTypeTextHint, blockUserInteract: true)
+        let options: TTTipViewAnimationOptions = TipChoose.automaticTip()
+        tipview?.setText(tipText)
+        tipview?.show(in: self.firstViewController()?.view, animated: true, animationOptions: options)
+
     }
     
 }

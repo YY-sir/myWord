@@ -254,11 +254,12 @@ class PlayBottleController: UIViewController {
 
     //播放、暂停按钮的切换
     fileprivate func playPlayB(){
+        player.play()
         if isPlayEnd{
             playerItem.seek(to: CMTime.zero, completionHandler: nil)
             isPlayEnd  = false
         }
-        player.play()
+        
         self.playbottleview.playB.setImage(UIImage(named: "pause20"), for: .normal)
         self.playbottleview.playB.setImage(UIImage(named: "pause20"), for: .highlighted)
     }
