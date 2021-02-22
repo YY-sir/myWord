@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isAutomatic: Bool = false
     var window: UIWindow?
 
+    var backgroundTask: UIBackgroundTaskIdentifier!=nil
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         GKConfigure.setupCustom { (configure) in
@@ -42,6 +44,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+//    func applicationDidEnterBackground(_ application: UIApplication) {
+//        
+//        //如果已存在后台任务，先将其设为完成
+//          if self.backgroundTask != nil {
+//              application.endBackgroundTask(self.backgroundTask)
+//            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+//          }
+//           
+//              //注册后台任务
+//        self.backgroundTask = application.beginBackgroundTask(expirationHandler: {
+//              () -> Void in
+//              //如果没有调用endBackgroundTask，时间耗尽时应用程序将被终止
+//              application.endBackgroundTask(self.backgroundTask)
+//            self.backgroundTask = UIBackgroundTaskIdentifier.invalid
+//        })
+//        
+//    }
 
 
 }

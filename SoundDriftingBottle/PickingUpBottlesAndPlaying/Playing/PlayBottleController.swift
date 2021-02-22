@@ -110,7 +110,7 @@ class PlayBottleController: UIViewController {
     }
     
     fileprivate func playBottle(){
-        
+        print("播放音频")
         playerItem = AVPlayerItem.init(url: url)
         player = AVPlayer.init(playerItem: playerItem)
         
@@ -212,6 +212,7 @@ class PlayBottleController: UIViewController {
     
     //移除监听
     fileprivate func removeObserve() {
+        print("移除监听")
         if timeObserve == nil{
             return 
         }
@@ -224,7 +225,7 @@ class PlayBottleController: UIViewController {
     }
     
     //显示播放页
-    fileprivate func showPlayView(){
+     func showPlayView(){
         //播放时间初始化
         playbottleview.currentTimeL.text = "0:00"
         playbottleview.totalTimeL.text = CommonOne().changeTime(time: Int(CMTimeGetSeconds(self.playerItem.duration)))
@@ -238,10 +239,8 @@ class PlayBottleController: UIViewController {
             self.loadingview.alpha = 0
             self.playbottleview.alpha = 1
         }){(finnish) in
-            if finnish{
-                //页面加载完后播放音频
-                self.playPlayB()
-            }
+            //页面加载完后播放音频
+            self.playPlayB()
         }
     }
     //显示加载页
@@ -254,6 +253,7 @@ class PlayBottleController: UIViewController {
 
     //播放、暂停按钮的切换
     fileprivate func playPlayB(){
+        print("播放音频")
         player.play()
         if isPlayEnd{
             playerItem.seek(to: CMTime.zero, completionHandler: nil)
@@ -283,7 +283,7 @@ class PlayBottleController: UIViewController {
     //异步处理，获得url以后才加载播放器
     fileprivate func getBottleURL(){
         //获取新音频的url
-
+        print("获取url")
     }
     
 }
