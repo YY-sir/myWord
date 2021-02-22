@@ -98,6 +98,9 @@ class PlayBottleController: UIViewController {
     }
     
     fileprivate func setupLoadingView(){
+        if (loadingview != nil){
+            loadingview.removeFromSuperview()
+        }
         //捞瓶子加载动画
         loadingview = LoadingView(frame: self.view.bounds)
         self.view.addSubview(loadingview)
@@ -272,7 +275,8 @@ class PlayBottleController: UIViewController {
 //4---------------------------------------------------------------------------------------------
 //    下一首操作
     fileprivate func nextAction(){
-        showLoadingView()
+//        showLoadingView()
+        setupLoadingView()
         removeObserve()
         getBottleURL()
         //加载播放器
