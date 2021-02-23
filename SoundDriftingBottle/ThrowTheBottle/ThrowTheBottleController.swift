@@ -160,13 +160,23 @@ class ThrowTheBottleController: UIViewController {
     }
     
     @objc func earReturnBAction(sender: UIButton){
+        var tipText: String
         if sender.isSelected{
             sender.isSelected = false
             sender.backgroundColor = .white
+            tipText = "关闭耳返"
+            
         }else{
             sender.isSelected = true
             sender.backgroundColor = .systemPink
+            tipText = "打开耳返"
         }
+        //添加弹窗提示
+        let tipview = TTTipView(type: TTTipViewTypeTextHint, blockUserInteract: true)
+        let options: TTTipViewAnimationOptions = TipChoose.automaticTip()
+        tipview?.setText(tipText)
+        tipview?.show(in: self.view, animated: true, animationOptions: options)
+        
     }
     
 //3------------------------------------------------------------------------------------------------------
