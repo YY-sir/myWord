@@ -27,6 +27,7 @@ class ThrowTheBottleController: UIViewController {
     //录音机
     var audioRecorder: AVAudioRecorder!
     var time1970: String!
+    //音频存储地址
     var path: String!
     var pathP: String!
     var pathOut: String!
@@ -36,6 +37,7 @@ class ThrowTheBottleController: UIViewController {
     var timer1: Timer!
     var recordTime: Int = 0
     var recordTotalTime: Int!
+    //录音机配置
     private let recorderSetting =  [AVFormatIDKey: kAudioFormatLinearPCM,
                                     AVNumberOfChannelsKey: 1,
                                     AVSampleRateKey: 42000.0,
@@ -45,6 +47,12 @@ class ThrowTheBottleController: UIViewController {
                                     AVLinearPCMIsFloatKey: false,
                                     AVLinearPCMIsNonInterleaved: false,
                                     AVLinearPCMIsBigEndianKey: false] as [String : Any]
+    ///波形更新计时器
+    private var timer2: Timer?
+    ///音频波形更新间隔
+    private let updateFequency = 0.05
+    /// 声音数据数组
+    private var soundMeters: [Float]!
     
     
     //播放器
