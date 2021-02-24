@@ -48,7 +48,7 @@ class BottomView: UIView {
         }
 
         self.addSubview(autoplayButton)
-        autoplayButton.onTintColor = CommonOne().LDColor(rgbValue: 0x68C8D6, al: 1)
+        autoplayButton.onTintColor = LDColor(rgbValue: 0x68C8D6, al: 1)
         autoplayButton.snp.makeConstraints {(make) in
             make.centerY.equalToSuperview()
             make.right.equalTo(-10)

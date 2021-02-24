@@ -36,14 +36,21 @@ class ThrowTheBottleController: UIViewController {
     var timer1: Timer!
     var recordTime: Int = 0
     var recordTotalTime: Int!
+    private let recorderSetting =  [AVFormatIDKey: kAudioFormatLinearPCM,
+                                    AVNumberOfChannelsKey: 1,
+                                    AVSampleRateKey: 42000.0,
+                                    AVLinearPCMBitDepthKey: 16,
+                                    AVEncoderAudioQualityKey: kRenderQuality_High,
+                                    AVEncoderBitRateKey: 12800,
+                                    AVLinearPCMIsFloatKey: false,
+                                    AVLinearPCMIsNonInterleaved: false,
+                                    AVLinearPCMIsBigEndianKey: false] as [String : Any]
+    
     
     //播放器
     var player: AVPlayer!
     var playerItem: AVPlayerItem!
     var timeObserve: Any?
-    
-    //定时器
-    var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +79,13 @@ class ThrowTheBottleController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //设置导航栏
-//        self.navigationController?.isNavigationBarHidden = true
+        //如果在录音
+        //结束录音
+        endRecord()
+        //按钮可用
+        labelButtonEnabled()
         
+        //如果在播放音频
         if player != nil{
             player.pause()
         }
@@ -112,6 +123,8 @@ class ThrowTheBottleController: UIViewController {
             buttonStatus = 1
             //开始录音
             startRecord()
+            //按钮不可选
+            labelButtonDisabled()
             
         case 1:
             print("结束录音")
@@ -120,6 +133,9 @@ class ThrowTheBottleController: UIViewController {
             endRecord()
             //修改视图
             changeView()
+            //按钮可用
+            labelButtonEnabled()
+            
             
         case 2:
             print("播放录音")
@@ -151,13 +167,11 @@ class ThrowTheBottleController: UIViewController {
         }else if sender == recordview.commitB{
             print("扔瓶子")
             UIUtil.showLoading(withText: "正在扔向大海...")
-            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(dismissLoading), userInfo: nil, repeats: false)
-            //上传数据
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+                UIUtil.dismissLoading()
+            }
             
         }
-    }
-    @objc func dismissLoading(){
-        UIUtil.dismissLoading()
     }
     
     //监听变声按钮的选择
@@ -191,6 +205,8 @@ class ThrowTheBottleController: UIViewController {
 //3------------------------------------------------------------------------------------------------------
     //开始录音
     fileprivate func startRecord(){
+        UIUtil.showHint("录音不可低于3秒")
+        
         //实时耳返
         if recordview.earReturnB.isSelected{
             //初始化耳返
@@ -218,22 +234,32 @@ class ThrowTheBottleController: UIViewController {
         pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
         print("\(path)")
         
-        audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings: [AVFormatIDKey: kAudioFormatLinearPCM, AVNumberOfChannelsKey: 1, AVSampleRateKey: 42000.0, AVLinearPCMBitDepthKey: 16, AVEncoderAudioQualityKey: kRenderQuality_High, AVEncoderBitRateKey: 12800, AVLinearPCMIsFloatKey: false, AVLinearPCMIsNonInterleaved: false, AVLinearPCMIsBigEndianKey: false])
-        //生成计数器
-        timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
+        audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings:recorderSetting)
         //添加代理
         audioRecorder.delegate = self
-        audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
+        audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
+        
+        //生成计数器
+        timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
+    
     }
     
     //倒计时
     @objc fileprivate func timeDown(){
+        //更新音量大小
+        audioRecorder.updateMeters()
+        //打印音量大小
+        print("averagePower:\(audioRecorder.averagePower(forChannel: 0))")
+        print("peakPower:\(audioRecorder.peakPower(forChannel: 0))")
+        
         if(recordTime == recordTotalTime){
             buttonStatus = 2
             endRecord()
             changeView()
+            labelButtonEnabled()
+            
             return
         }
         
@@ -243,9 +269,10 @@ class ThrowTheBottleController: UIViewController {
             recordview.recordB.isEnabled = false
         }else{
             recordview.recordB.isEnabled = true
+            
         }
         //录音时间显示
-        recordview.timeL.text = CommonOne().addTimeL(currentT: recordTime, totalT: recordTotalTime)
+        recordview.timeL.text = addTimeL(currentT: recordTime, totalT: recordTotalTime)
         
     }
     
@@ -260,12 +287,14 @@ class ThrowTheBottleController: UIViewController {
         recordview.earReturnB.setTitleColor(.black, for: .normal)
         
         //清除录音机
-        audioRecorder.stop()
-        audioRecorder = nil
-        //清除计数器
-        self.timer1.invalidate()
+        if (audioRecorder != nil){
+            audioRecorder.stop()
+            audioRecorder = nil
+            //清除计数器
+            self.timer1.invalidate()
+        }
         //调整显示时间
-        recordview.timeL.text = CommonOne().addTimeL(currentT: 0, totalT: recordTime)
+        recordview.timeL.text = addTimeL(currentT: 0, totalT: recordTime)
         recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
 
     }
@@ -299,6 +328,15 @@ class ThrowTheBottleController: UIViewController {
     //录音结束数据调整
     
     
+    //瓶子按钮不可选
+    fileprivate func labelButtonDisabled(){
+        recordview.bottleIsable = false
+    }
+    //瓶子按钮可选
+    fileprivate func labelButtonEnabled(){
+        recordview.bottleIsable = true
+    }
+    
     //取消后View改变
     fileprivate func cancelView(){
         self.recordview.bottleLabelViewCollection.alpha = 1
@@ -320,7 +358,7 @@ class ThrowTheBottleController: UIViewController {
             self.recordview.commitB.alpha = 0
             
             //初始化时间显示
-            self.recordview.timeL.text = CommonOne().addTimeL(currentT: 0, totalT: self.recordview.bottleTime[self.recordview.bottleLabel])
+            self.recordview.timeL.text = addTimeL(currentT: 0, totalT: self.recordview.bottleTime[self.recordview.bottleLabel])
             
             //按钮初始化
             self.recordview.recordB.setImage(UIImage.init(named: "record0"), for: .normal)
@@ -343,6 +381,9 @@ class ThrowTheBottleController: UIViewController {
         removeObserve()
 
     }
+    
+    
+    
     
 //4-------------------------------------------------------------------------
     //播放录音
@@ -399,7 +440,7 @@ class ThrowTheBottleController: UIViewController {
             let total = CMTimeGetSeconds(self.playerItem.duration)
 //            self.recordTime = (Int)(CMTimeGetSeconds(self.playerItem.duration))
             //显示播放时间
-            self.recordview.timeL.text = CommonOne().changeTime(time: Int(current)) + "/" + CommonOne().changeTime(time: self.recordTime)
+            self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: self.recordTime)
             print("\(current)---\(total)")
         })
     
@@ -425,10 +466,10 @@ class ThrowTheBottleController: UIViewController {
     }
     //移除计时器
     fileprivate func removeTimer(){
-        timer1.invalidate()
-        timer1 = nil
-        timer.invalidate()
-        timer = nil
+        if (timer1 != nil){
+            timer1.invalidate()
+            timer1 = nil
+        }
     }
     
     //暂停录音

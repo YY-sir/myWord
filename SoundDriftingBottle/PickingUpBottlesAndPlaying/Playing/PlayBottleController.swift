@@ -88,7 +88,7 @@ class PlayBottleController: UIViewController {
         
         //底部导航视图
         self.view.addSubview(bottomView)
-        bottomView.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.5)
+        bottomView.backgroundColor = LDColor(rgbValue: 0x000000, al: 0.5)
         bottomView.snp.makeConstraints {(make) in
             make.width.left.equalToSuperview()
             make.bottom.equalTo(-CommonOne().bottomPadding)
@@ -193,7 +193,7 @@ class PlayBottleController: UIViewController {
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self.playerItem.duration)
             //时间
-            self.playbottleview.currentTimeL.text = CommonOne().changeTime(time: Int(current))
+            self.playbottleview.currentTimeL.text = changeTime(time: Int(current))
             //进度条
             self.playbottleview.slider.value = Float(current / total)
         })
@@ -231,7 +231,7 @@ class PlayBottleController: UIViewController {
      func showPlayView(){
         //播放时间初始化
         playbottleview.currentTimeL.text = "0:00"
-        playbottleview.totalTimeL.text = CommonOne().changeTime(time: Int(CMTimeGetSeconds(self.playerItem.duration)))
+        playbottleview.totalTimeL.text = changeTime(time: Int(CMTimeGetSeconds(self.playerItem.duration)))
         
         //显示动画
         var delayTime = 1

@@ -24,6 +24,7 @@ class RecordView: UIView {
     let bottleLabelText = ["普通瓶", "心情瓶", "音乐瓶", "故事瓶", "愿望瓶"]
     let bottleImage = ["bottle1_nomal", "bottle2_moon", "bottle3_music", "bottle4_story", "bottle5_wish"]
     let bottleTime = [10, 20, 30, 40, 50]
+    var bottleIsable = true
     
     let changeLabelText = ["原声", "大叔", "少女", "惊悚", "网红女", "魔兽", "搞怪", "萝莉", "空灵"]
     let changeImage = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
@@ -160,7 +161,7 @@ class RecordView: UIView {
         }
         
         recordView.addSubview(timeL)
-        timeL.text = "0:00/" + CommonOne().changeTime(time: bottleTime[0])
+        timeL.text = "0:00/" + SoundDriftingBottle.changeTime(time: bottleTime[0])
         timeL.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
         }
@@ -243,11 +244,15 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         changeCell(indexPath: indexPath.row, collection: collectionView)
         
         //标签的选择
-        if collectionView == bottleLabelViewCollection {
-            bottleLabel = indexPath.row
-            timeL.text = "0:00/" + CommonOne().changeTime(time: bottleTime[indexPath.row])
-            //2.重新载入collection
-            self.bottleLabelViewCollection.reloadData()
+        if collectionView == bottleLabelViewCollection{
+            if bottleIsable{
+                bottleLabel = indexPath.row
+                timeL.text = "0:00/" + SoundDriftingBottle.changeTime(time: bottleTime[indexPath.row])
+                //2.重新载入collection
+                self.bottleLabelViewCollection.reloadData()
+            }else{
+                UIUtil.showHint("录音中不可修改哦~")
+            }
         }else if collectionView == changeLabelViewCollection{
             //changeLabel改变就发通知停止播放
             changeLabel = NSNumber(value: indexPath.row)

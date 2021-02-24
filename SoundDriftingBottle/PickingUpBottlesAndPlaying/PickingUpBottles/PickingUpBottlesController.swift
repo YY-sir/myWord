@@ -66,7 +66,7 @@ class PickingUpBottlesController: UIViewController {
         pickupview.mainScrollView.delegate = self
         
         self.view.addSubview(bottomView)
-        bottomView.backgroundColor = CommonOne().LDColor(rgbValue: 0x000000, al: 0.5)
+        bottomView.backgroundColor = LDColor(rgbValue: 0x000000, al: 0.5)
         bottomView.snp.makeConstraints {(make) in
             make.width.left.equalToSuperview()
             make.bottom.equalTo(-CommonOne().bottomPadding)

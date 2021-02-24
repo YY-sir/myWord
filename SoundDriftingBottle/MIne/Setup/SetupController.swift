@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SetupController: UIViewController {
     override func viewDidLoad() {
@@ -13,7 +14,7 @@ class SetupController: UIViewController {
         self.view.backgroundColor = .white
         setupNav()
     }
-    
+
     fileprivate func setupNav(){
         self.gk_navBackgroundColor = .clear
         self.gk_statusBarStyle = .lightContent
@@ -23,3 +24,5 @@ class SetupController: UIViewController {
     }
 
 }
+
+

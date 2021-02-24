@@ -33,6 +33,8 @@ class MineController: GKDemoBaseViewController{
         let pageScrollView = GKPageScrollView(delegate: self)
         pageScrollView.mainTableView.backgroundColor = .clear
         pageScrollView.ceilPointHeight = 0
+        
+//        pageScrollView.isLazyLoadList = true
         return pageScrollView
     }()
     
@@ -45,7 +47,7 @@ class MineController: GKDemoBaseViewController{
     lazy var segmentedView: JXSegmentedView = {
         let segmentedView = JXSegmentedView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 40))
         segmentedView.delegate = self
-        
+
         titleDataSource.titles = self.titles
         titleDataSource.titleNormalColor = .black
         titleDataSource.titleSelectedColor = .gray
@@ -53,24 +55,25 @@ class MineController: GKDemoBaseViewController{
         titleDataSource.titleSelectedFont = UIFont.boldSystemFont(ofSize: 16.0)
         titleDataSource.reloadData(selectedIndex: 0)
         segmentedView.dataSource = titleDataSource
-        
+
         let lineView = JXSegmentedIndicatorLineView()
-        lineView.indicatorColor = CommonOne().LDColor(rgbValue: 0x20B2BB, al: 1.0)
+        lineView.indicatorColor = LDColor(rgbValue: 0x20B2BB, al: 1.0)
         lineView.indicatorWidth = 30.0
         lineView.lineStyle = .lengthenOffset
         segmentedView.indicators = [lineView]
-        
+
         segmentedView.contentScrollView = self.scrollView
-        
+
         // 添加分割线
         let btnLineView = UIView()
         btnLineView.frame = CGRect(x: 0, y: 40 - 0.5, width: kScreenW, height: 0.5)
         btnLineView.backgroundColor = .gray
         segmentedView.addSubview(btnLineView)
-        
+
         segmentedView.reloadData()
-        
+
         return segmentedView
+
     }()
     
     lazy var scrollView: UIScrollView = {
@@ -152,10 +155,16 @@ class MineController: GKDemoBaseViewController{
         
         //
         self.headerView.setupBtn.addTarget(self, action: #selector(setupAction), for: .touchUpInside)
+        self.headerView.personalBtn.addTarget(self, action: #selector(extendAction), for: .touchUpInside)
         
     }
     
     //------------------------------------------------------------------------------------------
+    //扩展页面
+    @objc func extendAction(){
+        let setupvc = ExtendViewController()
+        self.navigationController?.pushViewController(setupvc, animated: true)
+    }
     //设置页面
     @objc func setupAction(){
         let setupvc = SetupController()
@@ -168,6 +177,18 @@ class MineController: GKDemoBaseViewController{
 //------------------------------------------------------------------------------------------
 
 extension MineController: GKPageScrollViewDelegate{
+//    func shouldLazyLoadList(in pageScrollView: GKPageScrollView) -> Bool {
+//        return true
+//    }
+    
+    func segmentedView(in pageScrollView: GKPageScrollView) -> UIView {
+        return self.segmentedView
+    }
+    
+    func numberOfLists(in pageScrollView: GKPageScrollView) -> Int {
+        return self.titles.count
+    }
+    
     func listView(in pageScrollView: GKPageScrollView) -> [GKPageListViewDelegate] {
         return self.childVCs
     }

@@ -50,7 +50,7 @@ class MineHeaderView: UIView {
     
     lazy var setupBtn: UIButton! = {
         let btn = UIButton()
-        btn.backgroundColor = CommonOne().LDColor(rgbValue: 0x20B2BB, al: 1.0)
+        btn.backgroundColor = LDColor(rgbValue: 0x20B2BB, al: 1.0)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         btn.setTitle("设置", for: .normal)
         btn.setTitleColor(UIColor.white, for: .normal)

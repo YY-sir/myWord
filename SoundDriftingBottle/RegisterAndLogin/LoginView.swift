@@ -52,7 +52,7 @@ class LoginView: UIView {
         self.addSubview(boxView)
         boxViewH = 240
         boxViewBottom = (self.frame.height - boxViewH) / 2
-        boxView.backgroundColor = CommonOne().LDColor(rgbValue: 0xdddddd, al: 1)
+        boxView.backgroundColor = LDColor(rgbValue: 0xdddddd, al: 1)
         boxView.layer.cornerRadius = 5
         boxView.clipsToBounds = true
         boxView.snp.makeConstraints {(make) in
@@ -62,7 +62,7 @@ class LoginView: UIView {
         }
         
         boxView.addSubview(topView)
-        topView.backgroundColor = CommonOne().LDColor(rgbValue: 0x6495ED, al: 1)
+        topView.backgroundColor = LDColor(rgbValue: 0x6495ED, al: 1)
         topView.snp.makeConstraints {(make) in
             make.right.top.equalToSuperview()
             make.width.equalTo(135)
@@ -72,7 +72,7 @@ class LoginView: UIView {
         boxView.addSubview(section1)
         section1.setTitle("登陆", for: .normal)
         self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
-        section1.setTitleColor(CommonOne().LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
+        section1.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
         section1.snp.makeConstraints {(make) in
             make.width.equalTo(135)
             make.height.equalTo(50)
@@ -91,7 +91,7 @@ class LoginView: UIView {
         }
         
         boxView.addSubview(bottomView)
-        bottomView.backgroundColor = CommonOne().LDColor(rgbValue: 0xcccccc, al: 1)
+        bottomView.backgroundColor = LDColor(rgbValue: 0xcccccc, al: 1)
         bottomView.alpha = 1
         bottomView.snp.makeConstraints {(make) in
             make.right.left.bottom.equalToSuperview()
@@ -101,7 +101,7 @@ class LoginView: UIView {
         boxView.addSubview(loginButton)
         loginButton.setTitle("登陆", for: .normal)
         loginButton.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
-        loginButton.backgroundColor = CommonOne().LDColor(rgbValue: 0x6495ED, al: 1)
+        loginButton.backgroundColor = LDColor(rgbValue: 0x6495ED, al: 1)
         boxView.bringSubviewToFront(loginButton)
         loginButton.snp.makeConstraints {(make) in
             make.bottom.right.left.equalToSuperview()
@@ -218,7 +218,7 @@ class LoginView: UIView {
         verificationView.addSubview(verificationB)
         verificationB.setTitle("获取", for: .normal)
 //        verificationB.setBackgroundImage(UIImage(named: "buttonBackGround"), for: .normal)
-        verificationB.backgroundColor = CommonOne().LDColor(rgbValue: 0x6495ED, al: 1)
+        verificationB.backgroundColor = LDColor(rgbValue: 0x6495ED, al: 1)
         verificationB.layer.cornerRadius = 3
         verificationB.clipsToBounds = true
         verificationB.snp.makeConstraints {(make) in
@@ -265,7 +265,7 @@ class LoginView: UIView {
                 }
                 self.section2.setTitleColor(UIColor.white, for: .normal)
                 self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
-                self.section1.setTitleColor(CommonOne().LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
+                self.section1.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
                 self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
                 self.loginButton.setTitle("登陆", for: .normal)
                 self.topView.snp.remakeConstraints {(make) in
@@ -310,7 +310,7 @@ class LoginView: UIView {
                     make.bottom.equalTo(-self.boxViewBottom)
                 }
                 
-                self.section2.setTitleColor(CommonOne().LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
+                self.section2.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
                 self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
                 self.section1.setTitleColor(UIColor.white, for: .normal)
                 self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))

@@ -598,8 +598,8 @@ extension GKPageScrollView: GKPageListContainerViewDelegate {
             list?.listViewDidScroll(callBack: {[weak self] (scrollView) in
                 self?.listScrollViewDidScroll(scrollView: scrollView)
             })
-            validListDict[row] = list!
+            validListDict[row] = list
         }
-        return list!.listView!()
+        return list?.listView!() ?? UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     }
 }
