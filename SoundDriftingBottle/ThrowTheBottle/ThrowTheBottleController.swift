@@ -42,6 +42,9 @@ class ThrowTheBottleController: UIViewController {
     var playerItem: AVPlayerItem!
     var timeObserve: Any?
     
+    //定时器
+    var timer: Timer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +79,8 @@ class ThrowTheBottleController: UIViewController {
             player.pause()
         }
         removeObserve()
+        //移除计时器，以免造成内存泄漏
+        removeTimer()
     }
     
     //页面结束清除通知（避免内存泄漏）
@@ -145,7 +150,14 @@ class ThrowTheBottleController: UIViewController {
         //确认操作
         }else if sender == recordview.commitB{
             print("扔瓶子")
+            UIUtil.showLoading(withText: "正在扔向大海...")
+            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(dismissLoading), userInfo: nil, repeats: false)
+            //上传数据
+            
         }
+    }
+    @objc func dismissLoading(){
+        UIUtil.dismissLoading()
     }
     
     //监听变声按钮的选择
@@ -411,8 +423,13 @@ class ThrowTheBottleController: UIViewController {
         self.player.removeTimeObserver(timeObserve!)
         timeObserve = nil
     }
-
-    
+    //移除计时器
+    fileprivate func removeTimer(){
+        timer1.invalidate()
+        timer1 = nil
+        timer.invalidate()
+        timer = nil
+    }
     
     //暂停录音
 
