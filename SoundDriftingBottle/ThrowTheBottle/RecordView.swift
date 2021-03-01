@@ -29,7 +29,7 @@ class RecordView: UIView {
     let bottleTime = [10, 20, 30, 40, 50]
     var bottleIsable = true
     
-    let changeLabelText = ["原声", "大叔", "少女", "惊悚", "网红女", "魔兽", "搞怪", "萝莉", "空灵"]
+    let changeLabelText = ["原声", "萝莉", "少女", "大叔", "魔兽", "搞怪", "网红女", "惊悚", "空灵"]
     let changeImage = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
     
     let recordView = UIView()
