@@ -188,6 +188,11 @@
 		04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE91125CBDA7A009D7954 /* UISlider1.m */; };
 		04CAEDDB25CD3E58009D7954 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAEDD925CD3E58009D7954 /* libmp3lame.a */; };
 		04CAEDE425CD3E6A009D7954 /* libTTaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAEDE325CD3E6A009D7954 /* libTTaudio.a */; };
+		04CE341425EC92AC00E7E599 /* MCVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341125EC92AC00E7E599 /* MCVolumeView.swift */; };
+		04CE341725EC92C500E7E599 /* HUDMarco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341625EC92C500E7E599 /* HUDMarco.swift */; };
+		04CE341925ECC1E900E7E599 /* SoundDynamicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341825ECC1E900E7E599 /* SoundDynamicData.swift */; };
+		04CE341B25ECD22600E7E599 /* MCRecordHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341A25ECD22600E7E599 /* MCRecordHUD.swift */; };
+		04CE341D25ECD23000E7E599 /* MCProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341C25ECD23000E7E599 /* MCProgressView.swift */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
 		04E13A6325C297BD00BC823F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6225C297BD00BC823F /* CoreMotion.framework */; };
 		04E13A6625C2A61E00BC823F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A6525C2A61E00BC823F /* AVFoundation.framework */; };
@@ -414,6 +419,11 @@
 		04CAEDE025CD3E6A009D7954 /* noise_suppress_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noise_suppress_api.h; sourceTree = "<group>"; };
 		04CAEDE125CD3E6A009D7954 /* audio_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_common.h; sourceTree = "<group>"; };
 		04CAEDE325CD3E6A009D7954 /* libTTaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTTaudio.a; sourceTree = "<group>"; };
+		04CE341125EC92AC00E7E599 /* MCVolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCVolumeView.swift; sourceTree = "<group>"; };
+		04CE341625EC92C500E7E599 /* HUDMarco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDMarco.swift; sourceTree = "<group>"; };
+		04CE341825ECC1E900E7E599 /* SoundDynamicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDynamicData.swift; sourceTree = "<group>"; };
+		04CE341A25ECD22600E7E599 /* MCRecordHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCRecordHUD.swift; path = ../../../../../../ios/demo/MCChatHUD/MCChatHUD/MCChatHUD/View/MCRecordHUD.swift; sourceTree = "<group>"; };
+		04CE341C25ECD23000E7E599 /* MCProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCProgressView.swift; path = ../../../../../../ios/demo/MCChatHUD/MCChatHUD/MCChatHUD/View/MCProgressView.swift; sourceTree = "<group>"; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		04E13A6225C297BD00BC823F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		04E13A6525C2A61E00BC823F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -633,8 +643,11 @@
 		044B04E725BFF9BA0013F493 /* ThrowTheBottle */ = {
 			isa = PBXGroup;
 			children = (
+				04CE341525EC92C500E7E599 /* Marco */,
+				04CE340E25EC92AC00E7E599 /* View */,
 				0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */,
 				0485635C25C39EF90003D458 /* RecordView.swift */,
+				04CE341825ECC1E900E7E599 /* SoundDynamicData.swift */,
 			);
 			path = ThrowTheBottle;
 			sourceTree = "<group>";
@@ -1060,6 +1073,24 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		04CE340E25EC92AC00E7E599 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04CE341A25ECD22600E7E599 /* MCRecordHUD.swift */,
+				04CE341C25ECD23000E7E599 /* MCProgressView.swift */,
+				04CE341125EC92AC00E7E599 /* MCVolumeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04CE341525EC92C500E7E599 /* Marco */ = {
+			isa = PBXGroup;
+			children = (
+				04CE341625EC92C500E7E599 /* HUDMarco.swift */,
+			);
+			path = Marco;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1155,6 +1186,7 @@
 				045AB7C725E61D30002AB90A /* UIScrollView+MJRefresh.m in Sources */,
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,
 				0485635D25C39EF90003D458 /* RecordView.swift in Sources */,
+				04CE341B25ECD22600E7E599 /* MCRecordHUD.swift in Sources */,
 				043EADE425DFC69900D97784 /* UINavigationItem+GKExtension.swift in Sources */,
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
 				044B04DC25BFF7F90013F493 /* Debugging.swift in Sources */,
@@ -1169,6 +1201,7 @@
 				043EADCB25DF899700D97784 /* AudioUnitRecord.m in Sources */,
 				044B04D225BFF7F90013F493 /* Typealiases.swift in Sources */,
 				044B050B25C142510013F493 /* PickingUpBottlesView.swift in Sources */,
+				04CE341725EC92C500E7E599 /* HUDMarco.swift in Sources */,
 				045AB7CF25E61D30002AB90A /* MJRefreshBackStateFooter.m in Sources */,
 				045AB77925E60804002AB90A /* JXSegmentedTitleCell.swift in Sources */,
 				045AB77F25E60804002AB90A /* JXSegmentedNumberDataSource.swift in Sources */,
@@ -1209,7 +1242,9 @@
 				045AB7D725E61D31002AB90A /* MJRefreshStateHeader.m in Sources */,
 				045AB77825E60804002AB90A /* JXSegmentedTitleImageDataSource.swift in Sources */,
 				04516A6625C7DB7C0056072F /* Recorder.m in Sources */,
+				04CE341925ECC1E900E7E599 /* SoundDynamicData.swift in Sources */,
 				045AB76625E60804002AB90A /* JXSegmentedIndicatorDotLineView.swift in Sources */,
+				04CE341425EC92AC00E7E599 /* MCVolumeView.swift in Sources */,
 				044B04C025BFF7F90013F493 /* LayoutConstraintItem.swift in Sources */,
 				045AB76425E60804002AB90A /* JXSegmentedCollectionView.swift in Sources */,
 				045AB77325E60804002AB90A /* JXSegmentedDotCell.swift in Sources */,
@@ -1241,6 +1276,7 @@
 				045AB76F25E60804002AB90A /* JXSegmentedIndicatorLineView.swift in Sources */,
 				045AB7D625E61D31002AB90A /* MJRefreshNormalHeader.m in Sources */,
 				045AB77525E60804002AB90A /* JXSegmentedDotItemModel.swift in Sources */,
+				04CE341D25ECD23000E7E599 /* MCProgressView.swift in Sources */,
 				044B048425BFF7240013F493 /* AppDelegate.swift in Sources */,
 				044B048625BFF7240013F493 /* SceneDelegate.swift in Sources */,
 				043EADE625DFC69900D97784 /* GKNavigationInteractiveTransition.swift in Sources */,

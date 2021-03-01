@@ -50,9 +50,9 @@ public func changeTime(time: Int) -> (String){
     return changeTime
 }
 //拼接时间字符串
-public func addTimeL(currentT: Int, totalT: Int) -> String{
+public func addTimeL(currentT: Float, totalT: Float) -> String{
     var timeL: String!
-    timeL = changeTime(time: currentT) + "/" + changeTime(time: totalT)
+    timeL = changeTime(time: Int(currentT)) + "/" + changeTime(time: Int(totalT))
     return timeL
 }
 

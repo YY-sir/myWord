@@ -15,7 +15,6 @@ class ThrowTheBottleController: UIViewController {
     //耳返
     let AUROC = AudioUnitRecord()
     
-    
     var recordview: RecordView!
     //录音播放按钮状态：开始录音-0；结束录音-1；播放录音-2；暂停录音-3
     var buttonStatus = 0
@@ -35,8 +34,8 @@ class ThrowTheBottleController: UIViewController {
     var recordName: String!
     var url: NSURL!
     var timer1: Timer!
-    var recordTime: Int = 0
-    var recordTotalTime: Int!
+    var recordTime: Float = 0
+    var recordTotalTime: Float!
     //录音机配置
     private let recorderSetting =  [AVFormatIDKey: kAudioFormatLinearPCM,
                                     AVNumberOfChannelsKey: 1,
@@ -50,9 +49,14 @@ class ThrowTheBottleController: UIViewController {
     ///波形更新计时器
     private var timer2: Timer?
     ///音频波形更新间隔
-    private let updateFequency = 0.05
+    private let updateFequency = 0.07
     /// 声音数据数组
     private var soundMeters: [Float]!
+    /// 声音数据数组容量
+    private let soundMeterCount = columnNumber
+    /// 录音框
+    private var volumeview: MCVolumeView!
+
     
     
     //播放器
@@ -68,8 +72,12 @@ class ThrowTheBottleController: UIViewController {
         
         //设置背景颜色
         setupViewBg()
-        recordview = RecordView(frame: self.view.bounds)
-        self.view.addSubview(recordview)
+        
+        //设置音效动效
+        setupVolumeview()
+
+        //设置选项和播放视图
+        setupRecordview()
         
         //添加按钮事件
         recordview.recordB.addTarget(self, action: #selector(recordAction(sender:)), for: .touchUpInside)
@@ -78,6 +86,9 @@ class ThrowTheBottleController: UIViewController {
         recordview.earReturnB.addTarget(self, action: #selector(earReturnBAction(sender:)), for: .touchUpInside)
         //监听变声按钮的选择
         NotificationCenter.default.addObserver(self, selector: #selector(changeLabelNotificationAction), name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
+        
+        //初始化音量数组
+        initSoundData()
         
     }
     
@@ -119,6 +130,21 @@ class ThrowTheBottleController: UIViewController {
         let ui = UIView(frame: self.view.bounds)
         ui.layer.addSublayer(CommonOne().gradientLayer)
         self.view.addSubview(ui)
+    }
+    
+    fileprivate func setupVolumeview(){
+        volumeview = MCVolumeView(frame: CGRect(x: self.view.center.x - 50, y: 200, width: 100, height: 80), type: .line)
+        self.view.addSubview(volumeview)
+        volumeview.snp.makeConstraints{(make) in
+            make.width.centerX.equalToSuperview()
+            make.height.equalTo(200)
+            make.top.equalTo(150)
+        }
+    }
+    
+    fileprivate func setupRecordview(){
+        recordview = RecordView(frame: self.view.bounds)
+        self.view.addSubview(recordview)
     }
     
     //录音按钮操作
@@ -165,6 +191,7 @@ class ThrowTheBottleController: UIViewController {
     //取消或扔瓶子操作
     @objc fileprivate func cancelOrCommitAction(sender: UIButton){
         //取消操作
+        
         if sender == recordview.cancelB{
             print("取消")
             playEnd()
@@ -210,6 +237,15 @@ class ThrowTheBottleController: UIViewController {
         
     }
     
+    
+    fileprivate func initSoundData(){
+        //初始化
+        soundMeters = [Float]()
+        for index in 0..<soundMeterCount{
+            soundMeters.append(Float(Double(arc4random()%4) - 29.0))
+        }
+        NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
+    }
 //3------------------------------------------------------------------------------------------------------
     //开始录音
     fileprivate func startRecord(){
@@ -231,7 +267,7 @@ class ThrowTheBottleController: UIViewController {
         
         //数据调整
         
-        recordTotalTime = recordview.bottleTime[recordview.bottleLabel]
+        recordTotalTime = Float(recordview.bottleTime[recordview.bottleLabel])
         
         time1970 = Date().timeStamp
         print("\(time1970)")
@@ -250,8 +286,7 @@ class ThrowTheBottleController: UIViewController {
         audioRecorder.record()
         
         //生成计数器
-        timer1 = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
-    
+        timer1 = Timer.scheduledTimer(timeInterval: updateFequency, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
     }
     
     //倒计时
@@ -261,17 +296,18 @@ class ThrowTheBottleController: UIViewController {
         //打印音量大小
         print("averagePower:\(audioRecorder.averagePower(forChannel: 0))")
         print("peakPower:\(audioRecorder.peakPower(forChannel: 0))")
+        self.addSoundMeter(item: audioRecorder.averagePower(forChannel: 0))
         
-        if(recordTime == recordTotalTime){
+        
+        if(recordTime >= recordTotalTime){
             buttonStatus = 2
             endRecord()
             changeView()
             labelButtonEnabled()
-            
             return
         }
         
-        recordTime += 1
+        recordTime += Float(updateFequency)
         //按钮3秒限制
         if(recordTime < 3){
             recordview.recordB.isEnabled = false
@@ -283,9 +319,25 @@ class ThrowTheBottleController: UIViewController {
         recordview.timeL.text = addTimeL(currentT: recordTime, totalT: recordTotalTime)
         
     }
+    //音量数组更新
+    private func addSoundMeter(item: Float) {
+        if soundMeters.count < soundMeterCount {
+            soundMeters.append(item)
+        } else {
+            for (index, _) in soundMeters.enumerated() {
+                if index < soundMeterCount - 1 {
+                    soundMeters[index] = soundMeters[index + 1]
+                }
+            }
+            // 插入新数据
+            soundMeters[soundMeterCount - 1] = item
+            NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
+        }
+    }
     
     //结束录音
     fileprivate func endRecord(){
+        
 //        录音结束关闭耳返
         if recordview.earReturnB.isSelected{
             AUROC.earReturnStop()
@@ -304,6 +356,9 @@ class ThrowTheBottleController: UIViewController {
         //调整显示时间
         recordview.timeL.text = addTimeL(currentT: 0, totalT: recordTime)
         recordview.recordB.setImage(UIImage.init(named: "record1"), for: .normal)
+        
+        //初始化音量数组
+        initSoundData()
 
     }
     
@@ -366,7 +421,7 @@ class ThrowTheBottleController: UIViewController {
             self.recordview.commitB.alpha = 0
             
             //初始化时间显示
-            self.recordview.timeL.text = addTimeL(currentT: 0, totalT: self.recordview.bottleTime[self.recordview.bottleLabel])
+            self.recordview.timeL.text = addTimeL(currentT: 0, totalT: Float(self.recordview.bottleTime[self.recordview.bottleLabel]))
             
             //按钮初始化
             self.recordview.recordB.setImage(UIImage.init(named: "record0"), for: .normal)
@@ -384,14 +439,11 @@ class ThrowTheBottleController: UIViewController {
         buttonStatus = 0
         //初始化录音时间
         recordTime = 0
-        recordTotalTime = recordview.bottleTime[recordview.bottleLabel]
+        recordTotalTime = Float(recordview.bottleTime[recordview.bottleLabel])
         //移除播放器监听
         removeObserve()
 
     }
-    
-    
-    
     
 //4-------------------------------------------------------------------------
     //播放录音
@@ -448,7 +500,7 @@ class ThrowTheBottleController: UIViewController {
             let total = CMTimeGetSeconds(self.playerItem.duration)
 //            self.recordTime = (Int)(CMTimeGetSeconds(self.playerItem.duration))
             //显示播放时间
-            self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: self.recordTime)
+            self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: Int(self.recordTime))
             print("\(current)---\(total)")
         })
     

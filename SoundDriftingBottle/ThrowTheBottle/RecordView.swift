@@ -11,6 +11,9 @@ class RecordView: UIView {
     let app = UIApplication.shared.delegate as! AppDelegate
     let RecorderOC = Recorder()
     
+    //设置音效动效视图
+    let volumeview = MCVolumeView()
+    
     //collection的cell的显示数据
     var bottleCellList: [CommonTwo] = []
     var changeCellList: [CommonTwo] = []
@@ -82,7 +85,8 @@ class RecordView: UIView {
         }
     }
     
-    fileprivate func setupView(){
+    fileprivate func setupView(){        
+        
         setupBottleLabelView()
         self.addSubview(bottleLabelViewCollection)
         bottleLabelViewCollection.backgroundColor = .white
