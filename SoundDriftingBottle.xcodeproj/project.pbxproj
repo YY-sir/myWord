@@ -87,7 +87,7 @@
 		044B05BB25C17A870013F493 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 044B05BA25C17A870013F493 /* loading.gif */; };
 		044B05BE25C17B990013F493 /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B05BD25C17B990013F493 /* UIImage+GIF.swift */; };
 		04516A6625C7DB7C0056072F /* Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04516A6525C7DB7C0056072F /* Recorder.m */; };
-		0453FB8525E0F1BA0053ADB6 /* MineCommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB8425E0F1BA0053ADB6 /* MineCommonData.swift */; };
+		0453FB8525E0F1BA0053ADB6 /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB8425E0F1BA0053ADB6 /* CommonData.swift */; };
 		0453FB8825E0F2520053ADB6 /* MineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB8725E0F2520053ADB6 /* MineController.swift */; };
 		0453FB8B25E0F2C80053ADB6 /* GKDemoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB8A25E0F2C80053ADB6 /* GKDemoBaseViewController.swift */; };
 		0453FB9125E0F5960053ADB6 /* GKPageDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0453FB9025E0F5960053ADB6 /* GKPageDefine.swift */; };
@@ -190,7 +190,6 @@
 		04CAEDE425CD3E6A009D7954 /* libTTaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CAEDE325CD3E6A009D7954 /* libTTaudio.a */; };
 		04CE341425EC92AC00E7E599 /* MCVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341125EC92AC00E7E599 /* MCVolumeView.swift */; };
 		04CE341725EC92C500E7E599 /* HUDMarco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341625EC92C500E7E599 /* HUDMarco.swift */; };
-		04CE341925ECC1E900E7E599 /* SoundDynamicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341825ECC1E900E7E599 /* SoundDynamicData.swift */; };
 		04CE341B25ECD22600E7E599 /* MCRecordHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341A25ECD22600E7E599 /* MCRecordHUD.swift */; };
 		04CE341D25ECD23000E7E599 /* MCProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE341C25ECD23000E7E599 /* MCProgressView.swift */; };
 		04E13A6025C28FDA00BC823F /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E13A5F25C28FD200BC823F /* libc++abi.tbd */; };
@@ -287,7 +286,7 @@
 		04516A6325C7DB7C0056072F /* SoundDriftingBottle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundDriftingBottle-Bridging-Header.h"; sourceTree = "<group>"; };
 		04516A6425C7DB7C0056072F /* Recorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Recorder.h; sourceTree = "<group>"; };
 		04516A6525C7DB7C0056072F /* Recorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Recorder.m; sourceTree = "<group>"; };
-		0453FB8425E0F1BA0053ADB6 /* MineCommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineCommonData.swift; sourceTree = "<group>"; };
+		0453FB8425E0F1BA0053ADB6 /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
 		0453FB8725E0F2520053ADB6 /* MineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineController.swift; sourceTree = "<group>"; };
 		0453FB8A25E0F2C80053ADB6 /* GKDemoBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKDemoBaseViewController.swift; sourceTree = "<group>"; };
 		0453FB9025E0F5960053ADB6 /* GKPageDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKPageDefine.swift; sourceTree = "<group>"; };
@@ -421,7 +420,6 @@
 		04CAEDE325CD3E6A009D7954 /* libTTaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTTaudio.a; sourceTree = "<group>"; };
 		04CE341125EC92AC00E7E599 /* MCVolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCVolumeView.swift; sourceTree = "<group>"; };
 		04CE341625EC92C500E7E599 /* HUDMarco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDMarco.swift; sourceTree = "<group>"; };
-		04CE341825ECC1E900E7E599 /* SoundDynamicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDynamicData.swift; sourceTree = "<group>"; };
 		04CE341A25ECD22600E7E599 /* MCRecordHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCRecordHUD.swift; path = ../../../../../../ios/demo/MCChatHUD/MCChatHUD/MCChatHUD/View/MCRecordHUD.swift; sourceTree = "<group>"; };
 		04CE341C25ECD23000E7E599 /* MCProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCProgressView.swift; path = ../../../../../../ios/demo/MCChatHUD/MCChatHUD/MCChatHUD/View/MCProgressView.swift; sourceTree = "<group>"; };
 		04E13A5F25C28FD200BC823F /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
@@ -647,7 +645,6 @@
 				04CE340E25EC92AC00E7E599 /* View */,
 				0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */,
 				0485635C25C39EF90003D458 /* RecordView.swift */,
-				04CE341825ECC1E900E7E599 /* SoundDynamicData.swift */,
 			);
 			path = ThrowTheBottle;
 			sourceTree = "<group>";
@@ -662,7 +659,6 @@
 				044B050125C13ADA0013F493 /* PersonalInformationView.swift */,
 				0453FB9D25E0F7770053ADB6 /* MineHeaderView.swift */,
 				0485635925C39CF80003D458 /* TopSection.swift */,
-				0453FB8425E0F1BA0053ADB6 /* MineCommonData.swift */,
 				0453FC0825E0FCA10053ADB6 /* MineListViewController.swift */,
 				0453FB8725E0F2520053ADB6 /* MineController.swift */,
 			);
@@ -680,6 +676,7 @@
 				04516A6525C7DB7C0056072F /* Recorder.m */,
 				04516A6325C7DB7C0056072F /* SoundDriftingBottle-Bridging-Header.h */,
 				04CAE86D25CA81C5009D7954 /* CommonTwo.swift */,
+				0453FB8425E0F1BA0053ADB6 /* CommonData.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1242,7 +1239,6 @@
 				045AB7D725E61D31002AB90A /* MJRefreshStateHeader.m in Sources */,
 				045AB77825E60804002AB90A /* JXSegmentedTitleImageDataSource.swift in Sources */,
 				04516A6625C7DB7C0056072F /* Recorder.m in Sources */,
-				04CE341925ECC1E900E7E599 /* SoundDynamicData.swift in Sources */,
 				045AB76625E60804002AB90A /* JXSegmentedIndicatorDotLineView.swift in Sources */,
 				04CE341425EC92AC00E7E599 /* MCVolumeView.swift in Sources */,
 				044B04C025BFF7F90013F493 /* LayoutConstraintItem.swift in Sources */,
@@ -1272,7 +1268,7 @@
 				045AB76C25E60804002AB90A /* JXSegmentedIndicatorParams.swift in Sources */,
 				045AB76D25E60804002AB90A /* JXSegmentedIndicatorImageView.swift in Sources */,
 				044B04C625BFF7F90013F493 /* ConstraintInsets.swift in Sources */,
-				0453FB8525E0F1BA0053ADB6 /* MineCommonData.swift in Sources */,
+				0453FB8525E0F1BA0053ADB6 /* CommonData.swift in Sources */,
 				045AB76F25E60804002AB90A /* JXSegmentedIndicatorLineView.swift in Sources */,
 				045AB7D625E61D31002AB90A /* MJRefreshNormalHeader.m in Sources */,
 				045AB77525E60804002AB90A /* JXSegmentedDotItemModel.swift in Sources */,
