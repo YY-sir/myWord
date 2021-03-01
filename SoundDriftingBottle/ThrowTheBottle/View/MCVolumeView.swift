@@ -7,16 +7,21 @@
 //
 
 import UIKit
+/// HUD类型
+///
+/// - bar: 条状
+/// - stroke: 线状
+enum HUDType: Int {
+    case bar = 0
+    case line
+}
 
 class MCVolumeView: UIView {
     //MARK: Private Properties
     /// 声音表数组
     private var soundMeters: [Float]!
     
-//    enum HUDType: Int {
-//        case bar = 0
-//        case line
-//    }
+
     
     private var type: HUDType = .bar
     

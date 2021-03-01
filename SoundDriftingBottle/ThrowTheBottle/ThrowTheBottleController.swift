@@ -59,6 +59,10 @@ class ThrowTheBottleController: UIViewController {
     ///波形图类型
     private var volumeviewType: HUDType! = .bar
     
+    ///整个录音过程音量数组
+    private var allSoundMeters: [Float]!
+    ///发送信号次数
+    private var updateMetersNumber: Int!
     
     //播放器
     var player: AVPlayer!
@@ -92,6 +96,7 @@ class ThrowTheBottleController: UIViewController {
         //初始化音量数组
         initSoundData()
         
+        allSoundMeters = [Float]()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -307,6 +312,7 @@ class ThrowTheBottleController: UIViewController {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
         
+        initSoundData()
         //生成计数器
         timer1 = Timer.scheduledTimer(timeInterval: updateFequency, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
     }
@@ -340,21 +346,6 @@ class ThrowTheBottleController: UIViewController {
         //录音时间显示
         recordview.timeL.text = addTimeL(currentT: recordTime, totalT: recordTotalTime)
         
-    }
-    //音量数组更新
-    private func addSoundMeter(item: Float) {
-        if soundMeters.count < soundMeterCount {
-            soundMeters.append(item)
-        } else {
-            for (index, _) in soundMeters.enumerated() {
-                if index < soundMeterCount - 1 {
-                    soundMeters[index] = soundMeters[index + 1]
-                }
-            }
-            // 插入新数据
-            soundMeters[soundMeterCount - 1] = item
-            NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
-        }
     }
     
     //结束录音
@@ -472,8 +463,32 @@ class ThrowTheBottleController: UIViewController {
     }
     
 //4-------------------------------------------------------------------------
+    //音量数组更新
+    private func addSoundMeter(item: Float) {
+        if soundMeters.count < soundMeterCount {
+            soundMeters.append(item)
+        } else {
+            for (index, _) in soundMeters.enumerated() {
+                if index < soundMeterCount - 1 {
+                    soundMeters[index] = soundMeters[index + 1]
+                }
+            }
+            // 插入新数据
+            soundMeters[soundMeterCount - 1] = item
+            NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
+            allSoundMeters.append(item)
+        }
+    }
+    
     //播放录音
     fileprivate func playBottle(changeLabel: Int){
+        //
+        for (index, item) in allSoundMeters.enumerated(){
+            print("allSoundMeters:\(item)")
+        }
+        updateMetersNumber = 0
+        
+        
         recordview.recordB.setImage(UIImage.init(named: "record2"), for: .normal)
         if lastTimeChangeLabel == changeLabel && !isCancel{
             player.play()
@@ -502,6 +517,7 @@ class ThrowTheBottleController: UIViewController {
         //监听播放结束状态
         NotificationCenter.default.addObserver(self, selector: #selector(playEnd), name: .AVPlayerItemDidPlayToEndTime, object: playerItem)
     }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == "status"{
@@ -510,6 +526,7 @@ class ThrowTheBottleController: UIViewController {
             case AVPlayerItem.Status.readyToPlay:
                 print("准备好了")
                 self.player.play()
+                
             case AVPlayerItem.Status.failed:
                 print("失败")
             case AVPlayerItem.Status.unknown:
@@ -521,13 +538,32 @@ class ThrowTheBottleController: UIViewController {
     }
     //播放时间处理
     fileprivate func playTime(){
-        timeObserve = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 0.5, preferredTimescale: 500), queue: DispatchQueue.main, using: { (time) in
+        timeObserve = player.addPeriodicTimeObserver(forInterval: CMTime(seconds: updateFequency, preferredTimescale: 500), queue: DispatchQueue.main, using: { (time) in
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self.playerItem.duration)
-//            self.recordTime = (Int)(CMTimeGetSeconds(self.playerItem.duration))
             //显示播放时间
             self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: Int(self.recordTime))
-            print("\(current)---\(total)")
+            print("\(current)---\(total)---\(self.updateMetersNumber)---\(self.allSoundMeters.count)")
+            
+            //
+            for (index, item) in self.soundMeters.enumerated(){
+                if(self.allSoundMeters.count >= self.soundMeterCount + self.updateMetersNumber){
+                    self.soundMeters[index] = self.allSoundMeters[index + self.updateMetersNumber]
+                    print("YES")
+                }else{
+                    print("No")
+                    if(index < self.soundMeters.count - 1){
+                        self.soundMeters[index] = self.soundMeters[index + 1]
+                    }else{
+                        self.soundMeters[index] = Float(Double(arc4random() % 5) - 25)
+                    }
+                    
+                    
+                }
+                
+            }
+            NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: self.soundMeters)
+            self.updateMetersNumber += 1
         })
     
     }
