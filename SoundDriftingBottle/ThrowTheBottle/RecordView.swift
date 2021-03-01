@@ -38,7 +38,11 @@ class RecordView: UIView {
     let cancelB = UIButton()
     let commitB = UIButton()
     
+//    耳返
     let earReturnB = UIButton()
+    
+//    音频波形图
+    let volumeviewChooseB = UIButton()
     
     
     override init(frame: CGRect) {
@@ -123,6 +127,16 @@ class RecordView: UIView {
         earReturnB.snp.makeConstraints {(make) in
             make.width.height.equalTo(50)
             make.bottom.right.equalTo(-50)
+        }
+        
+        self.addSubview(volumeviewChooseB)
+        volumeviewChooseB.backgroundColor = .white
+        volumeviewChooseB.setTitle("波形", for: .normal)
+        volumeviewChooseB.setTitleColor(.black, for: .normal)
+        volumeviewChooseB.snp.makeConstraints {(make) in
+            make.width.height.equalTo(50)
+            make.bottom.equalTo(-50)
+            make.right.equalTo(earReturnB.snp.left).offset(-50)
         }
     }
     

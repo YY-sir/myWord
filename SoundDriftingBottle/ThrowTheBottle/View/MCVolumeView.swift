@@ -9,10 +9,14 @@
 import UIKit
 
 class MCVolumeView: UIView {
-
     //MARK: Private Properties
     /// 声音表数组
     private var soundMeters: [Float]!
+    
+//    enum HUDType: Int {
+//        case bar = 0
+//        case line
+//    }
     
     private var type: HUDType = .bar
     
@@ -48,7 +52,7 @@ class MCVolumeView: UIView {
             case .bar:
                 context?.setLineWidth(columnW)
                 for (index,item) in soundMeters.enumerated() {
-                    let barHeight = 160 - (Double(item) - noVoice) / (maxVolume - noVoice) * 160
+                    let barHeight = 120 - (Double(item) - noVoice) / (maxVolume - noVoice) * 160
                     context?.move(to: CGPoint(x: (CGFloat(index * 2) * columnW + columnW), y: 160))
                     context?.addLine(to: CGPoint(x: (CGFloat(index * 2) * columnW + columnW), y: CGFloat(1.3*barHeight)))
                 }

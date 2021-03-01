@@ -56,7 +56,8 @@ class ThrowTheBottleController: UIViewController {
     private let soundMeterCount = columnNumber
     /// 录音框
     private var volumeview: MCVolumeView!
-
+    ///波形图类型
+    private var volumeviewType: HUDType! = .bar
     
     
     //播放器
@@ -84,6 +85,7 @@ class ThrowTheBottleController: UIViewController {
         recordview.cancelB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.commitB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.earReturnB.addTarget(self, action: #selector(earReturnBAction(sender:)), for: .touchUpInside)
+        recordview.volumeviewChooseB.addTarget(self, action: #selector(volumnviewChooseBAction(sender:)), for: .touchUpInside)
         //监听变声按钮的选择
         NotificationCenter.default.addObserver(self, selector: #selector(changeLabelNotificationAction), name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
         
@@ -133,7 +135,7 @@ class ThrowTheBottleController: UIViewController {
     }
     
     fileprivate func setupVolumeview(){
-        volumeview = MCVolumeView(frame: CGRect(x: self.view.center.x - 50, y: 200, width: 100, height: 80), type: .line)
+        volumeview = MCVolumeView(frame: CGRect(x: self.view.center.x - 50, y: 200, width: 100, height: 80), type: volumeviewType)
         self.view.addSubview(volumeview)
         volumeview.snp.makeConstraints{(make) in
             make.width.centerX.equalToSuperview()
@@ -237,6 +239,21 @@ class ThrowTheBottleController: UIViewController {
         
     }
     
+    @objc func volumnviewChooseBAction(sender: UIButton){
+        volumeview.removeFromSuperview()
+        if sender.isSelected{
+            sender.isSelected = false
+            sender.backgroundColor = .white
+            volumeviewType = .bar
+        }else{
+            sender.isSelected = true
+            sender.backgroundColor = .systemPink
+            volumeviewType = .line
+        }
+        setupVolumeview()
+        initSoundData()
+    }
+    
     
     fileprivate func initSoundData(){
         //初始化
@@ -246,6 +263,8 @@ class ThrowTheBottleController: UIViewController {
         }
         NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
     }
+    
+    
 //3------------------------------------------------------------------------------------------------------
     //开始录音
     fileprivate func startRecord(){
@@ -261,6 +280,9 @@ class ThrowTheBottleController: UIViewController {
 //        录音过程不可点击耳返按钮
         recordview.earReturnB.isEnabled = false
         recordview.earReturnB.setTitleColor(.gray, for: .normal)
+//        录音过程不可点击波形图切换按钮
+        recordview.volumeviewChooseB.isEnabled = false
+        recordview.volumeviewChooseB.setTitleColor(.gray, for: .normal)
         
         //View调整
         recordview.recordB.isEnabled = false
@@ -345,6 +367,10 @@ class ThrowTheBottleController: UIViewController {
 //        录音结束打开耳返按钮
         recordview.earReturnB.isEnabled = true
         recordview.earReturnB.setTitleColor(.black, for: .normal)
+        
+//        录音结束打开波形图切换按钮
+        recordview.volumeviewChooseB.isEnabled = true
+        recordview.volumeviewChooseB.setTitleColor(.black, for: .normal)
         
         //清除录音机
         if (audioRecorder != nil){
