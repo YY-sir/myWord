@@ -69,6 +69,7 @@ class PlayBottleView: UIView {
         
         otherView.addSubview(slider)
         slider.thumbTintColor = .clear
+        slider.isContinuous = false
 //        slider.backgroundColor = .white
         slider.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()

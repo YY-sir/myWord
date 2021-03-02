@@ -30,6 +30,9 @@ class PlayBottleController: UIViewController {
     //判断是否播放结束
     var isPlayEnd = false
     
+    //判断是否点击滑块控件
+    var isTouchDownSlider = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +56,8 @@ class PlayBottleController: UIViewController {
         playbottleview.likeB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
         playbottleview.collectB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
         playbottleview.reportB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
-
+        playbottleview.slider.addTarget(self, action: #selector(sliderAction), for: .valueChanged)
+        playbottleview.slider.addTarget(self, action: #selector(sliderTouchDownAction), for: .touchDown)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -167,6 +171,18 @@ class PlayBottleController: UIViewController {
         }
     }
     
+    //调整音频播放进度
+    @objc func sliderAction(){
+        print("滑动成功：\(playbottleview.slider.value)---\(self.playerItem.duration.value)")
+        let currentTime = Double(self.playerItem.duration.value) * Double(playbottleview.slider.value)
+        playerItem.seek(to: CMTime(value: CMTimeValue(currentTime), timescale: 1000), completionHandler: {_ in
+            self.isTouchDownSlider = false
+        })
+    }
+    //
+    @objc func sliderTouchDownAction(){
+        isTouchDownSlider = true
+    }
 //3---------------------------------------------------------------------------------------------
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
@@ -195,7 +211,9 @@ class PlayBottleController: UIViewController {
             //时间
             self.playbottleview.currentTimeL.text = changeTime(time: Int(current))
             //进度条
-            self.playbottleview.slider.value = Float(current / total)
+            if !self.isTouchDownSlider{
+                self.playbottleview.slider.value = Float(current / total)
+            }
         })
     
     }
