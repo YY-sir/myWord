@@ -30,6 +30,10 @@ class PickingUpBottlesController: UIViewController {
         bgAudio()
         //背景音乐开关
         pickupview.audioB.addTarget(self, action: #selector(isPlayAudio), for: .touchUpInside)
+        
+        //进入后台关闭背景音乐
+        NotificationCenter.default.addObserver(self, selector: #selector(intoBg), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(gobackBg), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +103,19 @@ class PickingUpBottlesController: UIViewController {
             imageName = "stopMusic"
         }
         pickupview.audioB.setImage(UIImage.init(named: imageName), for: .normal)
+    }
+    
+    //
+    @objc func intoBg(){
+        print("进入后台")
+        self.audioPlayer.pause()
+    }
+    
+    @objc func gobackBg(){
+        print("返回前台")
+        if isPlay{
+            self.audioPlayer.play()
+        }
     }
 }
 
