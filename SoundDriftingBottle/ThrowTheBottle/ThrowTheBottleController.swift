@@ -245,16 +245,20 @@ class ThrowTheBottleController: UIViewController {
     }
     
     @objc func volumnviewChooseBAction(sender: UIButton){
+        var tipText: String
         volumeview.removeFromSuperview()
         if sender.isSelected{
             sender.isSelected = false
             sender.backgroundColor = .white
             volumeviewType = .bar
+            tipText = "切换柱状图"
         }else{
             sender.isSelected = true
             sender.backgroundColor = .systemPink
             volumeviewType = .line
+            tipText = "切换线状图"
         }
+        UIUtil.showHint(tipText, isBlockUser: true)
         setupVolumeview()
         initSoundData()
     }
