@@ -86,13 +86,17 @@ class PickingUpBottlesController: UIViewController {
     // 开关背景音乐
     @objc func isPlayAudio(){
         print("\(audioPlayer.isPlaying)")
+        let imageName: String
         if (audioPlayer != nil) && (!audioPlayer.isPlaying){
             audioPlayer.play()
             isPlay = true
+            imageName = "playMusic"
         }else{
             audioPlayer.pause()
             isPlay = false
+            imageName = "stopMusic"
         }
+        pickupview.audioB.setImage(UIImage.init(named: imageName), for: .normal)
     }
 }
 

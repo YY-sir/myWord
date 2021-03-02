@@ -66,10 +66,10 @@ class RecordView: UIView {
             let bottleCell = CommonTwo()
             bottleCell.id = index
             if index == 0 {
-                bottleCell.bgColor = .red
+                bottleCell.bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
                 bottleCell.labelColor = .white
             }else{
-                bottleCell.bgColor = .gray
+                bottleCell.bgColor = LDColor(rgbValue: 0x213324, al: 0)
                 bottleCell.labelColor = .black
             }
             bottleCellList.append(bottleCell)
@@ -79,10 +79,10 @@ class RecordView: UIView {
             let bottleCell = CommonTwo()
             bottleCell.id = index
             if index == 0 {
-                bottleCell.bgColor = .red
+                bottleCell.bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
                 bottleCell.labelColor = .white
             }else{
-                bottleCell.bgColor = .gray
+                bottleCell.bgColor = LDColor(rgbValue: 0x213324, al: 0)
                 bottleCell.labelColor = .black
             }
             changeCellList.append(bottleCell)
@@ -93,7 +93,7 @@ class RecordView: UIView {
         
         setupBottleLabelView()
         self.addSubview(bottleLabelViewCollection)
-        bottleLabelViewCollection.backgroundColor = .white
+        bottleLabelViewCollection.backgroundColor = .clear
         bottleLabelViewCollection.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
             make.width.equalTo(320)
@@ -102,7 +102,7 @@ class RecordView: UIView {
         
         setupChangeLabelView()
         self.addSubview(changeLabelViewCollection)
-        changeLabelViewCollection.backgroundColor = .white
+        changeLabelViewCollection.backgroundColor = .clear
         changeLabelViewCollection.snp.makeConstraints {(make) in
             make.centerY.equalToSuperview()
             make.left.equalTo(self.snp.right)
@@ -112,11 +112,9 @@ class RecordView: UIView {
 
         
         self.addSubview(recordView)
-        recordView.backgroundColor = .systemPink
         recordView.snp.makeConstraints {(make) in
             make.top.equalTo(bottleLabelViewCollection.snp.bottom).offset(50)
             make.centerX.equalToSuperview()
-            make.height.equalTo(200)
             make.width.equalTo(320)
         }
         
@@ -124,19 +122,24 @@ class RecordView: UIView {
         earReturnB.backgroundColor = .white
         earReturnB.setTitle("耳返", for: .normal)
         earReturnB.setTitleColor(.black, for: .normal)
+        earReturnB.layer.cornerRadius = 5
+        earReturnB.clipsToBounds = true
         earReturnB.snp.makeConstraints {(make) in
             make.width.height.equalTo(50)
-            make.bottom.right.equalTo(-50)
+            make.bottom.equalTo(-50)
+            make.right.equalTo(-20)
         }
         
         self.addSubview(volumeviewChooseB)
         volumeviewChooseB.backgroundColor = .white
         volumeviewChooseB.setTitle("波形", for: .normal)
         volumeviewChooseB.setTitleColor(.black, for: .normal)
+        volumeviewChooseB.layer.cornerRadius = 5
+        volumeviewChooseB.clipsToBounds = true
         volumeviewChooseB.snp.makeConstraints {(make) in
             make.width.height.equalTo(50)
             make.bottom.equalTo(-50)
-            make.right.equalTo(earReturnB.snp.left).offset(-50)
+            make.right.equalTo(earReturnB.snp.left).offset(-20)
         }
     }
     
@@ -144,7 +147,7 @@ class RecordView: UIView {
     func setupBottleLabelView(){
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 80, height: 80)
-        layout.minimumLineSpacing = 3
+//        layout.minimumLineSpacing = 3
         layout.scrollDirection = .horizontal
         bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 50), collectionViewLayout: layout)
         bottleLabelViewCollection.delegate = self
@@ -158,7 +161,7 @@ class RecordView: UIView {
     func setupChangeLabelView(){
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 80, height: 80)
-        layout.minimumLineSpacing = 3
+//        layout.minimumLineSpacing = 3
         layout.scrollDirection = .horizontal
         changeLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 50), collectionViewLayout: layout)
         changeLabelViewCollection.delegate = self
@@ -171,7 +174,6 @@ class RecordView: UIView {
     //下面录音页面
     fileprivate func setupRecordView(){
         recordView.addSubview(recordB)
-        recordB.backgroundColor = .cyan
         recordB.setImage(UIImage.init(named: "record0"), for: .normal)
         recordB.snp.makeConstraints {(make) in
             make.centerX.top.equalToSuperview()
@@ -182,10 +184,12 @@ class RecordView: UIView {
         timeL.text = "0:00/" + SoundDriftingBottle.changeTime(time: bottleTime[0])
         timeL.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
+            make.top.equalTo(recordB.snp.bottom).offset(10)
         }
         
         recordView.addSubview(cancelB)
         cancelB.alpha = 0
+        
         cancelB.setTitle("取消", for: .normal)
         cancelB.snp.makeConstraints {(make) in
             make.left.equalToSuperview()
@@ -194,6 +198,7 @@ class RecordView: UIView {
         
         recordView.addSubview(commitB)
         commitB.alpha = 0
+        
         commitB.setTitle("扔瓶子", for: .normal)
         commitB.snp.makeConstraints {(make) in
             make.right.equalToSuperview()
@@ -250,6 +255,8 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
             cell.bottleI.image = UIImage(named: changeImage[indexPath.row])
             
         }
+        cell.layer.cornerRadius = 3
+        cell.clipsToBounds = true
         
         return cell
         
@@ -286,21 +293,21 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         if collection == bottleLabelViewCollection{
             for index in 0..<5{
                 if index == indexPath{
-                    bottleCellList[index].bgColor = .red
+                    bottleCellList[index].bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
                     bottleCellList[index].labelColor = .white
                     continue
                 }
-                bottleCellList[index].bgColor = .gray
+                bottleCellList[index].bgColor = LDColor(rgbValue: 0x213324, al: 0)
                 bottleCellList[index].labelColor = .black
             }
         }else if collection == changeLabelViewCollection{
             for index in 0..<9{
                 if index == indexPath{
-                    changeCellList[index].bgColor = .red
+                    changeCellList[index].bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
                     changeCellList[index].labelColor = .white
                     continue
                 }
-                changeCellList[index].bgColor = .gray
+                changeCellList[index].bgColor = LDColor(rgbValue: 0x213324, al: 0)
                 changeCellList[index].labelColor = .black
             }
         }
@@ -320,8 +327,8 @@ private class RecordViewCell: UICollectionViewCell {
         
         self.addSubview(bottleI)
         bottleI.snp.makeConstraints {(make) in
-            make.width.centerX.top.equalToSuperview()
-            make.height.equalTo(50)
+            make.centerX.top.equalToSuperview()
+            make.height.width.equalTo(55)
         }
         self.addSubview(bottleL)
         bottleL.snp.makeConstraints {(make) in

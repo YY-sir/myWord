@@ -24,10 +24,12 @@ class PickingUpBottlesView: UIView {
     
     fileprivate func setupView(){
         self.addSubview(audioB)
-        audioB.backgroundColor = .white
+        audioB.backgroundColor = .clear
+        audioB.setImage(UIImage.init(named: "playMusic"), for: .normal)
         audioB.snp.makeConstraints {(make) in
-            make.width.height.equalTo(50)
-            make.center.equalToSuperview()
+            make.width.height.equalTo(40)
+            make.left.equalTo(20)
+            make.top.equalToSuperview().offset(CommonOne().topPadding + 20)
         }
         
         self.backgroundColor = UIColor.yellow
