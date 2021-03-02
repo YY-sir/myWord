@@ -38,7 +38,6 @@ class PlayBottleView: UIView {
     
     fileprivate func setupView(){
         self.addSubview(otherView)
-        otherView.backgroundColor = UIColor.black
         otherView.snp.makeConstraints {(make) in
             make.width.equalToSuperview()
             make.height.equalTo(100)
@@ -46,7 +45,6 @@ class PlayBottleView: UIView {
         }
         
         self.addSubview(playView)
-        playView.backgroundColor = UIColor.white
         playView.snp.makeConstraints {(make) in
             make.width.equalToSuperview()
             make.height.equalTo(100)
@@ -60,7 +58,6 @@ class PlayBottleView: UIView {
 //---------------------------------------------------------------------------
     fileprivate func setupOtherView(){
         otherView.addSubview(likeView)
-        likeView.backgroundColor = UIColor.red
         likeView.snp.makeConstraints {(make) in
             make.width.equalToSuperview()
             make.height.equalTo(50)
