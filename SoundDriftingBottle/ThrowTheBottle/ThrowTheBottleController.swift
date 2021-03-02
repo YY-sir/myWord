@@ -49,7 +49,7 @@ class ThrowTheBottleController: UIViewController {
     ///波形更新计时器
     private var timer2: Timer?
     ///音频波形更新间隔
-    private let updateFequency = 0.07
+    private let updateFequency = 0.06
     /// 声音数据数组
     private var soundMeters: [Float]!
     /// 声音数据数组容量
@@ -204,6 +204,7 @@ class ThrowTheBottleController: UIViewController {
             playEnd()
             cancelData()
             cancelView()
+            initSoundData()
             
         //确认操作
         }else if sender == recordview.commitB{
@@ -260,7 +261,7 @@ class ThrowTheBottleController: UIViewController {
         }
         UIUtil.showHint(tipText, isBlockUser: true)
         setupVolumeview()
-        initSoundData()
+        NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
     }
     
     
@@ -316,7 +317,10 @@ class ThrowTheBottleController: UIViewController {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
         
+        //初始化音量数组
         initSoundData()
+        allSoundMeters = [Float]()
+        
         //生成计数器
         timer1 = Timer.scheduledTimer(timeInterval: updateFequency, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
     }
@@ -486,11 +490,6 @@ class ThrowTheBottleController: UIViewController {
     
     //播放录音
     fileprivate func playBottle(changeLabel: Int){
-        //
-        for (index, item) in allSoundMeters.enumerated(){
-            print("allSoundMeters:\(item)")
-        }
-        updateMetersNumber = 0
         
         
         recordview.recordB.setImage(UIImage.init(named: "record2"), for: .normal)
@@ -498,6 +497,13 @@ class ThrowTheBottleController: UIViewController {
             player.play()
             return
         }
+        
+        //音频频谱动画
+        for (index, item) in allSoundMeters.enumerated(){
+            print("allSoundMeters:\(item)")
+        }
+        updateMetersNumber = 0
+        
         isCancel = false
         removeObserve()
         lastTimeChangeLabel = changeLabel
@@ -550,20 +556,24 @@ class ThrowTheBottleController: UIViewController {
             print("\(current)---\(total)---\(self.updateMetersNumber)---\(self.allSoundMeters.count)")
             
             //
-            for (index, item) in self.soundMeters.enumerated(){
-                if(self.allSoundMeters.count >= self.soundMeterCount + self.updateMetersNumber){
-                    self.soundMeters[index] = self.allSoundMeters[index + self.updateMetersNumber]
-                    print("YES")
-                }else{
+            for (index, _) in self.soundMeters.enumerated(){
+//                if(self.allSoundMeters.count >= self.soundMeterCount + self.updateMetersNumber){
+//
+//                    self.soundMeters[index] = self.allSoundMeters[index + self.updateMetersNumber]
+//                    print("YES")
+//                }else{
                     print("No")
                     if(index < self.soundMeters.count - 1){
                         self.soundMeters[index] = self.soundMeters[index + 1]
                     }else{
-                        self.soundMeters[index] = Float(Double(arc4random() % 5) - 25)
+                        if(self.allSoundMeters.count > self.updateMetersNumber){
+                            self.soundMeters[index] = self.allSoundMeters[self.updateMetersNumber]
+                        }else{
+                            self.soundMeters[index] = Float(Double(arc4random() % 5) - 25)
+                        }
+                        
                     }
-                    
-                    
-                }
+//                }
                 
             }
             NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: self.soundMeters)
@@ -580,6 +590,7 @@ class ThrowTheBottleController: UIViewController {
             player.pause()
             playerItem.seek(to: CMTime.zero, completionHandler: nil)
         }
+        updateMetersNumber = 0
     }
     //移除监听
     fileprivate func removeObserve() {
