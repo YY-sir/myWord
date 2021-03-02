@@ -77,12 +77,12 @@ class ThrowTheBottleController: UIViewController {
         
         //设置背景颜色
         setupViewBg()
-        
-        //设置音效动效
-        setupVolumeview()
 
         //设置选项和播放视图
         setupRecordview()
+        
+        //设置音效动效
+        setupVolumeview()
         
         //添加按钮事件
         recordview.recordB.addTarget(self, action: #selector(recordAction(sender:)), for: .touchUpInside)
@@ -140,12 +140,13 @@ class ThrowTheBottleController: UIViewController {
     }
     
     fileprivate func setupVolumeview(){
-        volumeview = MCVolumeView(frame: CGRect(x: self.view.center.x - 50, y: 200, width: 100, height: 80), type: volumeviewType)
+        volumeview = MCVolumeView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), type: volumeviewType)
         self.view.addSubview(volumeview)
         volumeview.snp.makeConstraints{(make) in
             make.width.centerX.equalToSuperview()
-            make.height.equalTo(200)
-            make.top.equalTo(150)
+//            make.height.equalTo(200)
+            make.bottom.equalTo(recordview.bottleLabelViewCollection.snp.top)
+            make.top.equalTo(CommonOne().topPadding + 44)
         }
     }
     

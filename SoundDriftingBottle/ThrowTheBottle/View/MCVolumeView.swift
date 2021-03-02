@@ -57,15 +57,14 @@ class MCVolumeView: UIView {
             case .bar:
                 context?.setLineWidth(columnW)
                 for (index,item) in soundMeters.enumerated() {
-                    let barHeight = 160 - (Double(item) - noVoice) / (maxVolume - noVoice) * 220
-                    context?.move(to: CGPoint(x: (CGFloat(index * 2) * columnW + columnW), y: 100))
+                    let barHeight = 210 - (Double(item) - noVoice) / (maxVolume - noVoice) * 200
+                    context?.move(to: CGPoint(x: (CGFloat(index * 2) * columnW + columnW), y: 150))
                     context?.addLine(to: CGPoint(x: (CGFloat(index * 2) * columnW + columnW), y: CGFloat(1 * barHeight)))
                 }
             case .line:
                 context?.setLineWidth(1.5)
                 for (index, item) in soundMeters.enumerated() {
-                    let position = 120 - (Double(item) - noVoice) / (maxVolume - noVoice) * 160     //计算对应线段高度
-//                    let position = -(Double(item) - noVoice) / (maxVolume - noVoice) * 160
+                    let position = 180 - (Double(item) - noVoice) / (maxVolume - noVoice) * 200     //计算对应线段高度
                     print("position1\(position)")
                     context?.addLine(to: CGPoint(x: Double(CGFloat(index * 2) * columnW + columnW), y: position))
                     print("position2\(position)")
