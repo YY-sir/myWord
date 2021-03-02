@@ -123,6 +123,7 @@ class ThrowTheBottleController: UIViewController {
     //页面结束清除通知（避免内存泄漏）
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
+        print("deinit")
     }
     
 //2------------------------------------------------------------------------------------------------------
@@ -144,7 +145,6 @@ class ThrowTheBottleController: UIViewController {
         self.view.addSubview(volumeview)
         volumeview.snp.makeConstraints{(make) in
             make.width.centerX.equalToSuperview()
-//            make.height.equalTo(200)
             make.bottom.equalTo(recordview.bottleLabelViewCollection.snp.top)
             make.top.equalTo(CommonOne().topPadding + 44)
         }
@@ -558,24 +558,17 @@ class ThrowTheBottleController: UIViewController {
             
             //
             for (index, _) in self.soundMeters.enumerated(){
-//                if(self.allSoundMeters.count >= self.soundMeterCount + self.updateMetersNumber){
-//
-//                    self.soundMeters[index] = self.allSoundMeters[index + self.updateMetersNumber]
-//                    print("YES")
-//                }else{
-                    print("No")
-                    if(index < self.soundMeters.count - 1){
-                        self.soundMeters[index] = self.soundMeters[index + 1]
+                print("No")
+                if(index < self.soundMeters.count - 1){
+                    self.soundMeters[index] = self.soundMeters[index + 1]
+                }else{
+                    if(self.allSoundMeters.count > self.updateMetersNumber){
+                        self.soundMeters[index] = self.allSoundMeters[self.updateMetersNumber]
                     }else{
-                        if(self.allSoundMeters.count > self.updateMetersNumber){
-                            self.soundMeters[index] = self.allSoundMeters[self.updateMetersNumber]
-                        }else{
-                            self.soundMeters[index] = Float(Double(arc4random() % 5) - 25)
-                        }
-                        
+                        self.soundMeters[index] = Float(Double(arc4random() % 5) - 25)
                     }
-//                }
-                
+                    
+                }
             }
             NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: self.soundMeters)
             self.updateMetersNumber += 1

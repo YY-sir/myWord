@@ -67,11 +67,12 @@ class PlayBottleController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        print("3")
         pausePlayB()
     }
     
     deinit {
-        print("关闭")
+        print("4deinit")
         removeObserve()
     }
     
@@ -284,8 +285,9 @@ class PlayBottleController: UIViewController {
                 isPlayEnd  = false
             }
         }
-        player.play()
-
+        if player != nil{
+            player.play()
+        }
         
         self.playbottleview.playB.setImage(UIImage(named: "pause20"), for: .normal)
         self.playbottleview.playB.setImage(UIImage(named: "pause20"), for: .highlighted)

@@ -54,6 +54,7 @@ class PickingUpBottlesController: UIViewController {
     
     deinit {
         audioPlayer = nil
+        print("111")
     }
     
 //-----------------------------------------------------------------------------------------
@@ -81,6 +82,7 @@ class PickingUpBottlesController: UIViewController {
         print("url:\(url)")
         audioPlayer = try? AVAudioPlayer.init(contentsOf: URL(string: url)!)
         audioPlayer.numberOfLoops = .max
+        audioPlayer.volume = 0.8
         audioPlayer.play()
     }
     // 开关背景音乐
