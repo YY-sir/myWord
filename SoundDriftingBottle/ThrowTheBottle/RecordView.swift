@@ -123,7 +123,7 @@ class RecordView: UIView {
         earReturnB.setTitle("耳返", for: .normal)
         earReturnB.setTitleColor(.black, for: .normal)
         earReturnB.layer.cornerRadius = 5
-        earReturnB.clipsToBounds = true
+        earReturnB.layer.masksToBounds = true
         earReturnB.snp.makeConstraints {(make) in
             make.width.height.equalTo(50)
             make.bottom.equalTo(-50)
@@ -135,7 +135,7 @@ class RecordView: UIView {
         volumeviewChooseB.setTitle("波形", for: .normal)
         volumeviewChooseB.setTitleColor(.black, for: .normal)
         volumeviewChooseB.layer.cornerRadius = 5
-        volumeviewChooseB.clipsToBounds = true
+        volumeviewChooseB.layer.masksToBounds = true
         volumeviewChooseB.snp.makeConstraints {(make) in
             make.width.height.equalTo(50)
             make.bottom.equalTo(-50)
@@ -146,10 +146,14 @@ class RecordView: UIView {
     //上面选择BottleCollectionView
     func setupBottleLabelView(){
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.itemSize = CGSize(width: 80, height: 85)
 //        layout.minimumLineSpacing = 3
         layout.scrollDirection = .horizontal
-        bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 50), collectionViewLayout: layout)
+        bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 85), collectionViewLayout: layout)
+        bottleLabelViewCollection.layer.cornerRadius = 5
+        bottleLabelViewCollection.layer.borderWidth = 2
+        bottleLabelViewCollection.layer.borderColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
+        
         bottleLabelViewCollection.delegate = self
         bottleLabelViewCollection.dataSource = self
         bottleLabelViewCollection.register(RecordViewCell.self, forCellWithReuseIdentifier: RecordViewCell.reused)
@@ -160,10 +164,13 @@ class RecordView: UIView {
     //下面选择ChangeBollectionView
     func setupChangeLabelView(){
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 80)
+        layout.itemSize = CGSize(width: 80, height: 85)
 //        layout.minimumLineSpacing = 3
         layout.scrollDirection = .horizontal
-        changeLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 50), collectionViewLayout: layout)
+        changeLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 85), collectionViewLayout: layout)
+        changeLabelViewCollection.layer.cornerRadius = 5
+        changeLabelViewCollection.layer.borderWidth = 2
+        changeLabelViewCollection.layer.borderColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
         changeLabelViewCollection.delegate = self
         changeLabelViewCollection.dataSource = self
         changeLabelViewCollection.register(RecordViewCell.self, forCellWithReuseIdentifier: RecordViewCell.reused)
@@ -256,7 +263,7 @@ extension RecordView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
             
         }
         cell.layer.cornerRadius = 3
-        cell.clipsToBounds = true
+        cell.layer.masksToBounds = true
         
         return cell
         
@@ -327,7 +334,8 @@ private class RecordViewCell: UICollectionViewCell {
         
         self.addSubview(bottleI)
         bottleI.snp.makeConstraints {(make) in
-            make.centerX.top.equalToSuperview()
+            make.top.equalToSuperview().offset(5)
+            make.centerX.equalToSuperview()
             make.height.width.equalTo(55)
         }
         self.addSubview(bottleL)
