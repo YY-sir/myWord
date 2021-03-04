@@ -719,7 +719,7 @@ extension UIViewController: GKAwakeProtocol {
         
         if backImage == nil { return }
         
-        self.gk_navLeftBarButtonItem = UIBarButtonItem.gk_item(image: backImage, target: self, action: #selector(backItemClick(_:)))
+        self.gk_navLeftBarButtonItem = UIBarButtonItem.gk_item(image: backImage, color: .black, target: self, action: #selector(backItemClick(_:)))
     }
     
     @objc open func backItemClick(_ sender: Any) {

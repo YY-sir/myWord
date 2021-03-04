@@ -32,24 +32,30 @@ class SetupController: UIViewController {
         self.gk_backStyle = .black
         self.gk_navTitle = "设置"
                 
-        self.gk_navRightBarButtonItem = .gk_item(title: "切换", target: self, action: #selector(onclickchange))
+    
+        self.gk_navRightBarButtonItem = .gk_item(title: "打开",color:UIColor.black, target: self, action: #selector(onclickchange))
         
     }
     
     @objc func onclickchange(){
-        print("11111111")
+        var text: String = ""
         if isTableViewEditing{
+            
             if contentTableView != nil{
                 isTableViewEditing = !isTableViewEditing
                 contentTableView.setEditing(!contentTableView.isEditing, animated: true)
+                text = "打开"
             }
-            return
         }else {
+            
             if contentTableView != nil{
                 isTableViewEditing = !isTableViewEditing
                 contentTableView.setEditing(!contentTableView.isEditing, animated: true)
+                text = "关闭"
             }
         }
+        self.gk_navRightBarButtonItem = .gk_item(title: text,color:UIColor.black, target: self, action: #selector(onclickchange))
+        
     }
     
     fileprivate func setupContenttableview(){
