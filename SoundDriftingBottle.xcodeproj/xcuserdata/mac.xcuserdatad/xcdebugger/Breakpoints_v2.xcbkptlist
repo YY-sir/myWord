@@ -39,252 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5EC96D49-C100-4682-849F-71974DEC82C4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoundDriftingBottle/MIne/MineController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "scrollView"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - 3ee6ac84da5afda0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.scrollView.getter : __C.UIScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "221">
-               </Location>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - 5aac75c2415f097f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; __C.UIScrollView in SoundDriftingBottle.MineController.scrollView.getter : __C.UIScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "216">
-               </Location>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - d7a76c7275d587b4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.scrollView.setter : __C.UIScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "164">
-               </Location>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - b30206198ae72d12"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.scrollView.modify : __C.UIScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - 4effc04d9bae6068"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.scrollView.modify : __C.UIScrollView with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - 240fa29c4ec1bbd1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SoundDriftingBottle.MineController"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "1115">
-               </Location>
-               <Location
-                  uuid = "5EC96D49-C100-4682-849F-71974DEC82C4 - c3d11c11bc2db39f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SoundDriftingBottle.MineController&gt;"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "1050">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "20EF505F-BB82-4829-992B-ACF8645708CB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoundDriftingBottle/MIne/MineController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "pageScrollView"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - c65947ab6c07a744"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.pageScrollView.getter : SoundDriftingBottle.GKPageScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "221">
-               </Location>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - f09f5e4cd9758926"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SoundDriftingBottle.GKPageScrollView in SoundDriftingBottle.MineController.pageScrollView.getter : SoundDriftingBottle.GKPageScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - 1d70cfc70685770"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.pageScrollView.setter : SoundDriftingBottle.GKPageScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "164">
-               </Location>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - 313729a90ad2df63"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.pageScrollView.modify : SoundDriftingBottle.GKPageScrollView"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - bbedfc2a4b691678"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.pageScrollView.modify : SoundDriftingBottle.GKPageScrollView with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - 240fa29c4ec1bdc6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SoundDriftingBottle.MineController"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "643">
-               </Location>
-               <Location
-                  uuid = "20EF505F-BB82-4829-992B-ACF8645708CB - c3d11c11bc2db588"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SoundDriftingBottle.MineController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SoundDriftingBottle.MineController&gt;"
-                  moduleName = "SoundDriftingBottle"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mac/Desktop/vscode/SoundDriftingBottleContent/SoundDriftingBottle/SoundDriftingBottle/MIne/MineController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "584">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D0CCC569-0A5D-4540-92B2-06F5CE6334F0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -906,7 +660,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3874B59D-73DD-4A6D-B128-978217CAF083"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundDriftingBottle/ThrowTheBottle/ThrowTheBottleController.swift"
@@ -921,32 +675,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8962B5AD-BF3F-47E3-9E38-7BF433D63BDD"
-            shouldBeEnabled = "Yes"
+            uuid = "8CB57EA7-F87F-4471-9B1C-1254FBDB7193"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundDriftingBottle/ThrowTheBottle/ThrowTheBottleController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "550"
-            endingLineNumber = "550"
-            landmarkName = "ThrowTheBottleController"
-            landmarkType = "3">
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "startRecord()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4045DB15-71AD-4751-90D1-CD9A536ABF39"
+            uuid = "CDD56D87-594F-4636-8567-D2F0E9EDF1F6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundDriftingBottle/PickingUpBottlesAndPlaying/Playing/PlayBottleController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "pausePlayB()"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D8D3E2C7-4E41-4026-8081-272614B1CBC4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoundDriftingBottle/PickingUpBottlesAndPlaying/Playing/PlayBottleController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

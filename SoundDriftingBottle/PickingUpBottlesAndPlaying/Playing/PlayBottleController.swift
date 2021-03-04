@@ -33,7 +33,6 @@ class PlayBottleController: UIViewController {
     //判断是否点击滑块控件
     var isTouchDownSlider = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //设置导航栏
@@ -58,17 +57,32 @@ class PlayBottleController: UIViewController {
         playbottleview.reportB.addTarget(self, action: #selector(playAction(sender:)), for: .touchUpInside)
         playbottleview.slider.addTarget(self, action: #selector(sliderAction), for: .valueChanged)
         playbottleview.slider.addTarget(self, action: #selector(sliderTouchDownAction), for: .touchDown)
+        
+        //
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //调整自动操作按钮
         bottomView.autoplayButton.isOn = app.isAutomatic
+        
+        //判断是否添加timeObserve
+        if (player != nil && timeObserve == nil){
+            print("添加时间监听")
+            playTime()
+        }else{
+            print("不添加时间监听")
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         print("3")
         pausePlayB()
+        //移除时间监听（不移除会导致内存泄漏）
+        if timeObserve != nil{
+            self.player.removeTimeObserver(timeObserve!)
+            timeObserve = nil
+        }
     }
     
     deinit {
@@ -112,9 +126,9 @@ class PlayBottleController: UIViewController {
     }
     
     fileprivate func setupViewBg(){
-        let ui = UIView(frame: self.view.bounds)
-        ui.layer.addSublayer(CommonOne().gradientLayer)
-        self.view.addSubview(ui)
+        let bgui = UIView(frame: self.view.bounds)
+        bgui.layer.addSublayer(CommonOne().gradientLayer)
+        self.view.addSubview(bgui)
     }
     
     fileprivate func playBottle(){
@@ -219,7 +233,6 @@ class PlayBottleController: UIViewController {
                 self.playbottleview.slider.value = Float(current / total)
             }
         })
-    
     }
     
     //监听播放结束状态
