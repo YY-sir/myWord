@@ -324,10 +324,13 @@ class ThrowTheBottleController: UIViewController {
         
         //生成计数器
         timer1 = Timer.scheduledTimer(timeInterval: updateFequency, target: self, selector: #selector(timeDown), userInfo: nil, repeats: true)
+        //
+        RunLoop.current.add(timer1, forMode: .common)
     }
     
     //倒计时
     @objc fileprivate func timeDown(){
+        print("倒计时---")
         //更新音量大小
         audioRecorder.updateMeters()
         //打印音量大小
@@ -350,7 +353,6 @@ class ThrowTheBottleController: UIViewController {
             recordview.recordB.isEnabled = false
         }else{
             recordview.recordB.isEnabled = true
-            
         }
         //录音时间显示
         recordview.timeL.text = addTimeL(currentT: recordTime, totalT: recordTotalTime)

@@ -219,11 +219,6 @@ class RecordView: UIView {
         bottleLabel = 0
         changeLabel = 0
     }
-    
-    //时间操作
-    func changeTime(){
-        timeL.text = "5555"
-    }
 
 }
 
