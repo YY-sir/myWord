@@ -29,6 +29,7 @@ extension UIBarButtonItem {
     public class func gk_item(title: String?, image: UIImage?, highLightImage: UIImage?, target: Any, action: Selector) -> UIBarButtonItem {
         let button = UIButton()
         button.setTitle(title, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.setImage(image, for: .normal)
         button.setImage(highLightImage, for: .highlighted)
         button.sizeToFit()

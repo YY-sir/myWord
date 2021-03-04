@@ -121,7 +121,7 @@ class RecordView: UIView {
         self.addSubview(earReturnB)
         earReturnB.backgroundColor = .white
         earReturnB.setTitle("耳返", for: .normal)
-        earReturnB.setTitleColor(.black, for: .normal)
+        earReturnB.setTitleColor(LDColor(rgbValue: 0x509371, al: 1), for: .normal)
         earReturnB.layer.cornerRadius = 5
         earReturnB.layer.masksToBounds = true
         earReturnB.snp.makeConstraints {(make) in
