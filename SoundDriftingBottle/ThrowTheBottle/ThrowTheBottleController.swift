@@ -555,7 +555,8 @@ class ThrowTheBottleController: UIViewController {
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(self.playerItem.duration)
             //显示播放时间
-            self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: Int(self.recordTime))
+//            self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: Int(self.recordTime))
+            self.recordview.timeL.text = changeTime(time: Int(current)) + "/" + changeTime(time: Int(total))
             print("\(current)---\(total)---\(self.updateMetersNumber)---\(self.allSoundMeters.count)")
             
             //
