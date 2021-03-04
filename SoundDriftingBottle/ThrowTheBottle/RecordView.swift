@@ -132,8 +132,8 @@ class RecordView: UIView {
         
         self.addSubview(volumeviewChooseB)
         volumeviewChooseB.backgroundColor = .white
-        volumeviewChooseB.setTitle("波形", for: .normal)
-        volumeviewChooseB.setTitleColor(.black, for: .normal)
+        volumeviewChooseB.setTitle("柱状", for: .normal)
+        volumeviewChooseB.setTitleColor(LDColor(rgbValue: 0x4682B4, al: 1), for: .normal)
         volumeviewChooseB.layer.cornerRadius = 5
         volumeviewChooseB.layer.masksToBounds = true
         volumeviewChooseB.snp.makeConstraints {(make) in

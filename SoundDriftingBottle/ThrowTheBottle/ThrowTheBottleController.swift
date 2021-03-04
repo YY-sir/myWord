@@ -89,7 +89,7 @@ class ThrowTheBottleController: UIViewController {
         recordview.cancelB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.commitB.addTarget(self, action: #selector(cancelOrCommitAction(sender:)), for: .touchUpInside)
         recordview.earReturnB.addTarget(self, action: #selector(earReturnBAction(sender:)), for: .touchUpInside)
-        recordview.volumeviewChooseB.addTarget(self, action: #selector(volumnviewChooseBAction(sender:)), for: .touchUpInside)
+        recordview.volumeviewChooseB.addTarget(self, action: #selector(volumeviewChooseBAction(sender:)), for: .touchUpInside)
         //监听变声按钮的选择
         NotificationCenter.default.addObserver(self, selector: #selector(changeLabelNotificationAction), name: NSNotification.Name(rawValue: "changeLabelNotification"), object: nil)
         
@@ -234,11 +234,13 @@ class ThrowTheBottleController: UIViewController {
         if sender.isSelected{
             sender.isSelected = false
             sender.backgroundColor = .white
+            sender.setTitleColor(LDColor(rgbValue: 0x509371, al: 1), for: .normal)
             tipText = "关闭耳返"
             
         }else{
             sender.isSelected = true
-            sender.backgroundColor = .systemPink
+            sender.backgroundColor = LDColor(rgbValue: 0x509371, al: 1)
+            sender.setTitleColor(.white, for: .normal)
             tipText = "打开耳返"
         }
         //添加弹窗提示
@@ -246,21 +248,27 @@ class ThrowTheBottleController: UIViewController {
         
     }
     
-    @objc func volumnviewChooseBAction(sender: UIButton){
+    @objc func volumeviewChooseBAction(sender: UIButton){
         var tipText: String
+        var text: String
         volumeview.removeFromSuperview()
         if sender.isSelected{
             sender.isSelected = false
             sender.backgroundColor = .white
+            sender.setTitleColor(LDColor(rgbValue: 0x4682B4, al: 1), for: .normal)
             volumeviewType = .bar
             tipText = "切换柱状图"
+            text = "柱状"
         }else{
             sender.isSelected = true
-            sender.backgroundColor = .systemPink
+            sender.backgroundColor = LDColor(rgbValue: 0x4682B4, al: 1)
+            sender.setTitleColor(.white, for: .normal)
             volumeviewType = .line
             tipText = "切换线状图"
+            text = "波浪"
         }
         UIUtil.showHint(tipText, isBlockUser: true)
+        sender.setTitle(text, for: .normal)
         setupVolumeview()
         NotificationCenter.default.post(name: NSNotification.Name.init("updateMeters"), object: soundMeters)
     }
@@ -288,12 +296,22 @@ class ThrowTheBottleController: UIViewController {
             AUROC.earReturnStart()
             
         }
+        
 //        录音过程不可点击耳返按钮
         recordview.earReturnB.isEnabled = false
-        recordview.earReturnB.setTitleColor(.gray, for: .normal)
+        if recordview.earReturnB.isSelected{
+            recordview.earReturnB.setTitleColor(LDColor(rgbValue: 0xdbdbdb, al: 1), for: .normal)
+        }else{
+            recordview.earReturnB.setTitleColor(.gray, for: .normal)
+        }
+
 //        录音过程不可点击波形图切换按钮
         recordview.volumeviewChooseB.isEnabled = false
-        recordview.volumeviewChooseB.setTitleColor(.gray, for: .normal)
+        if(recordview.volumeviewChooseB.isSelected){
+            recordview.volumeviewChooseB.setTitleColor(LDColor(rgbValue: 0xdbdbdb, al: 1), for: .normal)
+        }else{
+            recordview.volumeviewChooseB.setTitleColor(.gray, for: .normal)
+        }
         
         //View调整
         recordview.recordB.isEnabled = false
@@ -368,11 +386,19 @@ class ThrowTheBottleController: UIViewController {
         }
 //        录音结束打开耳返按钮
         recordview.earReturnB.isEnabled = true
-        recordview.earReturnB.setTitleColor(.black, for: .normal)
+        if(recordview.earReturnB.isSelected){
+            recordview.earReturnB.setTitleColor(.white, for: .normal)
+        }else{
+            recordview.earReturnB.setTitleColor(LDColor(rgbValue: 0x509371, al: 1), for: .normal)
+        }
         
 //        录音结束打开波形图切换按钮
         recordview.volumeviewChooseB.isEnabled = true
-        recordview.volumeviewChooseB.setTitleColor(.black, for: .normal)
+        if(recordview.volumeviewChooseB.isSelected){
+            recordview.volumeviewChooseB.setTitleColor(.white, for: .normal)
+        }else{
+            recordview.volumeviewChooseB.setTitleColor(LDColor(rgbValue: 0x4682B4, al: 1), for: .normal)
+        }
         
         //清除录音机
         if (audioRecorder != nil){
