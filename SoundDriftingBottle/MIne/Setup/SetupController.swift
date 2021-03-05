@@ -11,7 +11,7 @@ import UIKit
 class SetupController: UIViewController {
 //    var contenttableview: SetupView!
     var contentTableView: UITableView!
-    let cellText = [["修改个人信息", "意见反馈", "清除缓存"] ,["版本信息" ,"隐私协议"] , ["退出"]]
+    let cellText = [["修改个人信息", "意见反馈", "清除缓存"] ,["关于音瓶" ,"隐私协议"] , ["退出"]]
     var isTableViewEditing = false
     
     
@@ -114,7 +114,7 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             cell?.accessoryType = .disclosureIndicator
         }
 
-        cell?.selectionStyle = .gray
+        cell?.selectionStyle = .none
         return cell!
     }
 
@@ -150,8 +150,8 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             UIUtil.showLoading()
             clearTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(clearAction), userInfo: nil, repeats: false)
 
-        case "版本信息":
-            print("版本信息")
+        case "关于音瓶":
+            print("关于音瓶")
             let versionInfo = VersionInfoController()
             self.navigationController?.pushViewController(versionInfo, animated: true)
             
