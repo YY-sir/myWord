@@ -56,6 +56,7 @@ class SetupController: UIViewController {
                 isTableViewEditing = !isTableViewEditing
                 contentTableView.setEditing(!contentTableView.isEditing, animated: true)
                 text = "取消"
+                UIUtil.showHint("长按右侧拖动阀，可自由拖动个选项哦~")
             }
         }
         self.gk_navRightBarButtonItem = .gk_item(title: text,color:UIColor.black, target: self, action: #selector(onclickchange))
