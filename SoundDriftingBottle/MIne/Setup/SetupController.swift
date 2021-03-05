@@ -14,6 +14,10 @@ class SetupController: UIViewController {
     let cellText = [["修改个人信息", "意见反馈", "清除缓存"] ,["版本信息" ,"隐私协议"] , ["退出"]]
     var isTableViewEditing = false
     
+    
+    //cell点击事件
+    var clearTimer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -44,14 +48,14 @@ class SetupController: UIViewController {
             if contentTableView != nil{
                 isTableViewEditing = !isTableViewEditing
                 contentTableView.setEditing(!contentTableView.isEditing, animated: true)
-                text = "打开"
+                text = "移动"
             }
         }else {
             
             if contentTableView != nil{
                 isTableViewEditing = !isTableViewEditing
                 contentTableView.setEditing(!contentTableView.isEditing, animated: true)
-                text = "关闭"
+                text = "取消"
             }
         }
         self.gk_navRightBarButtonItem = .gk_item(title: text,color:UIColor.black, target: self, action: #selector(onclickchange))
@@ -109,7 +113,7 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             cell?.accessoryType = .disclosureIndicator
         }
 
-        cell?.selectionStyle = .none
+        cell?.selectionStyle = .gray
         return cell!
     }
 
@@ -129,6 +133,51 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
 //        dataSource.insert(data, at: destinationIndexPath.row)
     }
     
+    //MARK: 点击事件处理——页面跳转处理
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print("cell:\(indexPath)---\(tableView.cellForRow(at: indexPath)?.textLabel?.text)")
+        let text = tableView.cellForRow(at: indexPath)?.textLabel?.text
+        switch text {
+        case "修改个人信息":
+            print("修改个人信息")
+            
+        case "意见反馈":
+            print("意见反馈")
+            
+        case "清除缓存":
+            print("清除缓存")
+            UIUtil.showLoading()
+            clearTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(clearAction), userInfo: nil, repeats: false)
+
+        case "版本信息":
+            print("版本信息")
+            let versionInfo = VersionInfoController()
+            self.navigationController?.pushViewController(versionInfo, animated: true)
+            
+        case "隐私协议":
+            print("隐私协议")
+            let privacyAgreement = PrivacyAgreementController()
+            self.navigationController?.pushViewController(privacyAgreement, animated: true)
+            
+        case "退出":
+            print("退出")
+            let register = RegisterAndLoginController()
+            self.dismiss(animated: false, completion: {
+                print("关闭页面成功")
+            })
+            self.navigationController?.pushViewController(register, animated: true)
+        default:
+            print("都不是")
+        }
+        
+        return indexPath
+    }
+    
+    @objc func clearAction(){
+        clearTimer?.invalidate()
+        clearTimer = nil
+        UIUtil.showHint("清除成功")
+    }
 
 }
 

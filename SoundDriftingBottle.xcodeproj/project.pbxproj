@@ -183,6 +183,13 @@
 		0485635A25C39CF80003D458 /* TopSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635925C39CF80003D458 /* TopSection.swift */; };
 		0485635D25C39EF90003D458 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485635C25C39EF90003D458 /* RecordView.swift */; };
 		04A63DAD25C7EC4F009BC8D3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A63DAC25C7EC47009BC8D3 /* libc++.tbd */; };
+		04C4ACEF25F1C3820084E275 /* PersonalInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4ACEE25F1C3820084E275 /* PersonalInfoController.swift */; };
+		04C4ACF225F1C3D80084E275 /* VersionInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4ACF125F1C3D80084E275 /* VersionInfoController.swift */; };
+		04C4ACF425F1C4060084E275 /* PrivacyAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4ACF325F1C4060084E275 /* PrivacyAgreementController.swift */; };
+		04C4ACFC25F1C4730084E275 /* FeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4ACFB25F1C4730084E275 /* FeedbackController.swift */; };
+		04C4ACFE25F1C47D0084E275 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4ACFD25F1C47D0084E275 /* FeedbackView.swift */; };
+		04C4AD0125F1CC3A0084E275 /* VersionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4AD0025F1CC3A0084E275 /* VersionInfoView.swift */; };
+		04C4AD0425F1CC6B0084E275 /* PrivacyAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4AD0325F1CC6B0084E275 /* PrivacyAgreementView.swift */; };
 		04CAE86E25CA81C5009D7954 /* CommonTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE86D25CA81C5009D7954 /* CommonTwo.swift */; };
 		04CAE90E25CBD18E009D7954 /* UISlider2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE90D25CBD18E009D7954 /* UISlider2.swift */; };
 		04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE91125CBDA7A009D7954 /* UISlider1.m */; };
@@ -407,6 +414,13 @@
 		0485635925C39CF80003D458 /* TopSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSection.swift; sourceTree = "<group>"; };
 		0485635C25C39EF90003D458 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		04A63DAC25C7EC47009BC8D3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		04C4ACEE25F1C3820084E275 /* PersonalInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoController.swift; sourceTree = "<group>"; };
+		04C4ACF125F1C3D80084E275 /* VersionInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfoController.swift; sourceTree = "<group>"; };
+		04C4ACF325F1C4060084E275 /* PrivacyAgreementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAgreementController.swift; sourceTree = "<group>"; };
+		04C4ACFB25F1C4730084E275 /* FeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackController.swift; sourceTree = "<group>"; };
+		04C4ACFD25F1C47D0084E275 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		04C4AD0025F1CC3A0084E275 /* VersionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfoView.swift; sourceTree = "<group>"; };
+		04C4AD0325F1CC6B0084E275 /* PrivacyAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAgreementView.swift; sourceTree = "<group>"; };
 		04CAE86D25CA81C5009D7954 /* CommonTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTwo.swift; sourceTree = "<group>"; };
 		04CAE90D25CBD18E009D7954 /* UISlider2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlider2.swift; sourceTree = "<group>"; };
 		04CAE91125CBDA7A009D7954 /* UISlider1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISlider1.m; path = "../../../../../flutter_ios/test1/AudioBottle_ios/ios-test1/UISlider1.m"; sourceTree = "<group>"; };
@@ -734,6 +748,7 @@
 		0453FC7825E113C50053ADB6 /* Setup */ = {
 			isa = PBXGroup;
 			children = (
+				04C4ACED25F1C3380084E275 /* SetupContentPage */,
 				0453FC7925E113E60053ADB6 /* SetupController.swift */,
 				045AB7E625E64181002AB90A /* SetupView.swift */,
 			);
@@ -1033,6 +1048,53 @@
 			path = Extend;
 			sourceTree = "<group>";
 		};
+		04C4ACED25F1C3380084E275 /* SetupContentPage */ = {
+			isa = PBXGroup;
+			children = (
+				04C4AD0225F1CC400084E275 /* PrivacyAgreenment */,
+				04C4ACFA25F1C4650084E275 /* VersionInfo */,
+				04C4ACFF25F1CBC40084E275 /* Feedback */,
+				04C4ACF025F1C38F0084E275 /* PersonalInfo */,
+			);
+			path = SetupContentPage;
+			sourceTree = "<group>";
+		};
+		04C4ACF025F1C38F0084E275 /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				04C4ACEE25F1C3820084E275 /* PersonalInfoController.swift */,
+			);
+			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
+		04C4ACFA25F1C4650084E275 /* VersionInfo */ = {
+			isa = PBXGroup;
+			children = (
+				04C4ACF125F1C3D80084E275 /* VersionInfoController.swift */,
+				04C4AD0025F1CC3A0084E275 /* VersionInfoView.swift */,
+			);
+			path = VersionInfo;
+			sourceTree = "<group>";
+		};
+		04C4ACFF25F1CBC40084E275 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				04C4ACFD25F1C47D0084E275 /* FeedbackView.swift */,
+				04C4ACFB25F1C4730084E275 /* FeedbackController.swift */,
+			);
+			name = Feedback;
+			path = PersonalInfo/Feedback;
+			sourceTree = "<group>";
+		};
+		04C4AD0225F1CC400084E275 /* PrivacyAgreenment */ = {
+			isa = PBXGroup;
+			children = (
+				04C4ACF325F1C4060084E275 /* PrivacyAgreementController.swift */,
+				04C4AD0325F1CC6B0084E275 /* PrivacyAgreementView.swift */,
+			);
+			path = PrivacyAgreenment;
+			sourceTree = "<group>";
+		};
 		04CAEDD825CD3E58009D7954 /* lame */ = {
 			isa = PBXGroup;
 			children = (
@@ -1188,6 +1250,7 @@
 				044B04BF25BFF7F90013F493 /* ConstraintMultiplierTarget.swift in Sources */,
 				044B04DC25BFF7F90013F493 /* Debugging.swift in Sources */,
 				0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */,
+				04C4ACFE25F1C47D0084E275 /* FeedbackView.swift in Sources */,
 				045AB7DA25E61D31002AB90A /* MJRefreshHeader.m in Sources */,
 				045AB7D025E61D30002AB90A /* MJRefreshBackNormalFooter.m in Sources */,
 				045AB78225E60804002AB90A /* JXSegmentedListContainerView.swift in Sources */,
@@ -1203,6 +1266,7 @@
 				045AB77925E60804002AB90A /* JXSegmentedTitleCell.swift in Sources */,
 				045AB77F25E60804002AB90A /* JXSegmentedNumberDataSource.swift in Sources */,
 				045AB7D325E61D31002AB90A /* MJRefreshAutoNormalFooter.m in Sources */,
+				04C4AD0125F1CC3A0084E275 /* VersionInfoView.swift in Sources */,
 				045AB76025E60804002AB90A /* JXSegmentedTitleOrImageCell.swift in Sources */,
 				044B04F125C008670013F493 /* CommonOne.swift in Sources */,
 				044B057925C164B30013F493 /* PlayBottleController.swift in Sources */,
@@ -1257,6 +1321,7 @@
 				045AB75F25E60804002AB90A /* JXSegmentedTitleOrImageDataSource.swift in Sources */,
 				045AB7DD25E61D31002AB90A /* MJRefreshComponent.m in Sources */,
 				044B04DB25BFF7F90013F493 /* Constraint.swift in Sources */,
+				04C4ACFC25F1C4730084E275 /* FeedbackController.swift in Sources */,
 				0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */,
 				044B04DD25BFF7F90013F493 /* ConstraintRelatableTarget.swift in Sources */,
 				045AB7CD25E61D30002AB90A /* UIView+MJExtension.m in Sources */,
@@ -1279,6 +1344,7 @@
 				044B04D525BFF7F90013F493 /* ConstraintMakerEditable.swift in Sources */,
 				044B04DF25BFF7F90013F493 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				044B04C525BFF7F90013F493 /* ConstraintPriorityTarget.swift in Sources */,
+				04C4ACEF25F1C3820084E275 /* PersonalInfoController.swift in Sources */,
 				045AB77A25E60804002AB90A /* JXSegmentedTitleItemModel.swift in Sources */,
 				044B04D325BFF7F90013F493 /* ConstraintConstantTarget.swift in Sources */,
 				044B04C825BFF7F90013F493 /* ConstraintDSL.swift in Sources */,
@@ -1296,6 +1362,7 @@
 				044B04EC25C004910013F493 /* LoginView.swift in Sources */,
 				0453FB9425E0F59C0053ADB6 /* GKPageListContainerView.swift in Sources */,
 				045AB76825E60804002AB90A /* JXSegmentedIndicatorTriangleView.swift in Sources */,
+				04C4ACF225F1C3D80084E275 /* VersionInfoController.swift in Sources */,
 				044B04CA25BFF7F90013F493 /* ConstraintPriority.swift in Sources */,
 				045AB7D525E61D31002AB90A /* MJRefreshNormalTrailer.m in Sources */,
 				045AB7D825E61D31002AB90A /* MJRefreshGifHeader.m in Sources */,
@@ -1313,10 +1380,12 @@
 				045AB77725E60804002AB90A /* JXSegmentedTitleImageItemModel.swift in Sources */,
 				045AB7E725E64181002AB90A /* SetupView.swift in Sources */,
 				0453FB8B25E0F2C80053ADB6 /* GKDemoBaseViewController.swift in Sources */,
+				04C4AD0425F1CC6B0084E275 /* PrivacyAgreementView.swift in Sources */,
 				045AB78325E60804002AB90A /* JXSegmentedRTLLayout.swift in Sources */,
 				045AB78025E60804002AB90A /* JXSegmentedNumberItemModel.swift in Sources */,
 				045AB7D225E61D31002AB90A /* MJRefreshAutoGifFooter.m in Sources */,
 				044B04C725BFF7F90013F493 /* ConstraintMakerFinalizable.swift in Sources */,
+				04C4ACF425F1C4060084E275 /* PrivacyAgreementController.swift in Sources */,
 				045AB75E25E60804002AB90A /* JXSegmentedTitleOrImageItemModel.swift in Sources */,
 				045AB77C25E60804002AB90A /* JXSegmentedTitleGradientDataSource.swift in Sources */,
 				043EADEC25DFC69900D97784 /* GKBaseAnimatedTransition.swift in Sources */,
