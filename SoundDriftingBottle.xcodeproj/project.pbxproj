@@ -191,6 +191,7 @@
 		04C4AD0425F1CC6B0084E275 /* PrivacyAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4AD0325F1CC6B0084E275 /* PrivacyAgreementView.swift */; };
 		04C4AD0B25F20C7B0084E275 /* FunctionIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4AD0A25F20C7B0084E275 /* FunctionIntroductionController.swift */; };
 		04C4AD0F25F20CD80084E275 /* FunctionIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4AD0E25F20CD80084E275 /* FunctionIntroductionView.swift */; };
+		04C4AD6225F217940084E275 /* VersionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4AD6125F217940084E275 /* VersionInfoView.swift */; };
 		04CAE86E25CA81C5009D7954 /* CommonTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE86D25CA81C5009D7954 /* CommonTwo.swift */; };
 		04CAE90E25CBD18E009D7954 /* UISlider2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE90D25CBD18E009D7954 /* UISlider2.swift */; };
 		04CAE91225CBDA7A009D7954 /* UISlider1.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAE91125CBDA7A009D7954 /* UISlider1.m */; };
@@ -423,6 +424,7 @@
 		04C4AD0325F1CC6B0084E275 /* PrivacyAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAgreementView.swift; sourceTree = "<group>"; };
 		04C4AD0A25F20C7B0084E275 /* FunctionIntroductionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionIntroductionController.swift; sourceTree = "<group>"; };
 		04C4AD0E25F20CD80084E275 /* FunctionIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionIntroductionView.swift; sourceTree = "<group>"; };
+		04C4AD6125F217940084E275 /* VersionInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionInfoView.swift; sourceTree = "<group>"; };
 		04CAE86D25CA81C5009D7954 /* CommonTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTwo.swift; sourceTree = "<group>"; };
 		04CAE90D25CBD18E009D7954 /* UISlider2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlider2.swift; sourceTree = "<group>"; };
 		04CAE91125CBDA7A009D7954 /* UISlider1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISlider1.m; path = "../../../../../flutter_ios/test1/AudioBottle_ios/ios-test1/UISlider1.m"; sourceTree = "<group>"; };
@@ -1074,6 +1076,7 @@
 			children = (
 				04C4AD0C25F20CBB0084E275 /* FunctionIntroduction */,
 				04C4ACF125F1C3D80084E275 /* VersionInfoController.swift */,
+				04C4AD6125F217940084E275 /* VersionInfoView.swift */,
 			);
 			path = VersionInfo;
 			sourceTree = "<group>";
@@ -1347,6 +1350,7 @@
 				0453FB8525E0F1BA0053ADB6 /* CommonData.swift in Sources */,
 				04C4AD0B25F20C7B0084E275 /* FunctionIntroductionController.swift in Sources */,
 				045AB76F25E60804002AB90A /* JXSegmentedIndicatorLineView.swift in Sources */,
+				04C4AD6225F217940084E275 /* VersionInfoView.swift in Sources */,
 				045AB7D625E61D31002AB90A /* MJRefreshNormalHeader.m in Sources */,
 				045AB77525E60804002AB90A /* JXSegmentedDotItemModel.swift in Sources */,
 				04CE341D25ECD23000E7E599 /* MCProgressView.swift in Sources */,
