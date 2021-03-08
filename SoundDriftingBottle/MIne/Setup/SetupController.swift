@@ -109,7 +109,7 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             cell = UITableViewCell(style: .value1, reuseIdentifier: cellid)
         }
         cell?.textLabel?.text = self.cellText[indexPath.section][indexPath.row]
-        cell?.detailTextLabel?.text = "未实现"
+//        cell?.detailTextLabel?.text = "未实现"
         if indexPath.section == 0{
             cell?.accessoryType = .disclosureIndicator
         }
@@ -162,11 +162,19 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             
         case "退出":
             print("退出")
-            let register = RegisterAndLoginController()
-            self.dismiss(animated: false, completion: {
-                print("关闭页面成功")
+            let backAlert = UIAlertController.init(title: "确定退出", message: nil, preferredStyle: .alert)
+            let alertTrue = UIAlertAction(title: "确定", style: .default, handler: {_ in
+                let register = RegisterAndLoginController()
+                self.dismiss(animated: false, completion: {
+                    print("关闭页面成功")
+                })
+                self.navigationController?.pushViewController(register, animated: true)
             })
-            self.navigationController?.pushViewController(register, animated: true)
+            let alertCancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            backAlert.addAction(alertTrue)
+            backAlert.addAction(alertCancel)
+            self.navigationController?.present(backAlert, animated: true, completion: nil)
+            
         default:
             print("都不是")
         }
