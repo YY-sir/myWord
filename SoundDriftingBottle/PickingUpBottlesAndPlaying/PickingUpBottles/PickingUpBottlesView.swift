@@ -59,9 +59,5 @@ class PickingUpBottlesView: UIView {
         
         self.bringSubviewToFront(audioB)
     }
-    
-    fileprivate func setupScrollView(){
         
-    }
-    
 }

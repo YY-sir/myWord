@@ -17,6 +17,9 @@ enum FeedbackType: Int {
 
 class FeedbackView: UIView {
     let horizonGap = 30.0
+    let UIwidth = kScreenW - 60.0
+    
+    let mainScrollView: UIScrollView = UIScrollView()
     
     var labelArr = ["功能问题", "性能问题", "用户投诉"]
     var labelSegmented: UISegmentedControl!
@@ -43,40 +46,50 @@ class FeedbackView: UIView {
     }
     
     fileprivate func setupView(){
+        self.addSubview(mainScrollView)
+        mainScrollView.snp.makeConstraints{(make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(CommonOne().topPadding + 44.0)
+        }
+        mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: 610)
+        mainScrollView.showsVerticalScrollIndicator = false
+        mainScrollView.showsHorizontalScrollIndicator = false
+        mainScrollView.delaysContentTouches = false
+        
         labelSegmented = UISegmentedControl(items: labelArr)
         labelSegmented.selectedSegmentIndex = 0
-        self.addSubview(labelSegmented)
+        mainScrollView.addSubview(labelSegmented)
         labelSegmented.snp.makeConstraints{(make) in
             make.height.equalTo(50)
+            make.width.equalTo(UIwidth)
             make.left.equalTo(horizonGap)
-            make.right.equalTo(-horizonGap)
-            make.top.equalTo(CommonOne().topPadding + 44.0 + 40)
+            make.top.equalTo(30)
         }
         
-        self.addSubview(feedbackView)
+        mainScrollView.addSubview(feedbackView)
         feedbackView.layer.borderWidth = 1
         feedbackView.layer.borderColor = CGColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         feedbackView.layer.cornerRadius = 3
         feedbackView.layer.masksToBounds = true
         feedbackView.snp.makeConstraints{(make) in
             make.height.equalTo(200)
+            make.width.equalTo(UIwidth)
             make.left.equalTo(horizonGap)
-            make.right.equalTo(-horizonGap)
             make.top.equalTo(labelSegmented.snp.bottom).offset(25)
         }
         
-        self.addSubview(photoView)
+        mainScrollView.addSubview(photoView)
         photoView.layer.borderWidth = 1
         photoView.layer.borderColor = CGColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         photoView.layer.cornerRadius = 3
         photoView.snp.makeConstraints{(make) in
             make.height.equalTo(160)
+            make.width.equalTo(UIwidth)
             make.left.equalTo(horizonGap)
-            make.right.equalTo(-horizonGap)
             make.top.equalTo(feedbackView.snp.bottom).offset(25)
         }
         
-        self.addSubview(submitBtn)
+        mainScrollView.addSubview(submitBtn)
         submitBtn.layer.cornerRadius = 4
         submitBtn.layer.masksToBounds = true
         submitBtn.setTitle("提交", for: .normal)
@@ -84,8 +97,8 @@ class FeedbackView: UIView {
         submitBtn.setBackgroundImage(imageWithColor(color: LDColor(rgbValue: 0x87CEFA, al: 1)), for: .normal)
         submitBtn.snp.makeConstraints{(make) in
             make.height.equalTo(50)
+            make.width.equalTo(UIwidth)
             make.left.equalTo(horizonGap)
-            make.right.equalTo(-horizonGap)
             make.top.equalTo(photoView.snp.bottom).offset(25)
         }
        
@@ -138,4 +151,3 @@ class FeedbackView: UIView {
     }
     
 }
-
