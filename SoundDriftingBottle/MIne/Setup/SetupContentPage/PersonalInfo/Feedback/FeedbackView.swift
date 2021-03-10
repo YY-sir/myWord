@@ -83,7 +83,7 @@ class FeedbackView: UIView {
         photoView.layer.borderColor = CGColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
         photoView.layer.cornerRadius = 3
         photoView.snp.makeConstraints{(make) in
-            make.height.equalTo(160)
+//            make.height.equalTo(160)
             make.width.equalTo(UIwidth)
             make.left.equalTo(horizonGap)
             make.top.equalTo(feedbackView.snp.bottom).offset(25)

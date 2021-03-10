@@ -21,14 +21,22 @@ class FeedbackController: UIViewController {
         initData()
         setupNav()
         setupView()
+        setupPhotoView()
         addAction()
     }
     
 //--------------------------------------------------------------------------------------------------
     fileprivate func  initData(){
         photoUrlArr = [String]()
-        photoSize = 90.0
-        photoGap = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 3 * photoSize)  / 2 + photoSize
+        
+//        let num1 = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 3 * photoSize)  / 2
+//        if(num1 < 10){
+            photoSize = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 20.0) / 3
+            photoGap = 10.0 + photoSize
+//        }else{
+//            photoSize = 90.0
+//            photoGap = num1 + photoSize
+//        }
     }
     
     fileprivate func setupNav(){
@@ -44,6 +52,12 @@ class FeedbackController: UIViewController {
         self.view.backgroundColor = .white
         feedbackview = FeedbackView(frame: self.view.bounds)
         self.view.addSubview(feedbackview)
+    }
+    
+    fileprivate func setupPhotoView(){
+        feedbackview.photoShowView.snp.makeConstraints{(make) in
+            make.height.equalTo(photoSize + 10.0)
+        }
     }
     
     fileprivate func addAction(){
@@ -183,7 +197,7 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
         deleteBtn.snp.makeConstraints{(make) in
             make.width.height.equalTo(20)
             make.top.equalTo(-5)
-            make.left.equalTo((Float)(self.photoUrlArr.count - 1) * photoGap + 90 - 15)
+            make.left.equalTo((Float)(self.photoUrlArr.count - 1) * photoGap + self.photoSize - 15)
         }
         deleteBtn.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
     }
@@ -191,6 +205,8 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
     //
     @objc func deleteAction(sender: UIButton){
         print("删除对应照片")
+        
+        
     }
     
 }
