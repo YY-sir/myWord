@@ -144,6 +144,8 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             
         case "意见反馈":
             print("意见反馈")
+            let feedback = FeedbackController()
+            self.navigationController?.pushViewController(feedback, animated: true)
             
         case "清除缓存":
             print("清除缓存")

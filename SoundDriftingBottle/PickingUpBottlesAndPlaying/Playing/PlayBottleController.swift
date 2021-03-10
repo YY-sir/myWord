@@ -180,7 +180,7 @@ class PlayBottleController: UIViewController {
             
         case playbottleview.reportB:
             print("举报")
-            
+            feedbackAction()
         default:
             break
         }
@@ -311,6 +311,22 @@ class PlayBottleController: UIViewController {
         self.playbottleview.playB.setImage(UIImage(named: "play20"), for: .highlighted)
     }
  
+    //举报
+    fileprivate func likeAction(){
+        
+    }
+
+    //举报
+    fileprivate func collectAction(){
+        
+    }
+    
+    //举报
+    fileprivate func feedbackAction(){
+        let feedback = FeedbackController()
+        self.navigationController?.pushViewController(feedback, animated: true)
+    }
+    
 //4---------------------------------------------------------------------------------------------
 //    下一首操作
     fileprivate func nextAction(){
