@@ -22,6 +22,7 @@ extension UIColor {
     }
 }
 
+//给图片贴一个层
 public func changeColor(image: UIImage, color: UIColor) -> UIImage {
     UIGraphicsBeginImageContext(image.size)
     color.setFill()
@@ -31,6 +32,20 @@ public func changeColor(image: UIImage, color: UIColor) -> UIImage {
     let resultImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return resultImage!
+}
+
+//输入颜色图片
+public func imageWithColor(color: UIColor) -> UIImage{
+    let bounds = CGRect(x: 0, y: 0, width: 1.0, height: 1.0)
+    UIGraphicsBeginImageContext(bounds.size)
+    let context = UIGraphicsGetCurrentContext()
+    
+    context?.setFillColor(color.cgColor)
+    context?.fill(bounds)
+    
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
 }
 
 //16进制颜色的使用

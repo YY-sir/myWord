@@ -16,6 +16,8 @@ enum FeedbackType: Int {
 }
 
 class FeedbackView: UIView {
+    let horizonGap = 30.0
+    
     var labelArr = ["功能问题", "性能问题", "用户投诉"]
     var labelSegmented: UISegmentedControl!
     
@@ -25,7 +27,7 @@ class FeedbackView: UIView {
     
     let photoView = UIView()
     let pushPhotoBtn = UIButton()
-    let submitBtn = UIButton()
+    let submitBtn = UIButton(type: .system)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,8 +45,8 @@ class FeedbackView: UIView {
         self.addSubview(labelSegmented)
         labelSegmented.snp.makeConstraints{(make) in
             make.height.equalTo(50)
-            make.left.equalTo(40)
-            make.right.equalTo(-40)
+            make.left.equalTo(horizonGap)
+            make.right.equalTo(-horizonGap)
             make.top.equalTo(CommonOne().topPadding + 44.0 + 40)
         }
         
@@ -55,9 +57,31 @@ class FeedbackView: UIView {
         feedbackView.layer.masksToBounds = true
         feedbackView.snp.makeConstraints{(make) in
             make.height.equalTo(200)
-            make.left.equalTo(40)
-            make.right.equalTo(-40)
+            make.left.equalTo(horizonGap)
+            make.right.equalTo(-horizonGap)
             make.top.equalTo(labelSegmented.snp.bottom).offset(25)
+        }
+        
+        self.addSubview(photoView)
+        photoView.backgroundColor = .blue
+        photoView.snp.makeConstraints{(make) in
+            make.height.equalTo(200)
+            make.left.equalTo(horizonGap)
+            make.right.equalTo(-horizonGap)
+            make.top.equalTo(feedbackView.snp.bottom).offset(25)
+        }
+        
+        self.addSubview(submitBtn)
+        submitBtn.layer.cornerRadius = 4
+        submitBtn.layer.masksToBounds = true
+        submitBtn.setTitle("提交", for: .normal)
+        submitBtn.setTitleColor(LDColor(rgbValue: 0x000000, al: 1), for: .normal)
+        submitBtn.setBackgroundImage(imageWithColor(color: LDColor(rgbValue: 0x87CEFA, al: 1)), for: .normal)
+        submitBtn.snp.makeConstraints{(make) in
+            make.height.equalTo(50)
+            make.left.equalTo(horizonGap)
+            make.right.equalTo(-horizonGap)
+            make.top.equalTo(photoView.snp.bottom).offset(25)
         }
        
     }
