@@ -27,12 +27,15 @@ class FeedbackView: UIView {
     
     let photoView = UIView()
     let pushPhotoBtn = UIButton()
+    let photoShowView = UIView()
+    
     let submitBtn = UIButton(type: .system)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setupFeedbackView()
+        setupphotoView()
     }
     
     required init?(coder: NSCoder) {
@@ -63,9 +66,11 @@ class FeedbackView: UIView {
         }
         
         self.addSubview(photoView)
-        photoView.backgroundColor = .blue
+        photoView.layer.borderWidth = 1
+        photoView.layer.borderColor = CGColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
+        photoView.layer.cornerRadius = 3
         photoView.snp.makeConstraints{(make) in
-            make.height.equalTo(200)
+            make.height.equalTo(160)
             make.left.equalTo(horizonGap)
             make.right.equalTo(-horizonGap)
             make.top.equalTo(feedbackView.snp.bottom).offset(25)
@@ -104,6 +109,31 @@ class FeedbackView: UIView {
         placeholder.isScrollEnabled = false
         placeholder.text = "请写下内容，我们将及时为您解决！"
         placeholder.textColor = LDColor(rgbValue: 0xbbbbbb, al: 1)
+        
+    }
+    
+    fileprivate func setupphotoView(){
+        photoView.addSubview(pushPhotoBtn)
+        pushPhotoBtn.backgroundColor = .white
+        pushPhotoBtn.setTitle("上传照片", for: .normal)
+        pushPhotoBtn.setTitleColor(.black, for: .normal)
+        pushPhotoBtn.setTitleColor(.gray, for: .highlighted)
+        pushPhotoBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 30)
+        pushPhotoBtn.setImage(UIImage(named: "appIcon"), for: .normal)
+        pushPhotoBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
+        pushPhotoBtn.snp.makeConstraints{(make) in
+            make.left.top.equalTo(10)
+            make.height.equalTo(30)
+            make.width.equalTo(120)
+        }
+        
+        photoView.addSubview(photoShowView)
+        photoShowView.snp.makeConstraints{(make) in
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
+            make.top.equalTo(pushPhotoBtn.snp.bottom).offset(20)
+            make.bottom.equalToSuperview()
+        }
         
     }
     
