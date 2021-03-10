@@ -176,6 +176,21 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
             make.top.equalToSuperview()
             make.left.equalTo((Float)(self.photoUrlArr.count - 1) * photoGap)
         }
+        
+        let deleteBtn = UIButton()
+        deleteBtn.setBackgroundImage(UIImage.init(named: "shanchu3"), for: .normal)
+        self.feedbackview.photoShowView.addSubview(deleteBtn)
+        deleteBtn.snp.makeConstraints{(make) in
+            make.width.height.equalTo(20)
+            make.top.equalTo(-5)
+            make.left.equalTo((Float)(self.photoUrlArr.count - 1) * photoGap + 90 - 15)
+        }
+        deleteBtn.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+    }
+    
+    //
+    @objc func deleteAction(sender: UIButton){
+        print("删除对应照片")
     }
     
 }
