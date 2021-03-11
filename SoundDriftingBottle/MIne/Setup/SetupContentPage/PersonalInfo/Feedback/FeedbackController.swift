@@ -28,15 +28,9 @@ class FeedbackController: UIViewController {
 //--------------------------------------------------------------------------------------------------
     fileprivate func  initData(){
         photoUrlArr = [String]()
-        
-//        let num1 = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 3 * photoSize)  / 2
-//        if(num1 < 10){
-            photoSize = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 20.0) / 3
-            photoGap = 10.0 + photoSize
-//        }else{
-//            photoSize = 90.0
-//            photoGap = num1 + photoSize
-//        }
+
+        photoSize = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 20.0) / 3
+        photoGap = 10.0 + photoSize
     }
     
     fileprivate func setupNav(){
@@ -67,6 +61,10 @@ class FeedbackController: UIViewController {
         feedbackview.feedbackView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(placeholderDidTapped)))
         feedbackview.contentTextfield.delegate = self
         feedbackview.pushPhotoBtn.addTarget(self, action: #selector(pushPhotoBtnAction), for: .touchUpInside)
+        for item in feedbackview.deleteBtns{
+            item.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
+        }
+        
     }
     
     
@@ -145,6 +143,7 @@ extension FeedbackController: UITextViewDelegate{
 
 extension FeedbackController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         //获取选择的原图
         let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
          
@@ -152,7 +151,7 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
         let fileManager = FileManager.default
         let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
                                                 .userDomainMask, true)[0] as String
-        let filePath = "\(rootPath)/pickedimage\(self.photoUrlArr.count).jpg"
+        let filePath = "\(rootPath)/pickedimage\(Date().timeStamp).jpg"
         let imageData = pickedImage.jpegData(compressionQuality: 1.0)
         fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
          
@@ -172,40 +171,50 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
         //将照片地址加入数组
         print("imageURL:\(filePath)")
         self.photoUrlArr.append(filePath)
-        //显示上传的照片
-        showPushPhotos()
-        
     
         //图片控制器退出
         picker.dismiss(animated: true, completion:nil)
+        
+        //显示上传的照片
+        showPushPhotos()
     }
     
     //显示新上传的照片
     fileprivate func showPushPhotos(){
-        let itemImage = UIImageView()
-        itemImage.image = UIImage.init(named: self.photoUrlArr[(self.photoUrlArr.count - 1)])
-        self.feedbackview.photoShowView.addSubview(itemImage)
-        itemImage.snp.makeConstraints{(make) in
-            make.width.height.equalTo(photoSize)
-            make.top.equalToSuperview()
-            make.left.equalTo((Float)(self.photoUrlArr.count - 1) * photoGap)
-        }
-        
-        let deleteBtn = UIButton()
-        deleteBtn.setBackgroundImage(UIImage.init(named: "shanchu3"), for: .normal)
-        self.feedbackview.photoShowView.addSubview(deleteBtn)
-        deleteBtn.snp.makeConstraints{(make) in
-            make.width.height.equalTo(20)
-            make.top.equalTo(-5)
-            make.left.equalTo((Float)(self.photoUrlArr.count - 1) * photoGap + self.photoSize - 15)
-        }
-        deleteBtn.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+        print("地址： \(self.photoUrlArr[(self.photoUrlArr.count - 1)])")
+        print("index: \(self.photoUrlArr.count - 1)")
+        print("photoUrlArr: \(self.photoUrlArr)")
+        let index = self.photoUrlArr.count - 1
+        self.feedbackview.photoImages[index].image = UIImage.init(contentsOfFile: self.photoUrlArr[index])
+        self.feedbackview.photoImages[index].isHidden = false
+        self.feedbackview.deleteBtns[index].isHidden = false
     }
     
-    //
+    //照片删除操作
     @objc func deleteAction(sender: UIButton){
         print("删除对应照片")
-        
+        for (index, item) in self.feedbackview.deleteBtns.enumerated(){
+            if(item == sender){
+                print("找到：\(index)")
+                do{
+                    try FileManager.default.removeItem(atPath: self.photoUrlArr[index])
+                }catch{
+                    print("删除照片失败")
+                    UIUtil.showHint("删除失败")
+                    return
+                }
+                
+                self.photoUrlArr.remove(at: index)
+            }
+            for (index, item) in self.feedbackview.photoImages.enumerated(){
+                if(index < self.photoUrlArr.count){
+                    item.image = UIImage.init(contentsOfFile: self.photoUrlArr[index])
+                }else{
+                    item.isHidden = true
+                    self.feedbackview.deleteBtns[index].isHidden = true
+                }
+            }
+        }
         
     }
     

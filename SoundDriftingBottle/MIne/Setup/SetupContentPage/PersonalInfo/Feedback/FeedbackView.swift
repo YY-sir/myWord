@@ -16,8 +16,11 @@ enum FeedbackType: Int {
 }
 
 class FeedbackView: UIView {
-    let horizonGap = 30.0
-    let UIwidth = kScreenW - 60.0
+    var horizonGap: Float!
+    var UIwidth: Float!
+    
+    var photoGap: Float!
+    var photoSize: Float!
     
     let mainScrollView: UIScrollView = UIScrollView()
     
@@ -31,18 +34,35 @@ class FeedbackView: UIView {
     let photoView = UIView()
     let pushPhotoBtn = UIButton()
     let photoShowView = UIView()
+    var photoImages = [UIImageView]()
+    let photoImage1 = UIImageView()
+    let photoImage2 = UIImageView()
+    let photoImage3 = UIImageView()
+    var deleteBtns = [UIButton]()
+    let deleteBtn1 = UIButton()
+    let deleteBtn2 = UIButton()
+    let deleteBtn3 = UIButton()
     
     let submitBtn = UIButton(type: .system)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initData()
         setupView()
         setupFeedbackView()
         setupphotoView()
+        setupPhotoShowView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func initData(){
+        horizonGap = 30.0
+        UIwidth = Float(kScreenW - 60.0)
+        photoSize = (Float(UIScreen.main.bounds.width) - 60.0 - 20.0 - 20.0) / 3
+        photoGap = 10.0 + photoSize
     }
     
     fileprivate func setupView(){
@@ -148,6 +168,34 @@ class FeedbackView: UIView {
             make.bottom.equalToSuperview()
         }
         
+    }
+    
+    fileprivate func setupPhotoShowView(){
+        self.photoImages.append(photoImage1)
+        self.photoImages.append(photoImage2)
+        self.photoImages.append(photoImage3)
+        self.deleteBtns.append(deleteBtn1)
+        self.deleteBtns.append(deleteBtn2)
+        self.deleteBtns.append(deleteBtn3)
+        
+        for (index, _) in photoImages.enumerated(){
+            photoShowView.addSubview(photoImages[index])
+            photoImages[index].snp.makeConstraints{(make) in
+                make.width.height.equalTo(photoSize)
+                make.top.equalToSuperview()
+                make.left.equalTo((Float)(index) * photoGap)
+            }
+            photoImages[index].isHidden = true
+            
+            photoShowView.addSubview(deleteBtns[index])
+            deleteBtns[index].setBackgroundImage(UIImage.init(named: "shanchu3"), for: .normal)
+            deleteBtns[index].snp.makeConstraints{(make) in
+                make.width.height.equalTo(20)
+                make.top.equalTo(-5)
+                make.left.equalTo((Float)(index) * photoGap + self.photoSize - 15)
+            }
+            deleteBtns[index].isHidden = true
+        }
     }
     
 }
