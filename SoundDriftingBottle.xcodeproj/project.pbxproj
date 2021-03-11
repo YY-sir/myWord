@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0414196625F9BCE200265EA9 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0414196525F9BCE200265EA9 /* PersonalInfoView.swift */; };
+		041419B425FA057900265EA9 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041419B325FA057900265EA9 /* DatePickerView.swift */; };
 		041F1E5B25C24CD400C3C17A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1E5A25C24CD400C3C17A /* WebKit.framework */; };
 		041F1F6125C2508800C3C17A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F6025C2508800C3C17A /* CoreFoundation.framework */; };
 		041F1F6425C250EB00C3C17A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041F1F6325C250E000C3C17A /* libz.tbd */; };
@@ -209,6 +210,7 @@
 
 /* Begin PBXFileReference section */
 		0414196525F9BCE200265EA9 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
+		041419B325FA057900265EA9 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		041F1E5A25C24CD400C3C17A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		041F1F6025C2508800C3C17A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		041F1F6325C250E000C3C17A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1070,6 +1072,7 @@
 			children = (
 				04C4ACEE25F1C3820084E275 /* PersonalInfoController.swift */,
 				0414196525F9BCE200265EA9 /* PersonalInfoView.swift */,
+				041419B325FA057900265EA9 /* DatePickerView.swift */,
 			);
 			path = PersonalInfo;
 			sourceTree = "<group>";
@@ -1259,6 +1262,7 @@
 				0453FB9A25E0F5A60053ADB6 /* GKPageTableView.swift in Sources */,
 				045AB7DE25E61D31002AB90A /* MJRefreshTrailer.m in Sources */,
 				045AB76725E60804002AB90A /* JXSegmentedIndicatorGradientView.swift in Sources */,
+				041419B425FA057900265EA9 /* DatePickerView.swift in Sources */,
 				043EADE925DFC69900D97784 /* GKPopAnimatedTransition.swift in Sources */,
 				045AB7C725E61D30002AB90A /* UIScrollView+MJRefresh.m in Sources */,
 				044B04D625BFF7F90013F493 /* ConstraintMaker.swift in Sources */,

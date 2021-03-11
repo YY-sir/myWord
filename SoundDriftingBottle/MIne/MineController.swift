@@ -11,6 +11,7 @@ import UIKit
 let kCriticalPoint = -ADAPTATIONRATIO * 50.0
 
 class MineController: GKDemoBaseViewController{
+    let app = UIApplication.shared.delegate as! AppDelegate
     
     let titleDataSource = JXSegmentedTitleDataSource()
     
@@ -157,6 +158,12 @@ class MineController: GKDemoBaseViewController{
         self.headerView.setupBtn.addTarget(self, action: #selector(setupAction), for: .touchUpInside)
         self.headerView.personalBtn.addTarget(self, action: #selector(extendAction), for: .touchUpInside)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(app.faceImageUrl != ""){
+            headerBgImgView.image = UIImage.init(contentsOfFile: app.faceImageUrl)
+        }
     }
     
     //------------------------------------------------------------------------------------------

@@ -32,6 +32,7 @@ class PersonalInfoView: UIView {
         contentTableView.sectionHeaderHeight = 0.1
         contentTableView.separatorColor = LDColor(rgbValue: 0xdddddd, al: 1)
         contentTableView.delaysContentTouches = false
+        contentTableView.backgroundColor = .white
         
         self.addSubview(contentTableView)
         contentTableView.delegate = self
@@ -62,7 +63,7 @@ extension PersonalInfoView: UITableViewDelegate, UITableViewDataSource{
             cell?.contentView.addSubview(faceImage)
 //            faceImage.image = UIImage.init(contentsOfFile: app.faceImageUrl)
             faceImage.image = UIImage.init(named: "profileImage")
-            faceImage.layer.cornerRadius = 3
+            faceImage.layer.cornerRadius = 5
             faceImage.layer.masksToBounds = true
             faceImage.snp.makeConstraints{(make) in
                 make.height.width.equalTo(80.0)
@@ -91,7 +92,7 @@ extension PersonalInfoView: UITableViewDelegate, UITableViewDataSource{
             print("完成")
         default:
             cell?.accessoryType = .disclosureIndicator
-            cell?.detailTextLabel?.text = "1111"
+            cell?.detailTextLabel?.text = "无"
         }
         
         return cell!

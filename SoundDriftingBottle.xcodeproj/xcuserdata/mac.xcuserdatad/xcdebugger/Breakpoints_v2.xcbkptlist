@@ -803,16 +803,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3CE62891-9CB1-43CC-A07C-27A969459C4C"
+            uuid = "D30DBC35-9C61-47D1-BCA8-F3EBCF4EE20C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SoundDriftingBottle/MIne/Setup/SetupController.swift"
+            filePath = "SoundDriftingBottle/MIne/Setup/SetupContentPage/PersonalInfo/DatePickerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "tableView(_:willSelectRowAt:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "createDatePicker()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

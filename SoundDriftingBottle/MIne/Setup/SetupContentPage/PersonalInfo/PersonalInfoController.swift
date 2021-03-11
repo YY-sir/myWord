@@ -14,6 +14,13 @@ class PersonalInfoController: UIViewController {
     
     var personalinfoview: PersonalInfoView!
     
+    lazy var datePickerView: DatePickerView? = {
+        let datePicker: DatePickerView = DatePickerView.init()
+        datePicker.dateFormat = "yyyy年MM月dd日"
+        self.view.addSubview(datePicker)
+        return datePicker
+    }()
+    
 //--------------------------------------------------------------------------------------------------
 //MARK: - 钩子函数
     override func viewDidLoad() {
@@ -52,6 +59,8 @@ class PersonalInfoController: UIViewController {
         tap.delegate = self
         
         personalinfoview.contentTableView.delegate = self
+        personalinfoview.nameTextField.delegate = self
+        personalinfoview.personalTextField.delegate = self
     }
     
 //---------------------------------------------------------------------------------------------------------------------------------------
@@ -94,9 +103,10 @@ extension PersonalInfoController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: indexPath)
         switch tableView.cellForRow(at: indexPath)?.textLabel?.text {
         case "头像":
-            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
+            self.hideBoard()
             //判断设置是否支持图片库
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
                 //初始化图片控制器
@@ -115,15 +125,39 @@ extension PersonalInfoController: UITableViewDelegate{
             print("读取相册完毕")
             
         case "昵称":
-            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
+            self.personalinfoview.nameTextField.becomeFirstResponder()
+            
         case "性别":
-            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
+            self.hideBoard()
+            
+            let alert = UIAlertController(title: "", message: "性别", preferredStyle: .actionSheet)
+            let manchoose = UIAlertAction(title: "男", style: .default, handler: {_ in
+                currentCell?.detailTextLabel?.text = "男"
+            })
+            let wamanchoose = UIAlertAction(title: "女", style: .default, handler: {_ in
+                currentCell?.detailTextLabel?.text = "女"
+            })
+            let cancelchoose = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alert.addAction(manchoose)
+            alert.addAction(wamanchoose)
+            alert.addAction(cancelchoose)
+            self.navigationController?.present(alert, animated: true, completion: nil)
+            
         case "生日":
-            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
+            self.hideBoard()
+            datePickerView?.showDatePickView()
+            datePickerView?.selectDatePicker((currentCell?.detailTextLabel?.text)!)
+            self.datePickerView?.dateSelectedBlock = {[weak self] (dateString) in
+                print("\(dateString)")
+                currentCell?.detailTextLabel!.text = dateString
+            }
+            
         case "个性签名":
-            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
+            self.personalinfoview.personalTextField.becomeFirstResponder()
+            
         default:
-            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
+            self.hideBoard()
+            
         }
         
     }
@@ -176,6 +210,13 @@ extension PersonalInfoController: UIGestureRecognizerDelegate{
         if touch.view?.superview?.classForCoder == UITableViewCell().classForCoder{
             return false
         }
+        return true
+    }
+}
+
+extension PersonalInfoController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.hideBoard()
         return true
     }
 }
