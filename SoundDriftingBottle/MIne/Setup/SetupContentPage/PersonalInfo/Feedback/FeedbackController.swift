@@ -171,12 +171,13 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
         //将照片地址加入数组
         print("imageURL:\(filePath)")
         self.photoUrlArr.append(filePath)
-    
+            
+        //显示上传的照片
+        showPushPhotos()
+        
         //图片控制器退出
         picker.dismiss(animated: true, completion:nil)
         
-        //显示上传的照片
-        showPushPhotos()
     }
     
     //显示新上传的照片
@@ -215,7 +216,6 @@ extension FeedbackController: UIImagePickerControllerDelegate, UINavigationContr
                 }
             }
         }
-        
     }
     
 }

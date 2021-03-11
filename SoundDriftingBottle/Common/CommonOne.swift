@@ -99,6 +99,14 @@ class CommonOne: NSObject {
     
 }
 
+//视图大小
+public func mainCGRect() -> CGRect{
+    let cgRect = CGRect(x: 0, y: CommonOne().topPadding + 44.0, width: UIScreen.main.bounds.width
+, height: UIScreen.main.bounds.height - CommonOne().topPadding - 44.0)
+    return cgRect
+}
+
+
 //时间处理函数
 
 

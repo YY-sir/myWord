@@ -141,6 +141,8 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
         switch text {
         case "修改个人信息":
             print("修改个人信息")
+            let personInfo = PersonalInfoController()
+            self.navigationController?.pushViewController(personInfo, animated: true)
             
         case "意见反馈":
             print("意见反馈")

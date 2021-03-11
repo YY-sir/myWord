@@ -9,9 +9,13 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    //判断是否自己捞瓶子
     var isAutomatic: Bool = false
+    //头像Url
+    var faceImageUrl: String = ""
+    
     var window: UIWindow?
-
     var backgroundTask: UIBackgroundTaskIdentifier!=nil
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
