@@ -11,9 +11,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.pushViewController(RegisterAndLoginController(), animated: true)
+        print("1111111")
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("1111111")
+        self.navigationController?.pushViewController(RegisterAndLoginController(), animated: false)
+    }
 
 }
 

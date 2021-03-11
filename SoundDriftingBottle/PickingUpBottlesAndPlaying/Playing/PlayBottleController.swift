@@ -324,6 +324,7 @@ class PlayBottleController: UIViewController {
     //举报
     fileprivate func feedbackAction(){
         let feedback = FeedbackController()
+        feedback.pageTo = 1
         self.navigationController?.pushViewController(feedback, animated: true)
     }
     

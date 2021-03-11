@@ -16,6 +16,9 @@ enum FeedbackType: Int {
 }
 
 class FeedbackView: UIView {
+    //用于判断：播放转为：0 ； 设置页面跳转为；1
+    var pageTo: Int!
+    
     var horizonGap: Float!
     var UIwidth: Float!
     
@@ -24,7 +27,8 @@ class FeedbackView: UIView {
     
     let mainScrollView: UIScrollView = UIScrollView()
     
-    var labelArr = ["功能问题", "性能问题", "用户投诉"]
+    var labelArr1 = ["功能问题", "性能问题"]
+    var labelArr2 = ["功能问题", "性能问题", "用户投诉"]
     var labelSegmented: UISegmentedControl!
     
     var feedbackView = UIView()
@@ -46,12 +50,18 @@ class FeedbackView: UIView {
     let submitBtn = UIButton(type: .system)
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: CGRect(x: 0, y: 0, width: kScreenW, height: kScreenH))
+    }
+    
+    convenience init(frame: CGRect, page: Int){
+        self.init(frame: frame)
+        pageTo = page
         initData()
         setupView()
         setupFeedbackView()
         setupphotoView()
         setupPhotoShowView()
+
     }
     
     required init?(coder: NSCoder) {
@@ -76,7 +86,12 @@ class FeedbackView: UIView {
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.delaysContentTouches = false
         
-        labelSegmented = UISegmentedControl(items: labelArr)
+        print("222:\(pageTo)")
+        if pageTo == 0{
+            labelSegmented = UISegmentedControl(items: labelArr1)
+        }else{
+            labelSegmented = UISegmentedControl(items: labelArr2)
+        }
         labelSegmented.selectedSegmentIndex = 0
         mainScrollView.addSubview(labelSegmented)
         labelSegmented.snp.makeConstraints{(make) in

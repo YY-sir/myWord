@@ -25,8 +25,9 @@ class RegisterAndLoginController: UIViewController {
             self.navigationController?.pushViewController(pickUpBottle, animated: true)
         }else if(sender.title(for: .normal) == "注册"){
             print("个人信息填写")
-            let mine = MineController()
-            self.navigationController?.pushViewController(mine, animated: true)
+            let personalInfo = PersonalInfoController()
+            personalInfo.pageTo = 1
+            self.navigationController?.pushViewController(personalInfo, animated: true)
         }else{
             print("3333")
         }

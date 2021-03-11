@@ -8,6 +8,8 @@
 import Foundation
 
 class PersonalInfoController: UIViewController {
+    //用于判断：注册页面跳转为：0 ； 设置页面跳转为；1
+    var pageTo: Int!
     
     let app = UIApplication.shared.delegate as! AppDelegate
     let labelArr = ["头像", "昵称", "性别", "生日", "个性签名" ,"完成"]
@@ -25,6 +27,7 @@ class PersonalInfoController: UIViewController {
 //MARK: - 钩子函数
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("页面：\(pageTo)")
         initData()
         setupNav()
         setupView()

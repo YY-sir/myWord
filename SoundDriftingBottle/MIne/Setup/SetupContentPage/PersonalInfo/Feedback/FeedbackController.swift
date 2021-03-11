@@ -12,12 +12,17 @@ import UIKit
 class FeedbackController: UIViewController {
     var feedbackType: FeedbackType = .function
     var feedbackview:FeedbackView!
+//    用于判断：播放转为：0 ； 设置页面跳转为；1
+    var pageTo: Int!
     var photoUrlArr: [String]!
     var photoGap: Float!
     var photoSize: Float!
     
+    var labelArr = ["功能问题", "性能问题"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print("页面：\(pageTo)")
         initData()
         setupNav()
         setupView()
@@ -44,7 +49,9 @@ class FeedbackController: UIViewController {
     
     fileprivate func setupView(){
         self.view.backgroundColor = .white
-        feedbackview = FeedbackView(frame: self.view.bounds)
+        feedbackview = FeedbackView(frame: self.view.bounds, page: pageTo)
+//        print("111:\(pageTo)")
+        feedbackview.pageTo = pageTo
         self.view.addSubview(feedbackview)
     }
     

@@ -119,10 +119,10 @@ class MineController: GKDemoBaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.gk_navBackgroundColor = UIColor.clear
-        self.gk_statusBarStyle = .darkContent
-        self.gk_navTitleColor = UIColor.white
-        self.gk_navLineHidden = true
+//        self.gk_navBackgroundColor = UIColor.clear
+//        self.gk_statusBarStyle = .darkContent
+//        self.gk_navTitleColor = UIColor.white
+//        self.gk_navLineHidden = true
         
         self.view.addSubview(self.headerBgImgView)
         self.view.addSubview(self.effectView)
@@ -158,6 +158,8 @@ class MineController: GKDemoBaseViewController{
         self.headerView.setupBtn.addTarget(self, action: #selector(setupAction), for: .touchUpInside)
         self.headerView.personalBtn.addTarget(self, action: #selector(extendAction), for: .touchUpInside)
         
+        setupNav()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,6 +169,13 @@ class MineController: GKDemoBaseViewController{
     }
     
     //------------------------------------------------------------------------------------------
+    fileprivate func setupNav(){
+        self.gk_navBackgroundColor = .clear
+        self.gk_statusBarStyle = .lightContent
+        self.gk_navLineHidden = true
+        self.gk_backStyle = .white
+    }
+    
     //扩展页面
     @objc func extendAction(){
         let setupvc = ExtendViewController()

@@ -142,11 +142,13 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
         case "修改个人信息":
             print("修改个人信息")
             let personInfo = PersonalInfoController()
+            personInfo.pageTo = 0
             self.navigationController?.pushViewController(personInfo, animated: true)
             
         case "意见反馈":
             print("意见反馈")
             let feedback = FeedbackController()
+            feedback.pageTo = 0
             self.navigationController?.pushViewController(feedback, animated: true)
             
         case "清除缓存":
@@ -168,11 +170,12 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             print("退出")
             let backAlert = UIAlertController.init(title: "确定退出", message: nil, preferredStyle: .alert)
             let alertTrue = UIAlertAction(title: "确定", style: .default, handler: {_ in
-                let register = RegisterAndLoginController()
-                self.dismiss(animated: false, completion: {
-                    print("关闭页面成功")
-                })
-                self.navigationController?.pushViewController(register, animated: true)
+//                let register = RegisterAndLoginController()
+//                self.dismiss(animated: false, completion: {
+//                    print("关闭页面成功")
+//                })
+//                self.navigationController?.pushViewController(register, animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             })
             let alertCancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             backAlert.addAction(alertTrue)
