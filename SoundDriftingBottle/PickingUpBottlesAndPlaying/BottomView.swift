@@ -33,7 +33,7 @@ class BottomView: UIView {
     fileprivate func setupView(){
         self.tintColor = .white
         self.addSubview(mineButton)
-        mineButton.setImage(UIImage(named: "play20"), for: .normal)
+        mineButton.setImage(UIImage(named: "wode3"), for: .normal)
         mineButton.snp.makeConstraints {(make) in
             make.centerY.equalToSuperview()
             make.width.height.equalTo(40)
@@ -41,10 +41,10 @@ class BottomView: UIView {
         }
         
         self.addSubview(recordButton)
-        recordButton.setImage(UIImage(named: "gotoRecord"), for: .normal)
+        recordButton.setImage(UIImage(named: "luyin4"), for: .normal)
         recordButton.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(36)
         }
 
         self.addSubview(autoplayButton)

@@ -167,8 +167,8 @@ class FeedbackView: UIView {
         pushPhotoBtn.setTitleColor(.black, for: .normal)
         pushPhotoBtn.setTitleColor(.gray, for: .highlighted)
         pushPhotoBtn.titleEdgeInsets = UIEdgeInsets(top: 0, left: -30, bottom: 0, right: 30)
-        pushPhotoBtn.setImage(UIImage(named: "appIcon"), for: .normal)
-        pushPhotoBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
+        pushPhotoBtn.setImage(UIImage(named: "image0"), for: .normal)
+        pushPhotoBtn.imageEdgeInsets = UIEdgeInsets(top: 2, left: 92, bottom: 2, right: 2)
         pushPhotoBtn.snp.makeConstraints{(make) in
             make.left.top.equalTo(10)
             make.height.equalTo(30)

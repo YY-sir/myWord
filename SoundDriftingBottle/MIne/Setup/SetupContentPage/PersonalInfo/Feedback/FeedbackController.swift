@@ -113,6 +113,7 @@ class FeedbackController: UIViewController {
     
     //获取图片
     @objc func pushPhotoBtnAction(){
+        self.hideBoard()
         if self.photoUrlArr.count >= 3{
             UIUtil.showHint("最多只能上传三张照片哦~")
             return
