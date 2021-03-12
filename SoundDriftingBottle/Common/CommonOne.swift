@@ -106,6 +106,14 @@ public func mainCGRect() -> CGRect{
     return cgRect
 }
 
+//字符串去除前后空格和换行
+public func trim(str: String) -> String{
+    //去除前后空格
+    var resultStr = str.trimmingCharacters(in: CharacterSet.whitespaces)
+    //去除换行
+    resultStr = resultStr.trimmingCharacters(in: CharacterSet.newlines)
+    return resultStr
+}
 
 //时间处理函数
 

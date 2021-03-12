@@ -17,8 +17,7 @@ class FeedbackController: UIViewController {
     var photoUrlArr: [String]!
     var photoGap: Float!
     var photoSize: Float!
-    
-    var labelArr = ["功能问题", "性能问题"]
+    var submitTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +27,12 @@ class FeedbackController: UIViewController {
         setupView()
         setupPhotoView()
         addAction()
+    }
+    
+    deinit {
+        print("关闭反馈页面")
+        submitTimer?.invalidate()
+        submitTimer = nil
     }
     
 //--------------------------------------------------------------------------------------------------
@@ -50,7 +55,6 @@ class FeedbackController: UIViewController {
     fileprivate func setupView(){
         self.view.backgroundColor = .white
         feedbackview = FeedbackView(frame: self.view.bounds, page: pageTo)
-//        print("111:\(pageTo)")
         feedbackview.pageTo = pageTo
         self.view.addSubview(feedbackview)
     }
@@ -71,6 +75,7 @@ class FeedbackController: UIViewController {
         for item in feedbackview.deleteBtns{
             item.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
         }
+        feedbackview.submitBtn.addTarget(self, action: #selector(submitBtnAction), for: .touchUpInside)
         
     }
     
@@ -106,6 +111,7 @@ class FeedbackController: UIViewController {
             feedbackview.placeholder.isHidden = true
             feedbackview.contentTextfield.isHidden = false
             if (!feedbackview.contentTextfield.isFirstResponder) {
+                self.feedbackview.feedbackView.layer.borderColor = CGColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
                 feedbackview.contentTextfield.becomeFirstResponder()
             }
         }
@@ -134,6 +140,22 @@ class FeedbackController: UIViewController {
         }else{
             print("读取相册错误")
         }
+    }
+    
+    @objc func submitBtnAction(){
+        if trim(str: self.feedbackview.contentTextfield.text) != ""{
+            UIUtil.showLoading()
+            submitTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(submitTimerAction), userInfo: nil, repeats: false)
+        }else{
+            UIUtil.showHint("请输入内容")
+            self.feedbackview.feedbackView.layer.borderColor = CGColor(red: 1, green: 0, blue: 0, alpha: 1)
+        }
+        
+    }
+    
+    @objc func submitTimerAction(){
+        UIUtil.showHint("谢谢您的反馈")
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

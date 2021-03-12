@@ -675,22 +675,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CDD56D87-594F-4636-8567-D2F0E9EDF1F6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoundDriftingBottle/PickingUpBottlesAndPlaying/Playing/PlayBottleController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "10699E7C-EFE2-4A28-A9B5-0A9AD4665729"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -813,6 +797,22 @@
             startingLineNumber = "51"
             endingLineNumber = "51"
             landmarkName = "createDatePicker()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5572F137-EDAA-4558-A67C-FDA5E0DB942C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SoundDriftingBottle/MIne/Setup/SetupContentPage/PersonalInfo/Feedback/FeedbackController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "addAction()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
