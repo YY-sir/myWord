@@ -47,7 +47,7 @@ class PickingUpBottlesView: UIView {
             let bottleCell = CommonTwo()
             bottleCell.id = index
             if index == 0 {
-                bottleCell.bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
+                bottleCell.bgColor = LDColor(rgbValue: 0x111111, al: 0.25)
                 bottleCell.labelColor = .white
             }else{
                 bottleCell.bgColor = LDColor(rgbValue: 0x213324, al: 0)
@@ -145,7 +145,7 @@ extension PickingUpBottlesView: UICollectionViewDataSource, UICollectionViewDele
         cell.bottleL.text = bottleLabelText[indexPath.row]
         cell.bottleI.image = UIImage(named: bottleImage[indexPath.row])
         
-        cell.layer.cornerRadius = 3
+        cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true
         
         return cell
@@ -157,7 +157,7 @@ extension PickingUpBottlesView: UICollectionViewDataSource, UICollectionViewDele
         //1.对cell的list数组进行初始化
         for index in 0..<5{
             if index == indexPath.row{
-                bottleCellList[index].bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
+                bottleCellList[index].bgColor = LDColor(rgbValue: 0x111111, al: 0.25)
                 bottleCellList[index].labelColor = .white
                 continue
             }
