@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 class PickingUpBottlesView: UIView {
+    var scrollContentH: Float!
+    var overH: Float!
+    
     let mainScrollView: UIScrollView = UIScrollView()
     let labelView: UIView = UIView()
     let mainScrollViewBg: UIImageView = UIImageView()
@@ -15,11 +18,17 @@ class PickingUpBottlesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initData()
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func initData(){
+        overH = Float(700.0 * kScreenH / 896)
+        scrollContentH = Float(kScreenH + 70 * kScreenH / 896 + 60)
     }
     
     fileprivate func setupView(){
@@ -33,19 +42,21 @@ class PickingUpBottlesView: UIView {
         }
         
         self.backgroundColor = UIColor.yellow
+        mainScrollView.showsVerticalScrollIndicator = false
+        mainScrollView.showsHorizontalScrollIndicator = false
         self.addSubview(mainScrollView)
         mainScrollView.backgroundColor = UIColor.white
         mainScrollView.snp.makeConstraints {(make) in
             make.size.equalToSuperview()
         }
-        mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: 1000)
+        
+        mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width, height: CGFloat(scrollContentH))
         mainScrollView.addSubview(mainScrollViewBg)
         mainScrollViewBg.image = UIImage(named: "image2")
         mainScrollViewBg.snp.makeConstraints {(make) in
-            make.top.equalToSuperview().offset(-CommonOne().topPadding)
-            make.bottom.equalToSuperview().offset(CommonOne().bottomPadding)
+            make.top.equalToSuperview().offset(-CommonOne().topPadding - 300.0 * kScreenH / 896)
             make.width.equalToSuperview()
-            make.height.equalTo(1200)
+            make.height.equalTo(scrollContentH + overH)
         }
         
         mainScrollView.addSubview(labelView)

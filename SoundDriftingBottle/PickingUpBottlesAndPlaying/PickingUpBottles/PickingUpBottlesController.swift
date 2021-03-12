@@ -121,7 +121,9 @@ class PickingUpBottlesController: UIViewController {
 
 extension PickingUpBottlesController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y >= 300 &&  isPickup){
+        print("\(scrollView.contentOffset.y)")
+        let changeH = kScreenH / 896 * (310 + 100) - 100
+        if (scrollView.contentOffset.y >= changeH && isPickup){
             isPickup = false
             let playbottle = PlayBottleController()
             self.navigationController?.pushViewController(playbottle, animated: true)
