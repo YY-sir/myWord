@@ -428,12 +428,11 @@ class ThrowTheBottleController: UIViewController {
             //左移动
             self.recordview.bottleLabelViewCollection.snp.remakeConstraints {(make) in
                 make.right.left.equalTo(self.recordview.snp.left)
-//                make.width.equalTo(320)
-                make.height.equalTo(80 * scaleMaxV)
+                make.height.equalTo(90 * scaleMaxV)
                 make.centerY.equalToSuperview()
             }
             self.recordview.changeLabelViewCollection.snp.remakeConstraints {(make) in
-                make.center.equalToSuperview()
+                make.centerY.equalToSuperview()
                 make.left.equalTo(30 * scaleMinV)
                 make.right.equalTo(-30 * scaleMinV)
                 make.height.equalTo(90 * scaleMaxV)
@@ -467,12 +466,12 @@ class ThrowTheBottleController: UIViewController {
             //右移动
             self.recordview.changeLabelViewCollection.snp.remakeConstraints {(make) in
                 make.left.right.equalTo(self.recordview.snp.right)
-                make.height.equalTo(80 * scaleMaxV)
+                make.height.equalTo(90 * scaleMaxV)
                 make.centerY.equalToSuperview()
 
             }
             self.recordview.bottleLabelViewCollection.snp.remakeConstraints {(make) in
-                make.center.equalToSuperview()
+                make.centerY.equalToSuperview()
                 make.left.equalTo(30 * scaleMinV)
                 make.right.equalTo(-30 * scaleMinV)
                 make.height.equalTo(90 * scaleMaxV)

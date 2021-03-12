@@ -101,7 +101,7 @@ class RecordView: UIView {
         self.addSubview(bottleLabelViewCollection)
         bottleLabelViewCollection.backgroundColor = .clear
         bottleLabelViewCollection.snp.makeConstraints {(make) in
-            make.center.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.left.equalTo(30 * scaleMinV)
             make.right.equalTo(-30 * scaleMinV)
             make.height.equalTo(90 * scaleMaxV)
@@ -114,39 +114,42 @@ class RecordView: UIView {
             make.centerY.equalToSuperview()
             make.left.equalTo(self.snp.right)
             make.right.equalTo(self.snp.right)
-            make.height.equalTo(80 * scaleMinV)
-        }
-
-        
-        self.addSubview(recordView)
-        recordView.snp.makeConstraints {(make) in
-            make.top.equalTo(bottleLabelViewCollection.snp.bottom).offset(50)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(320)
+            make.height.equalTo(90 * scaleMinV)
         }
         
         self.addSubview(earReturnB)
         earReturnB.backgroundColor = .white
         earReturnB.setTitle("耳返", for: .normal)
+        earReturnB.titleLabel?.font = UIFont.systemFont(ofSize: 18 * scaleMaxV)
         earReturnB.setTitleColor(LDColor(rgbValue: 0x509371, al: 1), for: .normal)
         earReturnB.layer.cornerRadius = 5
         earReturnB.layer.masksToBounds = true
         earReturnB.snp.makeConstraints {(make) in
-            make.width.height.equalTo(50)
-            make.bottom.equalTo(-50)
+            make.width.height.equalTo(50 * scaleMaxV)
+            make.bottom.equalTo(-(CommonOne().bottomPadding + 10))
             make.right.equalTo(-20)
         }
         
         self.addSubview(volumeviewChooseB)
         volumeviewChooseB.backgroundColor = .white
         volumeviewChooseB.setTitle("柱状", for: .normal)
+        volumeviewChooseB.titleLabel?.font = UIFont.systemFont(ofSize: 18 * scaleMaxV)
         volumeviewChooseB.setTitleColor(LDColor(rgbValue: 0x4682B4, al: 1), for: .normal)
         volumeviewChooseB.layer.cornerRadius = 5
         volumeviewChooseB.layer.masksToBounds = true
         volumeviewChooseB.snp.makeConstraints {(make) in
-            make.width.height.equalTo(50)
-            make.bottom.equalTo(-50)
+            make.width.height.equalTo(50 * scaleMaxV)
+            make.bottom.equalTo(-(CommonOne().bottomPadding + 10))
             make.right.equalTo(earReturnB.snp.left).offset(-20)
+        }
+        
+        self.addSubview(recordView)
+        recordView.snp.makeConstraints {(make) in
+            make.top.equalTo(bottleLabelViewCollection.snp.bottom).offset(40 * scaleMinV)
+            make.centerX.equalToSuperview()
+            make.left.equalTo(50 * scaleMaxV)
+            make.right.equalTo(-50 * scaleMaxV)
+            make.bottom.equalTo(earReturnB.snp.top).offset(-40 * scaleMinV)
         }
     }
     
@@ -187,18 +190,21 @@ class RecordView: UIView {
 
     //下面录音页面
     fileprivate func setupRecordView(){
-        recordView.addSubview(recordB)
-        recordB.setImage(UIImage.init(named: "record0"), for: .normal)
-        recordB.snp.makeConstraints {(make) in
-            make.centerX.top.equalToSuperview()
-            make.width.height.equalTo(150)
-        }
         
         recordView.addSubview(timeL)
         timeL.text = "0:00/" + SoundDriftingBottle.changeTime(time: bottleTime[0])
         timeL.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
-            make.top.equalTo(recordB.snp.bottom).offset(10)
+            make.height.equalTo(30 * scaleMaxV)
+        }
+        
+        recordView.addSubview(recordB)
+        recordB.setImage(UIImage.init(named: "record0"), for: .normal)
+        recordB.imageView?.contentMode = .scaleAspectFit
+        recordB.snp.makeConstraints {(make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(10)
+            make.bottom.equalTo(timeL.snp.top).offset(-10)
         }
         
         recordView.addSubview(cancelB)
