@@ -7,19 +7,30 @@
 
 import Foundation
 import UIKit
+var cellS: Float!
+
 class PickingUpBottlesView: UIView {
     var scrollContentH: Float!
     var overH: Float!
+//    var cellS: Float!
     
     let mainScrollView: UIScrollView = UIScrollView()
-    let labelView: UIView = UIView()
     let mainScrollViewBg: UIImageView = UIImageView()
+    
     let audioB = UIButton()
+    
+    let labelView: UIView = UIView()
+    var bottleLabelViewCollection: UICollectionView!
+    let bottleLabelText = ["普通瓶", "心情瓶", "音乐瓶", "故事瓶", "愿望瓶"]
+    let bottleImage = ["bottle1_nomal", "bottle2_moon", "bottle3_music", "bottle4_story", "bottle5_wish"]
+    var bottleCellList: [CommonTwo] = []
+    var chooseLabel: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         initData()
         setupView()
+        setupBottleLabelView()
     }
     
     required init?(coder: NSCoder) {
@@ -29,6 +40,23 @@ class PickingUpBottlesView: UIView {
     fileprivate func initData(){
         overH = Float(700.0 * kScreenH / 896)
         scrollContentH = Float(kScreenH + 70 * kScreenH / 896 + 60)
+        
+        cellS = Float((kScreenW - 4 * 3) / 5)
+        
+        for index in 0..<5 {
+            let bottleCell = CommonTwo()
+            bottleCell.id = index
+            if index == 0 {
+                bottleCell.bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
+                bottleCell.labelColor = .white
+            }else{
+                bottleCell.bgColor = LDColor(rgbValue: 0x213324, al: 0)
+                bottleCell.labelColor = .black
+            }
+            bottleCellList.append(bottleCell)
+        }
+        
+        
     }
     
     fileprivate func setupView(){
@@ -60,8 +88,7 @@ class PickingUpBottlesView: UIView {
         }
         
         mainScrollView.addSubview(labelView)
-        labelView.backgroundColor = UIColor.blue
-        labelView.alpha = 0.5
+        labelView.alpha = 0.8
         labelView.snp.makeConstraints {(make) in
             make.width.equalToSuperview()
             make.top.equalToSuperview()
@@ -70,5 +97,102 @@ class PickingUpBottlesView: UIView {
         
         self.bringSubviewToFront(audioB)
     }
+    
+    fileprivate func setupBottleLabelView(){
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 3
+        layout.itemSize = CGSize(width: Int(cellS), height: Int(cellS / 80 * 90))
+        layout.scrollDirection = .horizontal
         
+        
+        bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 85), collectionViewLayout: layout)
+//        bottleLabelViewCollection.layer.cornerRadius = 5
+//        bottleLabelViewCollection.layer.borderWidth = 2
+//        bottleLabelViewCollection.layer.borderColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
+        bottleLabelViewCollection.delegate = self
+        bottleLabelViewCollection.dataSource = self
+        bottleLabelViewCollection.register(PickingUpBottleCell.self, forCellWithReuseIdentifier: PickingUpBottleCell.reused)
+        bottleLabelViewCollection.showsHorizontalScrollIndicator = false
+        bottleLabelViewCollection.showsVerticalScrollIndicator = false
+        
+        bottleLabelViewCollection.backgroundColor = .clear
+        self.labelView.addSubview(bottleLabelViewCollection)
+        bottleLabelViewCollection.snp.makeConstraints {(make) in
+            make.left.right.equalToSuperview()
+            make.height.equalTo(80)
+            make.top.equalTo(80)
+        }
+    }
+        
+}
+
+extension PickingUpBottlesView: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PickingUpBottleCell.reused, for: indexPath) as!PickingUpBottleCell
+        
+        //把原先复用的cell的ui清除
+//        for subView in cell.subviews{
+//            subView.removeFromSuperview()
+//        }
+        
+        //对cell进行ui设计
+        cell.backgroundColor = bottleCellList[indexPath.row].bgColor
+        cell.bottleL.textColor = bottleCellList[indexPath.row].labelColor
+        cell.bottleL.text = bottleLabelText[indexPath.row]
+        cell.bottleI.image = UIImage(named: bottleImage[indexPath.row])
+        
+        cell.layer.cornerRadius = 3
+        cell.layer.masksToBounds = true
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        chooseLabel = indexPath.row
+        
+        //1.对cell的list数组进行初始化
+        for index in 0..<5{
+            if index == indexPath.row{
+                bottleCellList[index].bgColor = LDColor(rgbValue: 0xffffff, al: 0.35)
+                bottleCellList[index].labelColor = .white
+                continue
+            }
+            bottleCellList[index].bgColor = LDColor(rgbValue: 0x213324, al: 0)
+            bottleCellList[index].labelColor = .black
+        }
+        //2.重新载入collection
+        self.bottleLabelViewCollection.reloadData()
+    }
+    
+}
+
+private class PickingUpBottleCell: UICollectionViewCell {
+    static let reused: String = "PickingUpBottleCellIdentify"
+    let bottleL = UILabel()
+    let bottleI = UIImageView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.addSubview(bottleI)
+        bottleI.snp.makeConstraints {(make) in
+            make.top.equalToSuperview().offset(5)
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(cellS / 80 * 55)
+        }
+        self.addSubview(bottleL)
+        bottleL.font = UIFont.systemFont(ofSize: (CGFloat)(cellS / 80 * 16))
+        bottleL.snp.makeConstraints {(make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bottleI.snp.bottom)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
