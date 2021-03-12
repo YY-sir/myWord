@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 class RecordView: UIView {
+    var labelCollectionViewH: Float!
+    var labelCollectionViewW: Float!
+    
     let app = UIApplication.shared.delegate as! AppDelegate
     let RecorderOC = Recorder()
     
@@ -55,6 +58,8 @@ class RecordView: UIView {
         setupRecordView()
         //初始化所选标签
         initLabel()
+        //初始化音频波浪图的值
+        initColumnData()
     }
     
     required init?(coder: NSCoder) {
@@ -62,6 +67,7 @@ class RecordView: UIView {
     }
     
     fileprivate func initCellData(){
+        print("缩放比例：\(scaleMinV);\(scaleMaxV)")
         for index in 0..<5 {
             let bottleCell = CommonTwo()
             bottleCell.id = index
@@ -96,8 +102,9 @@ class RecordView: UIView {
         bottleLabelViewCollection.backgroundColor = .clear
         bottleLabelViewCollection.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
-            make.width.equalTo(320)
-            make.height.equalTo(80)
+            make.left.equalTo(30 * scaleMinV)
+            make.right.equalTo(-30 * scaleMinV)
+            make.height.equalTo(90 * scaleMaxV)
         }
         
         setupChangeLabelView()
@@ -106,8 +113,8 @@ class RecordView: UIView {
         changeLabelViewCollection.snp.makeConstraints {(make) in
             make.centerY.equalToSuperview()
             make.left.equalTo(self.snp.right)
-            make.width.equalTo(320)
-            make.height.equalTo(80)
+            make.right.equalTo(self.snp.right)
+            make.height.equalTo(80 * scaleMinV)
         }
 
         
@@ -146,10 +153,10 @@ class RecordView: UIView {
     //上面选择BottleCollectionView
     func setupBottleLabelView(){
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 85)
-//        layout.minimumLineSpacing = 3
+        layout.itemSize = CGSize(width: 85 * scaleMaxV, height: 90 * scaleMaxV)
+        layout.minimumLineSpacing = 10 * scaleMinV
         layout.scrollDirection = .horizontal
-        bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 85), collectionViewLayout: layout)
+        bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 90 * scaleMaxV), collectionViewLayout: layout)
         bottleLabelViewCollection.layer.cornerRadius = 5
         bottleLabelViewCollection.layer.borderWidth = 2
         bottleLabelViewCollection.layer.borderColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
@@ -164,10 +171,10 @@ class RecordView: UIView {
     //下面选择ChangeBollectionView
     func setupChangeLabelView(){
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 85)
-//        layout.minimumLineSpacing = 3
+        layout.itemSize = CGSize(width: 85 * scaleMaxV, height: 90 * scaleMaxV)
+        layout.minimumLineSpacing = 10 * scaleMinV
         layout.scrollDirection = .horizontal
-        changeLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 85), collectionViewLayout: layout)
+        changeLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 90 * scaleMaxV), collectionViewLayout: layout)
         changeLabelViewCollection.layer.cornerRadius = 5
         changeLabelViewCollection.layer.borderWidth = 2
         changeLabelViewCollection.layer.borderColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
@@ -218,6 +225,17 @@ class RecordView: UIView {
     func initLabel(){
         bottleLabel = 0
         changeLabel = 0
+    }
+    
+    fileprivate func initColumnData(){
+//        columnH = Float(bottleLabelViewCollection.bounds.minY - CommonOne().topPadding - 44.0)
+        columnH = Float(kScreenH - bottleLabelViewCollection.frame.size.height) / 2 - Float(CommonOne().topPadding) - 44.0
+        columnCenterY = Float(CommonOne().topPadding) + 44.0 + columnH / 2
+        print("y:\(bottleLabelViewCollection.frame.origin.y)")
+        print("ch:\(bottleLabelViewCollection.frame.size.height)")
+        print("topPadding:\(CommonOne().topPadding)")
+        print("H:\(columnH)")
+        print("columnCenterY:\(columnCenterY)")
     }
 
 }
@@ -331,8 +349,10 @@ private class RecordViewCell: UICollectionViewCell {
         bottleI.snp.makeConstraints {(make) in
             make.top.equalToSuperview().offset(5)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(55)
+            make.height.width.equalTo(60 * scaleMaxV)
         }
+        
+        bottleL.font = UIFont.systemFont(ofSize: 16 * scaleMaxV)
         self.addSubview(bottleL)
         bottleL.snp.makeConstraints {(make) in
             make.centerX.equalToSuperview()

@@ -71,6 +71,7 @@ class ThrowTheBottleController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initData()
         
         //设置导航栏
         setupNav()
@@ -127,6 +128,10 @@ class ThrowTheBottleController: UIViewController {
     }
     
 //2------------------------------------------------------------------------------------------------------
+    fileprivate func initData(){
+        
+    }
+    
     fileprivate func setupNav(){
         self.gk_navBackgroundColor = .clear
         self.gk_statusBarStyle = .lightContent
@@ -422,15 +427,16 @@ class ThrowTheBottleController: UIViewController {
             self.recordview.changeLabelViewCollection.alpha = 1
             //左移动
             self.recordview.bottleLabelViewCollection.snp.remakeConstraints {(make) in
-                make.right.equalTo(self.recordview.snp.left)
-                make.width.equalTo(320)
-                make.height.equalTo(80)
+                make.right.left.equalTo(self.recordview.snp.left)
+//                make.width.equalTo(320)
+                make.height.equalTo(80 * scaleMaxV)
                 make.centerY.equalToSuperview()
             }
             self.recordview.changeLabelViewCollection.snp.remakeConstraints {(make) in
                 make.center.equalToSuperview()
-                make.width.equalTo(320)
-                make.height.equalTo(80)
+                make.left.equalTo(30 * scaleMinV)
+                make.right.equalTo(-30 * scaleMinV)
+                make.height.equalTo(90 * scaleMaxV)
             }
             //显示按钮
             self.recordview.cancelB.alpha = 1
@@ -460,15 +466,16 @@ class ThrowTheBottleController: UIViewController {
         UIView.animate(withDuration: 1, animations: {
             //右移动
             self.recordview.changeLabelViewCollection.snp.remakeConstraints {(make) in
-                make.left.equalTo(self.recordview.snp.right)
-                make.width.equalTo(320)
-                make.height.equalTo(80)
+                make.left.right.equalTo(self.recordview.snp.right)
+                make.height.equalTo(80 * scaleMaxV)
                 make.centerY.equalToSuperview()
+
             }
             self.recordview.bottleLabelViewCollection.snp.remakeConstraints {(make) in
                 make.center.equalToSuperview()
-                make.width.equalTo(320)
-                make.height.equalTo(80)
+                make.left.equalTo(30 * scaleMinV)
+                make.right.equalTo(-30 * scaleMinV)
+                make.height.equalTo(90 * scaleMaxV)
             }
             //显示按钮
             self.recordview.cancelB.alpha = 0
