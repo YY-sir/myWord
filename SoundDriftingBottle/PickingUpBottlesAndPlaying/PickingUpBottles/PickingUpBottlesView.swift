@@ -101,7 +101,7 @@ class PickingUpBottlesView: UIView {
     fileprivate func setupBottleLabelView(){
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 3
-        layout.itemSize = CGSize(width: Int(cellS), height: Int(cellS / 80 * 90))
+        layout.itemSize = CGSize(width: Int(cellS), height: Int(cellS / 80 * 80))
         layout.scrollDirection = .horizontal
         
         
@@ -145,7 +145,7 @@ extension PickingUpBottlesView: UICollectionViewDataSource, UICollectionViewDele
         cell.bottleL.text = bottleLabelText[indexPath.row]
         cell.bottleI.image = UIImage(named: bottleImage[indexPath.row])
         
-        cell.layer.cornerRadius = 5
+        cell.layer.cornerRadius = 7
         cell.layer.masksToBounds = true
         
         return cell

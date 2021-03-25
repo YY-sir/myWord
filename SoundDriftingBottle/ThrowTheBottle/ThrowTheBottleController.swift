@@ -31,7 +31,6 @@ class ThrowTheBottleController: UIViewController {
     var pathP: String!
     var pathOut: String!
     var pathOutC: String!
-    var recordName: String!
     var url: NSURL!
     var timer1: Timer!
     var recordTime: Float = 0
@@ -39,13 +38,14 @@ class ThrowTheBottleController: UIViewController {
     //录音机配置
     private let recorderSetting =  [AVFormatIDKey: kAudioFormatLinearPCM,
                                     AVNumberOfChannelsKey: 1,
-                                    AVSampleRateKey: 42000.0,
+                                    AVSampleRateKey: 44100.0,
                                     AVLinearPCMBitDepthKey: 16,
                                     AVEncoderAudioQualityKey: kRenderQuality_High,
                                     AVEncoderBitRateKey: 12800,
                                     AVLinearPCMIsFloatKey: false,
                                     AVLinearPCMIsNonInterleaved: false,
                                     AVLinearPCMIsBigEndianKey: false] as [String : Any]
+
     ///波形更新计时器
     private var timer2: Timer?
     ///音频波形更新间隔
@@ -325,14 +325,12 @@ class ThrowTheBottleController: UIViewController {
         
         recordTotalTime = Float(recordview.bottleTime[recordview.bottleLabel])
         
+        //设置音频存储路径
         time1970 = Date().timeStamp
-        print("\(time1970)")
-        recordName = ("/" + time1970 + ".pcm")
-        print("\(recordName)")
-        path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(recordName)
+        path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending("/" + time1970 + ".pcm")
         pathP = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "s.pcm"))
         pathOut = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "m.mp3"))
-        print("\(path)")
+        print("path：\(String(describing: path))")
         
         audioRecorder = try! AVAudioRecorder.init(url: NSURL(string: path)! as URL, settings:recorderSetting)
         //添加代理
@@ -534,7 +532,7 @@ class ThrowTheBottleController: UIViewController {
         }
         
         //音频频谱动画
-        for (index, item) in allSoundMeters.enumerated(){
+        for (_, item) in allSoundMeters.enumerated(){
             print("allSoundMeters:\(item)")
         }
         updateMetersNumber = 0
@@ -544,11 +542,11 @@ class ThrowTheBottleController: UIViewController {
         lastTimeChangeLabel = changeLabel
         //变声处理
         var pathC: String = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "sc.pcm"))
-        pathC = RecorderOC.soundChangePath(in: pathP, pathOut: pathC, soundNumber: Int32(changeLabel))
-        
         pathOutC = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!.appending(("/" + time1970 + "mc.mp3"))
-        pathOutC = RecorderOC.audio_PCMtoMP3_path(in: pathC, pathOut: pathOutC)
-
+        
+//        pathC = RecorderOC.soundChangePath(in: pathP, pathOut: pathC, soundNumber: Int32(changeLabel))
+//        pathOutC = RecorderOC.audio_PCMtoMP3_path(in: pathC, pathOut: pathOutC)
+        pathOutC = pathOut
         print("Label:\(changeLabel);path:\(URL(string: pathOutC))")
         playerItem = AVPlayerItem.init(url: NSURL(fileURLWithPath: pathOutC) as URL)
         player = AVPlayer.init(playerItem: playerItem)
@@ -593,7 +591,6 @@ class ThrowTheBottleController: UIViewController {
             
             //
             for (index, _) in self.soundMeters.enumerated(){
-                print("No")
                 if(index < self.soundMeters.count - 1){
                     self.soundMeters[index] = self.soundMeters[index + 1]
                 }else{
@@ -648,7 +645,8 @@ extension ThrowTheBottleController: AVAudioRecorderDelegate{
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("录音结束")
         //对原声进行降噪 并转为mp3
-        pathP = RecorderOC.noiseSuppressPath(path, pathOut: pathP)
+//        pathP = RecorderOC.noiseSuppressPath(path, pathOut: pathP)
+        pathP = path
         pathOut = RecorderOC.audio_PCMtoMP3_path(in: pathP, pathOut: pathOut)
     }
 }

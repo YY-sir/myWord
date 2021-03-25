@@ -16,16 +16,21 @@
 //将pcm格式音频转成mp3
 - ( NSString* )audio_PCMtoMP3_pathIN:(NSString*)pathIn pathOut:(NSString*)pathOut
 {
-    NSString *mp3FilePath = [[NSString alloc] initWithString:pathOut];
-    NSLog(@"pathOut-mp3:%@",mp3FilePath);
+//    NSString *mp3FilePath = [[NSString alloc] initWithString:pathOut];
+//    NSLog(@"pathOut-mp3:%@",mp3FilePath);
 
     @try {
         int read, write;
-       
-        FILE *pcm = fopen ([ pathIn cStringUsingEncoding : 1 ], "rb" );  //source 被转换的音频文件位置
+        
+        FILE *pcm = fopen ([pathIn cStringUsingEncoding : 1 ], "rb" );  //source 被转换的音频文件位置
+        if (pcm == NULL){
+            return @"";
+        }
         fseek (pcm, 4 * 1024 , SEEK_CUR );                                   //skip file header
-        FILE *mp3 = fopen ([mp3FilePath cStringUsingEncoding : 1 ], "wb" );  //output 输出生成的 Mp3 文件位置
-       
+        FILE *mp3 = fopen ([pathOut cStringUsingEncoding : 1 ], "wb" );  //output 输出生成的 Mp3 文件位置
+        if (mp3 == NULL){
+            return @"";
+        }
         const int PCM_SIZE = 8192 ; //8192
         const int MP3_SIZE = 8192 ; //8192
         short int pcm_buffer[PCM_SIZE* 2 ];
@@ -59,7 +64,7 @@
         NSLog ( @"-------------------------------this is :%@" ,[exception description ]);
     }
     @finally {
-        return mp3FilePath;
+        return pathOut;
     }
 }
 
