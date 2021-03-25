@@ -8,9 +8,13 @@
 import Foundation
 import UIKit
 class LoginView: UIView {
+    let boxView : UIView = UIView()
+    
     let topView: UIView = UIView()
+    let topSelectView: UIView = UIView()
     let section1: UIButton = UIButton()
     let section2: UIButton = UIButton()
+    
     let number: UILabel = UILabel()
     let password: UILabel = UILabel()
     let numberT : UITextField = UITextField1()
@@ -27,7 +31,7 @@ class LoginView: UIView {
     let loginButton : UIButton = UIButton()
     let registerButton : UIButton = UIButton()
     let forgetPasswordButton : UIButton = UIButton()
-    let boxView : UIView = UIView()
+    
     let bottomView : UIView = UIView()
     var timer : Timer!
     var isAnimattion = false
@@ -36,9 +40,12 @@ class LoginView: UIView {
     var boxViewH: CGFloat!
     var boxViewBottom: CGFloat!
     
+    var boxViewWidth = ScreenWidth - 100 * ScreenWidth / 375
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupBoxView()
+        setupTopView()
         setupContentView()
         setupButtonAction()
         setupKeyboardAction()
@@ -56,38 +63,15 @@ class LoginView: UIView {
         boxView.layer.cornerRadius = 5
         boxView.clipsToBounds = true
         boxView.snp.makeConstraints {(make) in
+            make.width.equalTo(boxViewWidth)
             make.height.equalTo(boxViewH)
-            make.width.equalTo(270)
             make.center.equalToSuperview()
         }
         
         boxView.addSubview(topView)
-        topView.backgroundColor = LDColor(rgbValue: 0x6495ED, al: 1)
         topView.snp.makeConstraints {(make) in
-            make.right.top.equalToSuperview()
-            make.width.equalTo(135)
             make.height.equalTo(50)
-        }
-        
-        boxView.addSubview(section1)
-        section1.setTitle("登陆", for: .normal)
-        self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
-        section1.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
-        section1.snp.makeConstraints {(make) in
-            make.width.equalTo(135)
-            make.height.equalTo(50)
-            make.top.left.equalToSuperview()
-        }
-        
-        boxView.addSubview(section2)
-        section2.setTitle("注册", for: .normal)
-        self.section2.setTitleColor(UIColor.white, for: .normal)
-        self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
-        section2.setTitleColor(UIColor.white, for: .normal)
-        section2.snp.makeConstraints {(make) in
-            make.width.equalTo(135)
-            make.height.equalTo(50)
-            make.top.right.equalToSuperview()
+            make.left.top.right.equalToSuperview()
         }
         
         boxView.addSubview(bottomView)
@@ -109,19 +93,49 @@ class LoginView: UIView {
         }
     }
     
+    fileprivate func setupTopView(){
+        
+        topView.addSubview(topSelectView)
+        topSelectView.backgroundColor = LDColor(rgbValue: 0x6495ED, al: 1)
+        topSelectView.snp.makeConstraints {(make) in
+            make.top.right.bottom.equalToSuperview()
+            make.width.equalTo(boxViewWidth / 2)
+        }
+        
+        topView.addSubview(section1)
+        section1.setTitle("登陆", for: .normal)
+        self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
+        section1.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
+        section1.snp.makeConstraints {(make) in
+            make.top.left.bottom.equalToSuperview()
+            make.width.equalTo(boxViewWidth / 2)
+        }
+        
+        topView.addSubview(section2)
+        section2.setTitle("注册", for: .normal)
+        self.section2.setTitleColor(UIColor.white, for: .normal)
+        self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
+        section2.setTitleColor(UIColor.white, for: .normal)
+        section2.snp.makeConstraints {(make) in
+            make.top.right.bottom.equalToSuperview()
+            make.width.equalTo(boxViewWidth / 2)
+        }
+    }
+    
     fileprivate func setupContentView(){
         //账号
         boxView.addSubview(numberView)
         numberView.snp.makeConstraints {(make) in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(235)
             make.height.equalTo(40)
             make.top.equalTo(75)
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
         }
         
         numberView.addSubview(number)
         number.text = "账号: "
         number.snp.makeConstraints {(make) in
+            make.width.equalTo(50)
             make.left.height.equalToSuperview()
         }
         
@@ -141,8 +155,8 @@ class LoginView: UIView {
         //密码
         boxView.addSubview(passwordView)
         passwordView.snp.makeConstraints {(make) in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(235)
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
             make.height.equalTo(40)
             make.top.equalTo(135)
         }
@@ -150,6 +164,7 @@ class LoginView: UIView {
         passwordView.addSubview(password)
         password.text = "密码: "
         password.snp.makeConstraints {(make) in
+            make.width.equalTo(50)
             make.left.height.equalToSuperview()
         }
         
@@ -171,8 +186,8 @@ class LoginView: UIView {
         boxView.addSubview(confirmView)
         confirmView.alpha = 0
         confirmView.snp.makeConstraints {(make) in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(235)
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
             make.height.equalTo(0)
             make.top.equalTo(195)
         }
@@ -202,8 +217,8 @@ class LoginView: UIView {
         boxView.addSubview(verificationView)
         verificationView.alpha = 0
         verificationView.snp.makeConstraints {(make) in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(235)
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
             make.height.equalTo(0)
             make.top.equalTo(255)
         }
@@ -255,37 +270,34 @@ class LoginView: UIView {
             
             boxViewH = 240
             boxViewBottom = self.isKeyboard ? boxViewBottom : (self.frame.height - boxViewH) / 2
-            print("---\(boxViewBottom)---\(isKeyboard)---")
             UIView.animate(withDuration: 0.6, animations: {
                 self.boxView.snp.remakeConstraints {(make) in
+                    make.width.equalTo(self.boxViewWidth)
                     make.height.equalTo(self.boxViewH)
-                    make.width.equalTo(270)
-                    make.centerX.equalToSuperview()
-                    make.bottom.equalTo(-self.boxViewBottom)
+                    make.center.equalToSuperview()
                 }
                 self.section2.setTitleColor(UIColor.white, for: .normal)
                 self.section2.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
                 self.section1.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
                 self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 20.0, weight: UIFont.Weight(rawValue: 400))
                 self.loginButton.setTitle("登陆", for: .normal)
-                self.topView.snp.remakeConstraints {(make) in
-                    make.right.top.equalToSuperview()
-                    make.width.equalTo(135)
-                    make.height.equalTo(50)
+                self.topSelectView.snp.remakeConstraints {(make) in
+                    make.top.right.bottom.equalToSuperview()
+                    make.width.equalTo(self.boxViewWidth / 2)
                 }
                 
                 self.confirmView.alpha = 0
                 self.confirmView.snp.remakeConstraints {(make) in
-                    make.centerX.equalToSuperview()
-                    make.width.equalTo(235)
+                    make.left.equalTo(10)
+                    make.right.equalTo(-10)
                     make.height.equalTo(0)
                     make.top.equalTo(195)
                 }
                 
                 self.verificationView.alpha = 0
                 self.verificationView.snp.remakeConstraints {(make) in
-                    make.centerX.equalToSuperview()
-                    make.width.equalTo(235)
+                    make.left.equalTo(10)
+                    make.right.equalTo(-10)
                     make.height.equalTo(0)
                     make.top.equalTo(255)
                 }
@@ -301,13 +313,11 @@ class LoginView: UIView {
             
             boxViewH = 360
             boxViewBottom = self.isKeyboard ? boxViewBottom : (self.frame.height - boxViewH) / 2
-            print("---\(boxViewBottom)---\(isKeyboard)---")
             UIView.animate(withDuration: 0.6, animations: {
                 self.boxView.snp.remakeConstraints {(make) in
+                    make.width.equalTo(self.boxViewWidth)
                     make.height.equalTo(self.boxViewH)
-                    make.width.equalTo(270)
-                    make.centerX.equalToSuperview()
-                    make.bottom.equalTo(-self.boxViewBottom)
+                    make.center.equalToSuperview()
                 }
                 
                 self.section2.setTitleColor(LDColor(rgbValue: 0x6495ED, al: 1), for: .normal)
@@ -315,26 +325,25 @@ class LoginView: UIView {
                 self.section1.setTitleColor(UIColor.white, for: .normal)
                 self.section1.titleLabel?.font = UIFont.monospacedSystemFont(ofSize: 14.0, weight: UIFont.Weight(rawValue: 200))
                 self.loginButton.setTitle("注册", for: .normal)
-                self.topView.snp.remakeConstraints {(make) in
-                    make.left.top.equalToSuperview()
-                    make.width.equalTo(135)
-                    make.height.equalTo(50)
+                self.topSelectView.snp.remakeConstraints {(make) in
+                    make.top.left.bottom.equalToSuperview()
+                    make.width.equalTo(self.boxViewWidth / 2)
                 }
                 
                 self.confirmView.alpha = 1
-                self.confirmView.snp.remakeConstraints {(make) in
-                    make.centerX.equalToSuperview()
-                    make.width.equalTo(235)
+                self.confirmView.snp.remakeConstraints {(make) in#imageLiteral(resourceName: "simulator_screenshot_0FC440DA-70C5-48AB-B69B-63AC3BB63D90.png")
                     make.height.equalTo(40)
                     make.top.equalTo(195)
+                    make.left.equalTo(10)
+                    make.right.equalTo(-10)
                 }
                 
                 self.verificationView.alpha = 1
                 self.verificationView.snp.remakeConstraints {(make) in
-                    make.centerX.equalToSuperview()
-                    make.width.equalTo(235)
                     make.height.equalTo(40)
                     make.top.equalTo(255)
+                    make.left.equalTo(10)
+                    make.right.equalTo(-10)
                 }
 
                 self.layoutIfNeeded()
@@ -368,8 +377,8 @@ class LoginView: UIView {
                 self.boxViewBottom = keyboardSize.height + 120
                 self.boxView.snp.remakeConstraints {(make) in
                     make.bottom.equalTo(-boxViewBottom)
+                    make.width.equalTo(self.boxViewWidth)
                     make.height.equalTo(self.boxViewH)
-                    make.width.equalTo(270)
                     make.centerX.equalToSuperview()
                 }
                 
@@ -386,9 +395,9 @@ class LoginView: UIView {
             if let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 self.isKeyboard = false
                 self.boxView.snp.remakeConstraints {(make) in
-                    make.center.equalTo(self)
+                    make.width.equalTo(self.boxViewWidth)
                     make.height.equalTo(self.boxViewH)
-                    make.width.equalTo(270)
+                    make.center.equalToSuperview()
                 }
 
                 UIView.animate(withDuration: 0.4,delay: 0 ,options:[UIView.AnimationOptions.overrideInheritedDuration,UIView.AnimationOptions.overrideInheritedCurve] , animations: {
