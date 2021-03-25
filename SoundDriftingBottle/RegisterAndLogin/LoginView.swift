@@ -41,6 +41,7 @@ class LoginView: UIView {
     var boxViewBottom: CGFloat!
     
     var boxViewWidth = ScreenWidth - 100 * ScreenWidth / 375
+    var paddingNum = 15 * ScreenWidth / 375
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -128,8 +129,8 @@ class LoginView: UIView {
         numberView.snp.makeConstraints {(make) in
             make.height.equalTo(40)
             make.top.equalTo(75)
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.left.equalTo(paddingNum)
+            make.right.equalTo(-paddingNum)
         }
         
         numberView.addSubview(number)
@@ -155,8 +156,8 @@ class LoginView: UIView {
         //密码
         boxView.addSubview(passwordView)
         passwordView.snp.makeConstraints {(make) in
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.left.equalTo(paddingNum)
+            make.right.equalTo(-paddingNum)
             make.height.equalTo(40)
             make.top.equalTo(135)
         }
@@ -186,8 +187,8 @@ class LoginView: UIView {
         boxView.addSubview(confirmView)
         confirmView.alpha = 0
         confirmView.snp.makeConstraints {(make) in
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.left.equalTo(paddingNum)
+            make.right.equalTo(-paddingNum)
             make.height.equalTo(0)
             make.top.equalTo(195)
         }
@@ -217,8 +218,8 @@ class LoginView: UIView {
         boxView.addSubview(verificationView)
         verificationView.alpha = 0
         verificationView.snp.makeConstraints {(make) in
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.left.equalTo(paddingNum)
+            make.right.equalTo(-paddingNum)
             make.height.equalTo(0)
             make.top.equalTo(255)
         }
@@ -288,16 +289,16 @@ class LoginView: UIView {
                 
                 self.confirmView.alpha = 0
                 self.confirmView.snp.remakeConstraints {(make) in
-                    make.left.equalTo(10)
-                    make.right.equalTo(-10)
+                    make.left.equalTo(self.paddingNum)
+                    make.right.equalTo(-self.paddingNum)
                     make.height.equalTo(0)
                     make.top.equalTo(195)
                 }
                 
                 self.verificationView.alpha = 0
                 self.verificationView.snp.remakeConstraints {(make) in
-                    make.left.equalTo(10)
-                    make.right.equalTo(-10)
+                    make.left.equalTo(self.paddingNum)
+                    make.right.equalTo(-self.paddingNum)
                     make.height.equalTo(0)
                     make.top.equalTo(255)
                 }
@@ -331,19 +332,19 @@ class LoginView: UIView {
                 }
                 
                 self.confirmView.alpha = 1
-                self.confirmView.snp.remakeConstraints {(make) in#imageLiteral(resourceName: "simulator_screenshot_0FC440DA-70C5-48AB-B69B-63AC3BB63D90.png")
+                self.confirmView.snp.remakeConstraints {(make) in
                     make.height.equalTo(40)
                     make.top.equalTo(195)
-                    make.left.equalTo(10)
-                    make.right.equalTo(-10)
+                    make.left.equalTo(self.paddingNum)
+                    make.right.equalTo(-self.paddingNum)
                 }
                 
                 self.verificationView.alpha = 1
                 self.verificationView.snp.remakeConstraints {(make) in
                     make.height.equalTo(40)
                     make.top.equalTo(255)
-                    make.left.equalTo(10)
-                    make.right.equalTo(-10)
+                    make.left.equalTo(self.paddingNum)
+                    make.right.equalTo(-self.paddingNum)
                 }
 
                 self.layoutIfNeeded()
