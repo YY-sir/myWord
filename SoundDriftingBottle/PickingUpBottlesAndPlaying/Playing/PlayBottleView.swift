@@ -38,10 +38,11 @@ class PlayBottleView: UIView {
     }
     
     fileprivate func setupView(){
-
+//        actionContentView.hc_setBackgroupViewBlur(alpha: 1, style: .dark)
+        actionContentView.hc_setGradualChangeViewBlur(style: .dark)
         self.addSubview(actionContentView)
         actionContentView.snp.makeConstraints{(make) in
-            make.height.equalTo(250)
+            make.height.equalTo(250 * scaleMaxV)
             make.right.left.equalToSuperview()
             make.bottom.equalTo(-CommonOne().bottomPadding - 50 * scaleMaxV)
         }
@@ -63,6 +64,7 @@ class PlayBottleView: UIView {
 
 //---------------------------------------------------------------------------
     fileprivate func setupOtherView(){
+        
         otherView.addSubview(likeView)
         likeView.snp.makeConstraints {(make) in
             make.width.equalToSuperview()

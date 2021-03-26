@@ -180,6 +180,7 @@
 		045AB7E425E63E74002AB90A /* ExtendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AB7E325E63E74002AB90A /* ExtendViewController.swift */; };
 		045AB7E725E64181002AB90A /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AB7E625E64181002AB90A /* SetupView.swift */; };
 		0461CB2C260C72C3008664B3 /* libTTaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0461CB2B260C72C3008664B3 /* libTTaudio.a */; };
+		0461CB38260DDF0A008664B3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CB37260DDF0A008664B3 /* UIView.swift */; };
 		0485634725C2B5160003D458 /* PlayBottleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634625C2B5160003D458 /* PlayBottleView.swift */; };
 		0485634B25C2C3400003D458 /* ThrowTheBottleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */; };
 		0485634E25C2C4AD0003D458 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485634D25C2C4AD0003D458 /* BottomView.swift */; };
@@ -419,6 +420,7 @@
 		0461CB28260C72C3008664B3 /* noise_suppress_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noise_suppress_api.h; sourceTree = "<group>"; };
 		0461CB29260C72C3008664B3 /* audio_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_common.h; sourceTree = "<group>"; };
 		0461CB2B260C72C3008664B3 /* libTTaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTTaudio.a; sourceTree = "<group>"; };
+		0461CB37260DDF0A008664B3 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		0485634625C2B5160003D458 /* PlayBottleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBottleView.swift; sourceTree = "<group>"; };
 		0485634A25C2C3400003D458 /* ThrowTheBottleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrowTheBottleController.swift; sourceTree = "<group>"; };
 		0485634D25C2C4AD0003D458 /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				04516A6325C7DB7C0056072F /* SoundDriftingBottle-Bridging-Header.h */,
 				04CAE86D25CA81C5009D7954 /* CommonTwo.swift */,
 				0453FB8425E0F1BA0053ADB6 /* CommonData.swift */,
+				0461CB37260DDF0A008664B3 /* UIView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 				043EADCB25DF899700D97784 /* AudioUnitRecord.m in Sources */,
 				044B04D225BFF7F90013F493 /* Typealiases.swift in Sources */,
 				044B050B25C142510013F493 /* PickingUpBottlesView.swift in Sources */,
+				0461CB38260DDF0A008664B3 /* UIView.swift in Sources */,
 				04CE341725EC92C500E7E599 /* HUDMarco.swift in Sources */,
 				045AB7CF25E61D30002AB90A /* MJRefreshBackStateFooter.m in Sources */,
 				045AB77925E60804002AB90A /* JXSegmentedTitleCell.swift in Sources */,
