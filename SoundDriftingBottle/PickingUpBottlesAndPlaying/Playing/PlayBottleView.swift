@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 class PlayBottleView: UIView {
+    let actionContentView: UIView = UIView()
     
     let otherView: UIView = UIView()
     let likeView: UIView = UIView()
@@ -37,22 +38,27 @@ class PlayBottleView: UIView {
     }
     
     fileprivate func setupView(){
-        self.addSubview(otherView)
-        otherView.snp.makeConstraints {(make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(100)
-            make.top.equalTo(500)
+
+        self.addSubview(actionContentView)
+        actionContentView.snp.makeConstraints{(make) in
+            make.height.equalTo(250)
+            make.right.left.equalToSuperview()
+            make.bottom.equalTo(-CommonOne().bottomPadding - 50 * scaleMaxV)
         }
         
-        self.addSubview(playView)
+        actionContentView.addSubview(otherView)
+        otherView.snp.makeConstraints {(make) in
+            make.width.top.equalToSuperview()
+            make.height.equalTo(130 * scaleMaxV)
+        }
+        
+        actionContentView.addSubview(playView)
         playView.snp.makeConstraints {(make) in
-            make.width.equalToSuperview()
-            make.height.equalTo(100)
+            make.width.bottom.equalToSuperview()
             make.top.equalTo(otherView.snp.bottom)
         }
         
         setupPlayView()
-
     }
 
 //---------------------------------------------------------------------------
@@ -67,7 +73,6 @@ class PlayBottleView: UIView {
         otherView.addSubview(slider)
         slider.thumbTintColor = .clear
         slider.isContinuous = false
-//        slider.backgroundColor = .white
         slider.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
             make.left.equalToSuperview().offset(20)

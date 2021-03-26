@@ -42,6 +42,7 @@ class LoginView: UIView {
     
     var boxViewWidth = ScreenWidth - 100 * ScreenWidth / 375
     var paddingNum = 15 * ScreenWidth / 375
+    var scaleNum = kScreenH / 812
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -371,6 +372,8 @@ class LoginView: UIView {
     }
     
     @objc func keyboardWillShow(notifition : Notification){
+        
+        
         if let userInfo = notifition.userInfo as? Dictionary<String, Any>{
             if let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 self.isKeyboard = true

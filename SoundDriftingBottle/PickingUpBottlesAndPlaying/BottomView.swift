@@ -19,8 +19,11 @@ class BottomView: UIView {
     //自己操作按钮
     let autoplayButton: UISwitch = UISwitch()
     
+    var widthAndHeight: CGFloat!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        widthAndHeight = frame.height * 4 / 5
         setupView()
         addButtonAction()
     }
@@ -36,7 +39,7 @@ class BottomView: UIView {
         mineButton.setImage(UIImage(named: "wode3"), for: .normal)
         mineButton.snp.makeConstraints {(make) in
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(widthAndHeight)
             make.left.equalTo(10)
         }
         
@@ -44,7 +47,7 @@ class BottomView: UIView {
         recordButton.setImage(UIImage(named: "luyin4"), for: .normal)
         recordButton.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
-            make.width.height.equalTo(36)
+            make.width.height.equalTo(36 / 40 * widthAndHeight)
         }
 
         self.addSubview(autoplayButton)

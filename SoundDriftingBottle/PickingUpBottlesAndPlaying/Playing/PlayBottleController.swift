@@ -17,7 +17,7 @@ class PlayBottleController: UIViewController {
     var loadingview: LoadingView!
     //播放页面
     var playbottleview: PlayBottleView!
-    let bottomView = BottomView()
+    let bottomView = BottomView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 50 * scaleMaxV))
     
     //音频url
     var url: URL = URL(string: "https://zt-mpc.obs.cn-north-4.myhuaweicloud.com/audio%2FVoiceCard%252FRaw%252Fa_10463194_raw_1601481742792_OPPO_PCAM10_69.m4a")!
@@ -111,7 +111,7 @@ class PlayBottleController: UIViewController {
         bottomView.snp.makeConstraints {(make) in
             make.width.left.equalToSuperview()
             make.bottom.equalTo(-CommonOne().bottomPadding)
-            make.height.equalTo(50)
+            make.height.equalTo(50 * scaleMaxV)
         }
         
     }

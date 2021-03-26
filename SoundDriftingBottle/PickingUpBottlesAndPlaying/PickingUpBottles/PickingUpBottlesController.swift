@@ -15,7 +15,7 @@ class PickingUpBottlesController: UIViewController {
     
     var isPickup = true
     var pickupview : PickingUpBottlesView!
-    var bottomView: BottomView = BottomView()
+    var bottomView: BottomView = BottomView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 50 * scaleMaxV))
     
     ///背景音乐
     //音频url
@@ -75,7 +75,7 @@ class PickingUpBottlesController: UIViewController {
         bottomView.snp.makeConstraints {(make) in
             make.width.left.equalToSuperview()
             make.bottom.equalTo(-CommonOne().bottomPadding)
-            make.height.equalTo(50)
+            make.height.equalTo(50 * scaleMaxV)
         }
     }
 
