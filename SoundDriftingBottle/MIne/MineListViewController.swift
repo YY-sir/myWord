@@ -8,9 +8,16 @@
 
 import UIKit
 
+enum mineType:Int {
+    case history
+    case collect
+    case like
+}
+
 class MineListViewController: GKBaseTableViewController {
 
     var scrollCallBack: ((UIScrollView) -> ())?
+    var type: mineType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +26,37 @@ class MineListViewController: GKBaseTableViewController {
         
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "listCell")
         self.tableView.showsVerticalScrollIndicator = false
+        
+        let refreshC = UIRefreshControl.init()
+        refreshC.attributedTitle = .init(string: "下拉刷新")
+        refreshC.addTarget(self, action: #selector(refresh), for: .valueChanged)
+//        self.tableView.addSubview(refreshC)
+        self.tableView.refreshControl = refreshC
+        self.tableView.refreshControl!.beginRefreshing()
+        self.refresh(refreshControl: self.tableView.refreshControl!)
+    }
+    
+    @objc func refresh(refreshControl: UIRefreshControl){
+        if self.tableView.refreshControl?.isRefreshing != nil{
+//            refreshControl.attributedTitle = .init(string: "加载中...")
+//            refreshControl.attributedTitle = .init(string: "下拉刷新")
+//            refreshControl.endRefreshing()
+        }
     }
 }
 
 extension MineListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 68
+        switch type {
+        case .history:
+            return 10
+        case .collect:
+            return 50
+        case .like:
+            return 100
+        default:
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

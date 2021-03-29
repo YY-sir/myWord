@@ -101,9 +101,15 @@ class MineController: GKDemoBaseViewController{
     
     lazy var childVCs: [MineListViewController] = {
         var childVCs = [MineListViewController]()
-        childVCs.append(MineListViewController())
-        childVCs.append(MineListViewController())
-        childVCs.append(MineListViewController())
+        let historyVC = MineListViewController()
+        historyVC.type = .history
+        let collectVC = MineListViewController()
+        collectVC.type = .collect
+        let likeVC = MineListViewController()
+        likeVC.type = .like
+        childVCs.append(historyVC)
+        childVCs.append(collectVC)
+        childVCs.append(likeVC)
         return childVCs
     }()
     
@@ -118,11 +124,6 @@ class MineController: GKDemoBaseViewController{
 //----------------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.gk_navBackgroundColor = UIColor.clear
-//        self.gk_statusBarStyle = .darkContent
-//        self.gk_navTitleColor = UIColor.white
-//        self.gk_navLineHidden = true
         
         self.view.addSubview(self.headerBgImgView)
         self.view.addSubview(self.effectView)
@@ -174,6 +175,7 @@ class MineController: GKDemoBaseViewController{
         self.gk_statusBarStyle = .lightContent
         self.gk_navLineHidden = true
         self.gk_backStyle = .white
+        self.gk_navTitleColor = .white
     }
     
     //扩展页面
@@ -310,9 +312,11 @@ extension MineController: JXSegmentedViewDelegate{
 extension MineController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.pageScrollView.horizonScrollViewWillBeginScroll()
+        print("水平滚动")
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.pageScrollView.horizonScrollViewDidEndedScroll()
+        print("水平滚动结束")
     }
 }
