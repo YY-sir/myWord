@@ -101,15 +101,17 @@ class MineController: GKDemoBaseViewController{
     
     lazy var childVCs: [MineListViewController] = {
         var childVCs = [MineListViewController]()
-        let historyVC = MineListViewController()
-        historyVC.type = .history
-        let collectVC = MineListViewController()
-        collectVC.type = .collect
-        let likeVC = MineListViewController()
-        likeVC.type = .like
-        childVCs.append(historyVC)
-        childVCs.append(collectVC)
-        childVCs.append(likeVC)
+        let hotVC = MineListViewController(listType: .history)
+        hotVC.shouldLoadData = true
+        childVCs.append(hotVC)
+        
+        let aboutVC = MineListViewController(listType: .collect)
+        aboutVC.shouldLoadData = true
+        childVCs.append(aboutVC)
+        
+        let chatVC = MineListViewController(listType: .like)
+        chatVC.shouldLoadData = true
+        childVCs.append(chatVC)
         return childVCs
     }()
     
