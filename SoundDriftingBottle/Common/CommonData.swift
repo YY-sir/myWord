@@ -15,12 +15,15 @@ let kScreenH = UIScreen.main.bounds.size.height
 let scaleMinV = min(kScreenW / 414, kScreenH / 896)
 let scaleMaxV = max(kScreenW / 414, kScreenH / 896)
 
-//Mine
+//MARK: - Mine
 let kStatusBar_Height: CGFloat = GKConfigure.gk_statusBarFrame().size.height
 let kNavBar_Height: CGFloat = kStatusBar_Height + 44.0
 
 let ADAPTATIONRATIO = kScreenW / 750.0
+//刷新加载时间
+let refreshDuration = 1.0
 
+//MARK: - 录音
 //音频波形图
 let columnNumber = 50
 let columnWidth = (kScreenW / 50) / 2

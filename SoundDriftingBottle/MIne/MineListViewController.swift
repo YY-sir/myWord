@@ -42,7 +42,8 @@ class MineListViewController: UIViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "tableViewCell")
+//        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "tableViewCell")
+        tableView.register(MineListTableViewCell.self, forCellReuseIdentifier: "tableViewCell")
         return tableView
     }()
     
@@ -116,7 +117,7 @@ class MineListViewController: UIViewController {
             
             self.showLoading()
  
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + refreshDuration) {
                 self.hideLoading()
                 self.loadData()
             }
@@ -126,9 +127,7 @@ class MineListViewController: UIViewController {
     }
     
     func loadData() {
-        self.count = 30
-        
-        self.addCellToScrollView()
+        self.count = 25
  
         self.reloadData()
     }
@@ -143,11 +142,6 @@ class MineListViewController: UIViewController {
         }
         
         self.reloadData()
-    }
-    
-    func addCellToScrollView() {
-        
-  
     }
     
     func reloadData() {
@@ -174,27 +168,24 @@ extension MineListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-        cell.textLabel?.text = "第\(indexPath.row+1)行"
+        let cell: MineListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! MineListTableViewCell
+        cell.logoImgView.image = UIImage.init(named: "loading2-1")
+        cell.nameLabel.text = "第" + String(indexPath.row) + "行"
+        cell.collectB.setImage(UIImage.init(named: "image0"), for: .normal)
+        cell.deleteB.setImage(UIImage.init(named: "image2"), for: .normal)
+        
+        cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }
 
 extension MineListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollCallBack!(scrollView)
-    }
-}
-
-extension MineListViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("加载成功")
-        self.hideLoading()
-    }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("加载失败")
-        self.hideLoading()
     }
 }
 
@@ -211,146 +202,3 @@ extension MineListViewController: GKPageListViewDelegate {
         scrollCallBack = callBack
     }
 }
-
-
-
-
-
-
-////
-////  GKWYListViewController.swift
-////  GKPageScrollViewSwift
-////
-////  Created by gaokun on 2019/2/22.
-////  Copyright © 2019 gaokun. All rights reserved.
-////
-//
-//import UIKit
-//import MJRefresh
-//import WebKit
-//
-//enum mineType:Int {
-//    case history
-//    case collect
-//    case like
-//}
-//
-//class MineListViewController: UIViewController {
-//
-//    private weak var currentScrollView: UIScrollView?
-//    var scrollCallBack: ((UIScrollView) -> ())?
-//    var type: mineType!
-//
-//
-//    init(type: mineType) {
-//        super.init(nibName: nil, bundle: nil)
-//        self.type = type
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    public lazy var tableView: UITableView = {
-//        let tableView = UITableView(frame: .zero, style: .plain)
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        tableView.separatorStyle = .none
-//        if #available(iOS 11.0, *) {
-//            tableView.contentInsetAdjustmentBehavior = .never
-//        }
-//        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "MineListCell")
-//        return tableView
-//    }()
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        self.gk_navigationBar.isHidden = true
-//
-//        self.view.addSubview(self.tableView)
-//
-//        self.currentScrollView = self.tableView
-//        self.currentScrollView?.snp.makeConstraints{(make) in
-//            make.edges.equalToSuperview()
-//        }
-//
-//        self.currentScrollView?.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + kRefreshDuration) {
-//                self.tableView.reloadData()
-//            }
-//        })
-//
-////        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "listCell")
-////        self.tableView.showsVerticalScrollIndicator = false
-//
-//    }
-//
-//    @objc func refresh(refreshControl: UIRefreshControl){
-//
-//    }
-//}
-//
-//extension MineListViewController : UITableViewDelegate, UITableViewDataSource{
-////    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////        switch type {
-////        case .history:
-////            return 10
-////        case .collect:
-////            return 50
-////        case .like:
-////            return 100
-////        default:
-////            return 0
-////        }
-////    }
-////
-////    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-////        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-////        cell.selectionStyle = .none
-////        cell.textLabel?.text = "第" + "\(indexPath.row+1)" + "行"
-////        return cell
-////    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        switch type {
-//        case .history:
-//            return 10
-//        case .collect:
-//            return 50
-//        case .like:
-//            return 100
-//        default:
-//            return 0
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MineListCell", for: indexPath)
-//        cell.textLabel?.text = "第\(indexPath.row+1)行"
-//        return cell
-//    }
-//
-//}
-//
-//extension MineListViewController{
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        scrollCallBack?(scrollView)
-//    }
-//}
-//
-//extension MineListViewController: GKPageListViewDelegate {
-//    func listView() -> UIView {
-//        return self.view
-//    }
-//
-//    func listScrollView() -> UIScrollView {
-//        return self.tableView
-//    }
-//
-//    func listViewDidScroll(callBack: @escaping (UIScrollView) -> ()) {
-//        scrollCallBack = callBack
-//    }
-//}
-//
-//
