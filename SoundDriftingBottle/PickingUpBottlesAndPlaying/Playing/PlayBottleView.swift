@@ -38,8 +38,15 @@ class PlayBottleView: UIView {
     }
     
     fileprivate func setupView(){
-//        actionContentView.hc_setBackgroupViewBlur(alpha: 1, style: .dark)
-        actionContentView.hc_setGradualChangeViewBlur(style: .dark)
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 250 * scaleMaxV)
+        gradient.colors = [UIColor.clear.cgColor, LDColor(rgbValue: 0xffffff, al: 0.8).cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        actionContentView.layer.addSublayer(gradient)
+        
+        actionContentView.hc_setBackgroupViewBlur(alpha: 0.3, style: .dark)
+        
         self.addSubview(actionContentView)
         actionContentView.snp.makeConstraints{(make) in
             make.height.equalTo(250 * scaleMaxV)
@@ -74,6 +81,7 @@ class PlayBottleView: UIView {
         
         otherView.addSubview(slider)
         slider.thumbTintColor = .clear
+        slider.tintColor = LDColor(rgbValue: 0xFF8C00, al: 0.8)
         slider.isContinuous = false
         slider.snp.makeConstraints {(make) in
             make.centerX.bottom.equalToSuperview()
@@ -87,12 +95,14 @@ class PlayBottleView: UIView {
     fileprivate func setupLikeView(){
         //时间布局
         likeView.addSubview(currentTimeL)
+        currentTimeL.textColor = .white
         currentTimeL.snp.makeConstraints {(make) in
             make.bottom.equalToSuperview()
             make.left.equalToSuperview().offset(20)
         }
         
         likeView.addSubview(totalTimeL)
+        totalTimeL.textColor = .white
         totalTimeL.snp.makeConstraints {(make) in
             make.bottom.equalToSuperview()
             make.right.equalToSuperview().offset(-20)

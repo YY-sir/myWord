@@ -48,7 +48,7 @@ extension UIView {
         }
     }
     
-    @objc func hc_setGradualChangeViewBlur(alpha: CGFloat = 1.0, style:UIBlurEffect.Style){
+    @objc func hc_setGradualChangeViewBlur(alpha: CGFloat = 1.0, style:UIBlurEffect.Style, frame: CGRect, colorArr: [CGColor]){
         self.hc_removeBackgroupViewBlur()
         self.backgroundColor = UIColor.clear
         let blurEffect = UIBlurEffect(style: style)
@@ -62,10 +62,11 @@ extension UIView {
             make.edges.equalTo(UIEdgeInsets.zero)
         })
         
+        print("frame:\(self.frame)")
         let gradient = CAGradientLayer()
-        gradient.frame = self.frame
-        gradient.colors = [UIColor.clear.cgColor, UIColor.white.cgColor, UIColor.white.cgColor, UIColor.white.cgColor]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0)
+        gradient.frame = frame
+        gradient.colors = colorArr
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
         
         blurView.layer.insertSublayer(gradient, at: 0)

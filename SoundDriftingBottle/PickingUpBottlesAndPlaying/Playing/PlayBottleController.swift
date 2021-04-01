@@ -130,9 +130,16 @@ class PlayBottleController: UIViewController {
         self.view.addSubview(loadingview)
     }
     
+    //设置背景
     fileprivate func setupViewBg(){
-        let bgui = UIView(frame: self.view.bounds)
-        bgui.layer.addSublayer(CommonOne().gradientLayer)
+        //随机产生选择背景
+//        let bgNum = Int(arc4random_uniform(5)) + 1
+        let bgNum = arc4random() % 6 + 1
+        print("player_bg" + String(bgNum))
+        let bgui = UIImageView(frame: self.view.bounds)
+        bgui.image = UIImage.init(named: "player_bg" + String(bgNum))
+        bgui.contentMode = .scaleAspectFill
+//        bgui.backgroundColor = .black
         self.view.addSubview(bgui)
     }
     
