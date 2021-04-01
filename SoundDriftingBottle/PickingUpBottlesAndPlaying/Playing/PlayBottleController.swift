@@ -33,6 +33,11 @@ class PlayBottleController: UIViewController {
     //判断是否点击滑块控件
     var isTouchDownSlider = false
     
+    //是否点赞
+    var isLike = false
+    //是否收藏
+    var isCollected = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //设置导航栏
@@ -174,9 +179,28 @@ class PlayBottleController: UIViewController {
 
         case playbottleview.likeB:
             print("点赞")
+            var imageName: String
+            if self.isLike{
+                self.isLike = false
+                imageName = "like"
+            }else{
+                self.isLike = true
+                imageName = "like_fill"
+            }
+            self.playbottleview.likeB.setImage(UIImage.init(named: imageName), for: .normal)
             
         case playbottleview.collectB:
             print("收藏")
+            var imageName: String
+            if self.isCollected{
+                self.isCollected = false
+                imageName = "collection"
+            }else{
+                self.isCollected = true
+                imageName = "collection_fill"
+            }
+            self.playbottleview.collectB.setImage(UIImage.init(named: imageName), for: .normal)
+            
             
         case playbottleview.reportB:
             print("举报")

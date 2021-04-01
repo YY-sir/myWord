@@ -15,6 +15,8 @@ enum mineType:Int {
     case like
 }
 
+let mineListHeight = 40
+
 class MineListViewController: UIViewController {
     init(listType: mineType) {
         super.init(nibName: nil, bundle: nil)
@@ -42,7 +44,6 @@ class MineListViewController: UIViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-//        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "tableViewCell")
         tableView.register(MineListTableViewCell.self, forCellReuseIdentifier: "tableViewCell")
         return tableView
     }()
@@ -169,10 +170,10 @@ extension MineListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MineListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! MineListTableViewCell
-        cell.logoImgView.image = UIImage.init(named: "loading2-1")
+        cell.logoImgView.image = UIImage.init(named: "piaoliuping1")
         cell.nameLabel.text = "第" + String(indexPath.row) + "行"
-        cell.collectB.setImage(UIImage.init(named: "image0"), for: .normal)
-        cell.deleteB.setImage(UIImage.init(named: "image2"), for: .normal)
+        cell.collectB.setImage(UIImage.init(named: "mine_like"), for: .normal)
+        cell.deleteB.setImage(UIImage.init(named: "mine_shanchu1"), for: .normal)
         
         cell.selectionStyle = .none
         return cell
@@ -180,6 +181,11 @@ extension MineListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let playbottlecontroller = PlayBottleController()
+        self.navigationController?.pushViewController(playbottlecontroller, animated: true)
     }
 }
 
