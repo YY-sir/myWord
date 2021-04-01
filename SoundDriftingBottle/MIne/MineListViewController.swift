@@ -18,9 +18,23 @@ enum mineType:Int {
 let mineListHeight = 40
 
 class MineListViewController: UIViewController {
+    var currentCollectIndex: Int?
+    var currentdeleteIndex: Int?
+    var collectNotification: Notification?
+    var deleteNotification: Notification?
+    var notificationObject: String?
+    
     init(listType: mineType) {
         super.init(nibName: nil, bundle: nil)
         self.listType = listType
+        switch self.listType {
+        case .history:
+            self.notificationObject = "history"
+        case .collect:
+            self.notificationObject = "collect"
+        case .like:
+            self.notificationObject = "like"
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -125,6 +139,12 @@ class MineListViewController: UIViewController {
         }else {
             self.loadData()
         }
+        
+        self.addNotification()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func loadData() {
@@ -160,6 +180,7 @@ class MineListViewController: UIViewController {
         self.loadLabel.isHidden = true
         self.loadingView.stopAnimating()
     }
+    
 }
 
 extension MineListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -173,9 +194,14 @@ extension MineListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.logoImgView.image = UIImage.init(named: "piaoliuping1")
         cell.nameLabel.text = "第" + String(indexPath.row) + "行"
         cell.collectB.setImage(UIImage.init(named: "mine_like"), for: .normal)
-        cell.deleteB.setImage(UIImage.init(named: "mine_shanchu1"), for: .normal)
-        
+        cell.deleteB.setImage(UIImage.init(named: "mine_shanchu2"), for: .normal)
+        cell.index = indexPath.row
+        cell.type = self.notificationObject
         cell.selectionStyle = .none
+        
+//        cell.collectB.addTarget(self, action: #selector(collectAction), for: .touchUpInside)
+//        cell.deleteB.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+        
         return cell
     }
     
@@ -206,5 +232,25 @@ extension MineListViewController: GKPageListViewDelegate {
     
     func listViewDidScroll(callBack: @escaping (UIScrollView) -> ()) {
         scrollCallBack = callBack
+    }
+}
+
+//MARK: - 接收通知
+extension MineListViewController{
+    fileprivate func addNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(collectAction(notification:)), name: NSNotification.Name(rawValue: "MineCollectAction"), object: self.notificationObject)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteAction(notification:)), name: NSNotification.Name(rawValue: "MineDeleteAction"), object: self.notificationObject)
+    }
+    
+    //收藏操作
+    @objc func collectAction(notification: Notification){
+        print("接收通知：\(notification)")
+    }
+    //删除操作
+    @objc func deleteAction(notification: Notification){
+        print("接收通知：\(notification)")
+        self.count -= 1
+        print("count:\(count)")
+        self.tableView.reloadData()
     }
 }
