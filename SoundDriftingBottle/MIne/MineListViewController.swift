@@ -199,8 +199,9 @@ extension MineListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.type = self.notificationObject
         cell.selectionStyle = .none
         
-//        cell.collectB.addTarget(self, action: #selector(collectAction), for: .touchUpInside)
-//        cell.deleteB.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)
+        if self.listType == .collect{
+            cell.collectB.removeFromSuperview()
+        }
         
         return cell
     }

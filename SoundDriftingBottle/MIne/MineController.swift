@@ -44,7 +44,7 @@ class MineController: GKDemoBaseViewController{
         return headerView
     }()
     
-    let titles = ["历史", "收藏", "喜欢"]
+    let titles = ["历史", "喜欢", "收藏"]
     lazy var segmentedView: JXSegmentedView = {
         let segmentedView = JXSegmentedView(frame: CGRect(x: 0, y: 0, width: kScreenW, height: 40))
         segmentedView.delegate = self
@@ -105,11 +105,11 @@ class MineController: GKDemoBaseViewController{
         hotVC.shouldLoadData = true
         childVCs.append(hotVC)
         
-        let aboutVC = MineListViewController(listType: .collect)
+        let aboutVC = MineListViewController(listType: .like)
         aboutVC.shouldLoadData = true
         childVCs.append(aboutVC)
         
-        let chatVC = MineListViewController(listType: .like)
+        let chatVC = MineListViewController(listType: .collect)
         chatVC.shouldLoadData = true
         childVCs.append(chatVC)
         return childVCs

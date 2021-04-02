@@ -23,6 +23,11 @@ class PickingUpBottlesController: UIViewController {
     var audioPlayer: AVAudioPlayer!
     var isPlay = true
     
+    //滑动提示
+    var tipv: WipeUpTipView?
+    //滑动提示计时器
+    var wipeUpTipTimer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -30,10 +35,6 @@ class PickingUpBottlesController: UIViewController {
         bgAudio()
         //背景音乐开关
         pickupview.audioB.addTarget(self, action: #selector(isPlayAudio), for: .touchUpInside)
-        
-        //进入后台关闭背景音乐
-        NotificationCenter.default.addObserver(self, selector: #selector(intoBg), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(gobackBg), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,10 @@ class PickingUpBottlesController: UIViewController {
         if audioPlayer != nil && isPlay{
             audioPlayer.play()
         }
+        
+        //进入后台关闭背景音乐
+        NotificationCenter.default.addObserver(self, selector: #selector(intoBg), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(gobackBg), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     //将页面初始化
@@ -54,17 +59,25 @@ class PickingUpBottlesController: UIViewController {
         isPickup = true
         pickupview.mainScrollView.contentOffset.y = -(CommonOne().topPadding)
         audioPlayer.pause()
+        
+        //移除提示计时器
+        self.wipeUpTipTimer?.invalidate()
+        self.wipeUpTipTimer = nil
+        
+        //移除信号监听
+        NotificationCenter.default.removeObserver(self)
     }
     
     deinit {
         audioPlayer = nil
-        print("111")
     }
     
 //-----------------------------------------------------------------------------------------
     fileprivate func setupView(){
         self.title = "首页"
         self.view.backgroundColor = UIColor.white
+        
+
         
         pickupview = PickingUpBottlesView(frame: self.view.bounds)
         self.view.addSubview(pickupview)
@@ -77,13 +90,16 @@ class PickingUpBottlesController: UIViewController {
             make.bottom.equalTo(-CommonOne().bottomPadding)
             make.height.equalTo(50 * scaleMaxV)
         }
+        
+        tipv = WipeUpTipView(frame: self.view.bounds)
+        self.view.addSubview(tipv!)
+        wipeUpTipTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(removeWipeUpTip), userInfo: nil, repeats: false)
     }
 
 //------------------------------------------------------------------------
     fileprivate func bgAudio(){
         let bun = Bundle.main.path(forResource: "Settings", ofType: "bundle")
         url = bun! + "/soundOfWaves.wav"
-        print("url:\(url)")
         audioPlayer = try? AVAudioPlayer.init(contentsOf: URL(string: url)!)
         audioPlayer.numberOfLoops = .max
         audioPlayer.volume = 0.8
@@ -116,6 +132,13 @@ class PickingUpBottlesController: UIViewController {
         if isPlay{
             self.audioPlayer.play()
         }
+    }
+    
+    //去除提示
+    @objc fileprivate func removeWipeUpTip(){
+        UIView.animate(withDuration: 0.7, animations: {
+            self.tipv?.alpha = 0
+        })
     }
 }
 

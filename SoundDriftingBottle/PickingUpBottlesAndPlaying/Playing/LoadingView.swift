@@ -23,7 +23,7 @@ class LoadingView: UIView {
     fileprivate func setupUI(){
         
         
-        self.backgroundColor = LDColor(rgbValue: 0x000000, al: 0.17)
+        self.backgroundColor = LDColor(rgbValue: 0x000000, al: 0.25)
         self.addSubview(loadingImage)
         loadingImage.snp.makeConstraints {(make) in
             make.center.equalToSuperview()
