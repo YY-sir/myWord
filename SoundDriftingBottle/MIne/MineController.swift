@@ -166,9 +166,12 @@ class MineController: GKDemoBaseViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if(app.faceImageUrl != ""){
-            headerBgImgView.image = UIImage.init(contentsOfFile: app.faceImageUrl)
+        if(app.userFaceImageUrl != ""){
+            headerBgImgView.image = UIImage.init(contentsOfFile: app.userFaceImageUrl)
+            
         }
+        headerView.nameLabel.text = app.userName == "" ? "余余与余余" : app.userName
+        headerView.personalSignature.text = app.userName == "" ? "知道今天可以见到你，所以从睁开眼睛就开始感到幸福始感到幸福始感到幸福dsad" : app.userPersonalText
     }
     
     //------------------------------------------------------------------------------------------

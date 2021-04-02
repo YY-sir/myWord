@@ -61,8 +61,13 @@ extension PersonalInfoView: UITableViewDelegate, UITableViewDataSource{
         case "头像":
             cell?.accessoryType = .disclosureIndicator
             cell?.contentView.addSubview(faceImage)
-//            faceImage.image = UIImage.init(contentsOfFile: app.faceImageUrl)
-            faceImage.image = UIImage.init(named: "profileImage")
+
+            if app.userFaceImageUrl != ""{
+                faceImage.image = UIImage.init(contentsOfFile: app.userFaceImageUrl)
+            }else{
+                faceImage.image = UIImage.init(named: "profileImage")
+            }
+            
             faceImage.layer.cornerRadius = 5
             faceImage.layer.masksToBounds = true
             faceImage.snp.makeConstraints{(make) in
@@ -73,6 +78,7 @@ extension PersonalInfoView: UITableViewDelegate, UITableViewDataSource{
         case "昵称":
             nameTextField.textAlignment = .right
             nameTextField.placeholder = "请输入昵称"
+            nameTextField.text = app.userName
             cell?.contentView.addSubview(nameTextField)
             nameTextField.snp.makeConstraints{(make) in
                 make.height.equalToSuperview()
@@ -82,66 +88,25 @@ extension PersonalInfoView: UITableViewDelegate, UITableViewDataSource{
         case "个性签名":
             personalTextField.textAlignment = .right
             personalTextField.placeholder = "你还没有签名~"
+            personalTextField.text = app.userPersonalText
             cell?.contentView.addSubview(personalTextField)
             personalTextField.snp.makeConstraints{(make) in
                 make.height.equalToSuperview()
                 make.right.equalTo(-15)
                 make.left.equalTo(cell?.textLabel?.snp.right as! ConstraintRelatableTarget).offset(5)
             }
+        case "性别":
+            cell?.detailTextLabel?.text = app.userSex
+            cell?.accessoryType = .disclosureIndicator
+        case "生日":
+            cell?.detailTextLabel?.text = app.userBirthday
+            cell?.accessoryType = .disclosureIndicator
         case "完成":
             print("完成")
         default:
-            cell?.accessoryType = .disclosureIndicator
-            cell?.detailTextLabel?.text = "无"
+            print("其他")
         }
         
         return cell!
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        switch labelArr[indexPath.row] {
-//        case "头像":
-//            return 100.0
-//        case "昵称":
-//            return 50.0
-//        case "性别":
-//            return 50.0
-//        case "生日":
-//            return 50.0
-//        case "个性签名":
-//            return 50.0
-//        default:
-//            return 60.0
-//        }
-//    }
-//    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return nil
-//    }
-//    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        
-//    }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        switch tableView.cellForRow(at: indexPath)?.textLabel?.text {
-//        case "头像":
-//            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        case "昵称":
-//            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        case "性别":
-//            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        case "生日":
-//            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        case "个性签名":
-//            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        default:
-//            print("\(String(describing: tableView.cellForRow(at: indexPath)?.textLabel?.text))")
-//        }
-//        
-//    }
-    
-    
-    
 }

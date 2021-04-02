@@ -11,11 +11,13 @@ import UIKit
 public let kWYHeaderHeight = (kScreenW * 500.0 / 750.0 - kNavBar_Height)
 
 class MineHeaderView: UIView {
+    let app = UIApplication.shared.delegate as! AppDelegate
+    
     lazy var nameLabel: UILabel! = {
         let nameLabel = UILabel()
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18.0)
         nameLabel.textColor = UIColor.white
-        nameLabel.text = "余余与余余"
+//        nameLabel.text = app.userName == "" ? "余余与余余" : app.userName
         return nameLabel
     }()
     
@@ -24,7 +26,7 @@ class MineHeaderView: UIView {
         let personalSignature = UILabel()
         personalSignature.font = UIFont.systemFont(ofSize: 13.0)
         personalSignature.textColor = UIColor.white
-        personalSignature.text = "知道今天可以见到你，所以从睁开眼睛就开始感到幸福始感到幸福始感到幸福dsad"
+//        personalSignature.text = app.userName == "" ? "知道今天可以见到你，所以从睁开眼睛就开始感到幸福始感到幸福始感到幸福dsad" : app.userPersonalText
         return personalSignature
     }()
     

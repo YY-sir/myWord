@@ -12,8 +12,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //判断是否自己捞瓶子
     var isAutomatic: Bool = false
-    //头像Url
-    var faceImageUrl: String = ""
+    //用户头像Url
+    var userFaceImageUrl: String = ""
+    //用户昵称
+    var userName: String = ""
+    //用户性别
+    var userSex: String = "无"
+    //用户生日
+    var userBirthday: String = "无"
+    //用户个性签名
+    var userPersonalText: String = ""
+    
+    
     
     var window: UIWindow?
     var backgroundTask: UIBackgroundTaskIdentifier!=nil

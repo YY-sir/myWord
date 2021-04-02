@@ -14,6 +14,10 @@ class PersonalInfoController: UIViewController {
     let app = UIApplication.shared.delegate as! AppDelegate
     let labelArr = ["头像", "昵称", "性别", "生日", "个性签名" ,"完成"]
     
+    var userFaceImg = ""
+    var userSex = "无"
+    var userBirthday = "无"
+    
     var personalinfoview: PersonalInfoView!
     
     lazy var datePickerView: DatePickerView? = {
@@ -37,7 +41,9 @@ class PersonalInfoController: UIViewController {
 //--------------------------------------------------------------------------------------------------
 //MARK: - setup
     fileprivate func  initData(){
-
+        self.userFaceImg = app.userFaceImageUrl
+        self.userSex = app.userSex
+        self.userBirthday = app.userBirthday
     }
     
     fileprivate func setupNav(){
@@ -100,10 +106,6 @@ extension PersonalInfoController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
     }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: indexPath)
@@ -136,9 +138,11 @@ extension PersonalInfoController: UITableViewDelegate{
             let alert = UIAlertController(title: "", message: "性别", preferredStyle: .actionSheet)
             let manchoose = UIAlertAction(title: "男", style: .default, handler: {_ in
                 currentCell?.detailTextLabel?.text = "男"
+                self.userSex = "男"
             })
             let wamanchoose = UIAlertAction(title: "女", style: .default, handler: {_ in
                 currentCell?.detailTextLabel?.text = "女"
+                self.userSex = "女"
             })
             let cancelchoose = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             alert.addAction(manchoose)
@@ -151,13 +155,15 @@ extension PersonalInfoController: UITableViewDelegate{
             datePickerView?.showDatePickView()
             datePickerView?.selectDatePicker((currentCell?.detailTextLabel?.text)!)
             self.datePickerView?.dateSelectedBlock = {[weak self] (dateString) in
-                print("\(dateString)")
                 currentCell?.detailTextLabel!.text = dateString
+                self?.userBirthday = dateString
             }
             
         case "个性签名":
             self.personalinfoview.personalTextField.becomeFirstResponder()
             
+        case "完成":
+            self.succesAction()
         default:
             self.hideBoard()
             
@@ -165,8 +171,35 @@ extension PersonalInfoController: UITableViewDelegate{
         
     }
     
+    //完成操作
+    fileprivate func succesAction(){
+        if trim(str: self.personalinfoview.nameTextField.text!) == ""{
+            UIUtil.showHint("请输入昵称")
+            self.personalinfoview.nameTextField.attributedPlaceholder = NSAttributedString.init(string:"请输入昵称", attributes: [NSAttributedString.Key.foregroundColor:LDColor(rgbValue: 0xff00000, al: 0.4)])
+            return
+        }
+        
+        //保存选项
+        self.saveOptions()
+        
+        if self.pageTo == 0{
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            UIUtil.showHint("注册成功")
+            let pickUpBottleVC = PickingUpBottlesController()
+            self.navigationController?.pushViewController(pickUpBottleVC, animated: true)
+        }
+        print("succesAction")
+    }
     
-
+    //保存用户信息
+    fileprivate func saveOptions(){
+        app.userFaceImageUrl = self.userFaceImg
+        app.userName = self.personalinfoview.nameTextField.text ?? ""
+        app.userSex = self.userSex
+        app.userBirthday = self.userBirthday
+        app.userPersonalText = self.personalinfoview.personalTextField.text ?? ""
+    }
 }
 
 extension PersonalInfoController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
@@ -179,7 +212,13 @@ extension PersonalInfoController: UINavigationControllerDelegate, UIImagePickerC
         let fileManager = FileManager.default
         let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
                                                 .userDomainMask, true)[0] as String
-        let filePath = "\(rootPath)/faceImage.jpg"
+        var filePath = ""
+        if app.userFaceImageUrl == "\(rootPath)/faceImage1.jpg"{
+            filePath = "\(rootPath)/faceImage0.jpg"
+        }else{
+            filePath = "\(rootPath)/faceImage1.jpg"
+        }
+         
         let imageData = pickedImage.jpegData(compressionQuality: 1.0)
         fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
          
@@ -197,9 +236,9 @@ extension PersonalInfoController: UINavigationControllerDelegate, UIImagePickerC
         }
         
         //将照片地址加入数组
-        print("faceImageURL:\(filePath)")
-        app.faceImageUrl = filePath
-        self.personalinfoview.faceImage.image = UIImage.init(contentsOfFile: app.faceImageUrl)
+        print("userFaceImageUrl:\(filePath)")
+        self.userFaceImg = filePath
+        self.personalinfoview.faceImage.image = UIImage.init(contentsOfFile: self.userFaceImg)
 
         //图片控制器退出
         picker.dismiss(animated: true, completion:nil)

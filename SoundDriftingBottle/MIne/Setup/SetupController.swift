@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class SetupController: UIViewController {
+    let app = UIApplication.shared.delegate as! AppDelegate
+    
 //    var contenttableview: SetupView!
     var contentTableView: UITableView!
     let cellText = [["修改个人信息", "意见反馈", "清除缓存"] ,["关于音瓶" ,"隐私协议"] , ["退出"]]
@@ -170,11 +172,7 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
             print("退出")
             let backAlert = UIAlertController.init(title: "确定退出", message: nil, preferredStyle: .alert)
             let alertTrue = UIAlertAction(title: "确定", style: .default, handler: {_ in
-//                let register = RegisterAndLoginController()
-//                self.dismiss(animated: false, completion: {
-//                    print("关闭页面成功")
-//                })
-//                self.navigationController?.pushViewController(register, animated: true)
+                self.deleteOptions()
                 self.navigationController?.popToRootViewController(animated: true)
             })
             let alertCancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -193,6 +191,14 @@ extension SetupController:UITableViewDelegate,UITableViewDataSource {
         clearTimer?.invalidate()
         clearTimer = nil
         UIUtil.showHint("清除成功")
+    }
+    
+    fileprivate func deleteOptions(){
+        app.userFaceImageUrl = ""
+        app.userName = ""
+        app.userSex = "无"
+        app.userBirthday = "无"
+        app.userPersonalText = ""
     }
 
 }
