@@ -12,6 +12,11 @@ import UIKit
 class PlayBottleController: UIViewController {
     //appdelegate
     let app: AppDelegate = UIApplication.shared.delegate! as! AppDelegate
+
+    //背景
+    let bgui = UIImageView()
+    //记录上一张背景
+    var lastBg = -1
     
     //加载页面
     var loadingview: LoadingView!
@@ -132,15 +137,24 @@ class PlayBottleController: UIViewController {
     
     //设置背景
     fileprivate func setupViewBg(){
-        //随机产生选择背景
-//        let bgNum = Int(arc4random_uniform(5)) + 1
-        let bgNum = arc4random() % 6 + 1
-        print("player_bg" + String(bgNum))
-        let bgui = UIImageView(frame: self.view.bounds)
-        bgui.image = UIImage.init(named: "player_bg" + String(bgNum))
+        bgui.frame = self.view.bounds
         bgui.contentMode = .scaleAspectFill
-//        bgui.backgroundColor = .black
         self.view.addSubview(bgui)
+        self.changeViewBg()
+    }
+    
+    //随机产生选择背景
+    fileprivate func changeViewBg(){
+        var bgNum = -1
+        while true {
+            bgNum = Int(arc4random() % 6 + 1)
+            if (bgNum != lastBg){
+                lastBg = bgNum
+                break
+            }
+        }
+        
+        bgui.image = UIImage.init(named: "player_bg" + String(bgNum))
     }
     
     fileprivate func playBottle(){
@@ -362,7 +376,7 @@ class PlayBottleController: UIViewController {
 //4---------------------------------------------------------------------------------------------
 //    下一首操作
     fileprivate func nextAction(){
-//        showLoadingView()
+        self.changeViewBg()
         setupLoadingView()
         removeObserve()
         getBottleURL()

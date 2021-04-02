@@ -372,13 +372,17 @@ class LoginView: UIView {
     }
     
     @objc func keyboardWillShow(notifition : Notification){
-        
-        
         if let userInfo = notifition.userInfo as? Dictionary<String, Any>{
             if let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 self.isKeyboard = true
                 let keyboardSize = keyboardFrameValue.cgRectValue
-                self.boxViewBottom = keyboardSize.height + 120
+                let currentBottom = (ScreenHeight - boxViewH) / 2
+                if(currentBottom > keyboardSize.height){
+                    self.boxViewBottom = currentBottom
+                }else{
+                    self.boxViewBottom = keyboardSize.height
+                }
+                 
                 self.boxView.snp.remakeConstraints {(make) in
                     make.bottom.equalTo(-boxViewBottom)
                     make.width.equalTo(self.boxViewWidth)

@@ -218,6 +218,7 @@ class ThrowTheBottleController: UIViewController {
             UIUtil.showLoading(withText: "正在扔向大海...")
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                 UIUtil.dismissLoading()
+                UIUtil.showHint("瓶子已漂入大海")
             }
             
         }

@@ -12,7 +12,6 @@ var cellS: Float!
 class PickingUpBottlesView: UIView {
     var scrollContentH: Float!
     var overH: Float!
-//    var cellS: Float!
     
     let mainScrollView: UIScrollView = UIScrollView()
     let mainScrollViewBg: UIImageView = UIImageView()
@@ -23,8 +22,7 @@ class PickingUpBottlesView: UIView {
     var bottleLabelViewCollection: UICollectionView!
     let bottleLabelText = ["普通瓶", "心情瓶", "音乐瓶", "故事瓶", "愿望瓶"]
     let bottleImage = ["bottle1_nomal", "bottle2_moon", "bottle3_music", "bottle4_story", "bottle5_wish"]
-    var bottleCellList: [CommonTwo] = []
-    var chooseLabel: Int = 0
+    var chooseCellList = [0]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,21 +40,6 @@ class PickingUpBottlesView: UIView {
         scrollContentH = Float(kScreenH + 70 * kScreenH / 896 + 60)
         
         cellS = Float((kScreenW - 4 * 3) / 5)
-        
-        for index in 0..<5 {
-            let bottleCell = CommonTwo()
-            bottleCell.id = index
-            if index == 0 {
-                bottleCell.bgColor = LDColor(rgbValue: 0x111111, al: 0.25)
-                bottleCell.labelColor = .white
-            }else{
-                bottleCell.bgColor = LDColor(rgbValue: 0x213324, al: 0)
-                bottleCell.labelColor = .black
-            }
-            bottleCellList.append(bottleCell)
-        }
-        
-        
     }
     
     fileprivate func setupView(){
@@ -104,11 +87,7 @@ class PickingUpBottlesView: UIView {
         layout.itemSize = CGSize(width: Int(cellS), height: Int(cellS / 80 * 80))
         layout.scrollDirection = .horizontal
         
-        
         bottleLabelViewCollection = UICollectionView(frame: CGRect(x: 50, y: 200, width: 300, height: 85), collectionViewLayout: layout)
-//        bottleLabelViewCollection.layer.cornerRadius = 5
-//        bottleLabelViewCollection.layer.borderWidth = 2
-//        bottleLabelViewCollection.layer.borderColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
         bottleLabelViewCollection.delegate = self
         bottleLabelViewCollection.dataSource = self
         bottleLabelViewCollection.register(PickingUpBottleCell.self, forCellWithReuseIdentifier: PickingUpBottleCell.reused)
@@ -134,36 +113,36 @@ extension PickingUpBottlesView: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PickingUpBottleCell.reused, for: indexPath) as!PickingUpBottleCell
         
-        //把原先复用的cell的ui清除
-//        for subView in cell.subviews{
-//            subView.removeFromSuperview()
-//        }
-        
         //对cell进行ui设计
-        cell.backgroundColor = bottleCellList[indexPath.row].bgColor
-        cell.bottleL.textColor = bottleCellList[indexPath.row].labelColor
         cell.bottleL.text = bottleLabelText[indexPath.row]
         cell.bottleI.image = UIImage(named: bottleImage[indexPath.row])
         
         cell.layer.cornerRadius = 7
         cell.layer.masksToBounds = true
         
+        cell.backgroundColor = LDColor(rgbValue: 0x213324, al: 0)
+        cell.bottleL.textColor = .black
+        for item in self.chooseCellList{
+            if item == indexPath.row{
+                cell.backgroundColor = LDColor(rgbValue: 0x111111, al: 0.25)
+                cell.bottleL.textColor = .white
+                break
+            }
+        }
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        chooseLabel = indexPath.row
-        
         //1.对cell的list数组进行初始化
-        for index in 0..<5{
-            if index == indexPath.row{
-                bottleCellList[index].bgColor = LDColor(rgbValue: 0x111111, al: 0.25)
-                bottleCellList[index].labelColor = .white
-                continue
+        for (index, item) in self.chooseCellList.enumerated(){
+            if item == indexPath.row{
+                self.chooseCellList.remove(at: index)
+                self.bottleLabelViewCollection.reloadData()
+                return
             }
-            bottleCellList[index].bgColor = LDColor(rgbValue: 0x213324, al: 0)
-            bottleCellList[index].labelColor = .black
         }
+        self.chooseCellList.append(indexPath.row)
         //2.重新载入collection
         self.bottleLabelViewCollection.reloadData()
     }
